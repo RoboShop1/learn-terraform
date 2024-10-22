@@ -48,9 +48,9 @@ resource "null_resource" "c" {
 
     connection {
       type     = "ssh"
-      user     = sensitive("ec2-user")
-      password = sensitive("DevOps321")
-      host     = "34.238.160.230"
+      user     = "ec2-user"
+      password = "DevOps321"
+      host     = 34.238.160.230
     }
   provisioner "file" {
     source      = "${path.module}/hello.txt"
