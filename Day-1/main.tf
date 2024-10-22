@@ -5,7 +5,7 @@ variable "list" {
   senstive = true
 }
 
-resource "null_resource" "first" {
+resource "null_resource" "first1" {
   for_each = toset(var.list)
   provisioner "local-exec" {
     command = "echo This is - ${base64encode(each.key)} and - ${each.value}"
