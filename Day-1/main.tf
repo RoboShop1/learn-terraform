@@ -7,6 +7,6 @@ variable "list" {
 resource "null_resource" "first" {
   for_each = toset(var.list)
   provisioner "local-exec" {
-    command = "echo This is - ${each.key}"
+    command = "echo This is - ${each.key} and - ${each.value}"
   }
 }
