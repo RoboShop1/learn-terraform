@@ -2,11 +2,12 @@
 
 variable "list" {
   default = ["one","two","three","four"]
+  senstive = true
 }
 
 resource "null_resource" "first" {
   for_each = toset(var.list)
   provisioner "local-exec" {
-    command = "echo This is - ${each.key} and - ${each.value}"
+    command = "echo This is - ${base64encode(each.key)} and - ${each.value}"
   }
 }
