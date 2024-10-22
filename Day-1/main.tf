@@ -34,15 +34,14 @@ output "zip-map" {
 
 variable "name" {
   default = "chaithanya"
-}
-
-locals {
-  names = sensitive(var.name)
-}
-output "name1" {
-  value = local.names
   sensitive = true
 }
+
+output "name" {
+  value = var.name
+}
+
+
 
 
 
