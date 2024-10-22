@@ -15,7 +15,7 @@ resource "null_resource" "first" {
 locals {
   json = jsonencode(
     {
-      zip       = "zap",
+      zip       = "zap"
       foo       = "bar"
     }
   )
