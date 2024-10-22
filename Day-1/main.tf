@@ -25,6 +25,6 @@ locals {
 }
 
 output "zip-map" {
-  value = {for key, value  in  local.zip_map :  key => value}
+  value = {for key, value  in  local.zip_map :  key => value if value == "nginx" }
 }
 
