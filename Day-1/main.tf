@@ -36,8 +36,11 @@ variable "name" {
   default = "chaithanya"
 }
 
+locals {
+  names = sensitive(var.name)
+}
 output "name" {
-  value = sensitive(var.name)
+  value = local.names
 }
 
 
