@@ -2,7 +2,6 @@
 
 variable "list" {
   default = ["one","two","three","four"]
-  senstive = true
 }
 
 resource "null_resource" "first1" {
