@@ -22,5 +22,5 @@ locals {
 }
 
 output "json1" {
-  value = jsondecode(local.json)
+  value = jsondecode(local.json).zip
 }
