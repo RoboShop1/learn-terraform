@@ -12,15 +12,14 @@ resource "null_resource" "first" {
 }
 */
 
-locals {
-  json = jsonencode(
-    {
-      zip       = "zap",
-      foo       = "bar"
-    }
-  )
+variable "key_list" {
+  default = ["frontend","backend","database"]
 }
 
-output "json1" {
-  value = jsondecode(local.json).zip
+variable "value_list" {
+  default = ["nginx","nodejs","mysql"]
+}
+
+output "zip-map" {
+  value = zipmap(var.key_list,var.value_list)
 }
