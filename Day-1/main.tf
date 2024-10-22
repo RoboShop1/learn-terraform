@@ -41,6 +41,7 @@ locals {
 }
 output "name1" {
   value = local.names
+  sensitive = false
 }
 
 
