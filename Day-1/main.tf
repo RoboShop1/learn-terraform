@@ -44,10 +44,17 @@ output "zip-map" {
 
 // provisioners
 
-resource "null_resource" "one" {
-  provisioner "local-exec" {
-    command = "echo This is chaithanya && exit 1"
-    on_failure = continue
+resource "null_resource" "c" {
+
+    connection {
+      type     = "ssh"
+      user     = sensitive("ec2-user")
+      password = sensitive("DevOps321")
+      host     = "34.238.160.230"
+    }
+  provisioner "file" {
+    source      = "${path.module}/hello.txt"
+    destination = "/tmp/hello1.txt"
   }
 }
 
