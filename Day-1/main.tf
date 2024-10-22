@@ -12,6 +12,7 @@ resource "null_resource" "first" {
 }
 */
 
+/* // zip-map //
 variable "key_list" {
   default = ["frontend","backend","database"]
 }
@@ -27,4 +28,38 @@ locals {
 output "zip-map" {
   value = {for key, value  in  local.zip_map :  key => value if key == "database" }
 }
+*/
+
+// senstive
+
+variable "name" {
+  default = "chaithanya"
+}
+
+output "name" {
+  value = sensitive(var.name)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
