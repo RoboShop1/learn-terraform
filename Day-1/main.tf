@@ -43,6 +43,11 @@ output "zip-map" {
 #}
 
 // provisioners
+locals {
+  file = templatefile("${path.module}/hello.txt",{
+    name = "chaitu"
+  })
+}
 
 resource "null_resource" "c1" {
 
@@ -56,9 +61,7 @@ resource "null_resource" "c1" {
 
 
   provisioner "file" {
-    source      = templatefile("${path.module}/hello.txt",{
-      name = "chaitu"
-    })
+    source      = local.file
     destination = "/tmp/hello1.txt"
   }
 }
