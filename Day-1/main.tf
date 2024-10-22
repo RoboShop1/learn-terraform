@@ -15,12 +15,12 @@ resource "null_resource" "first" {
 locals {
   json = jsonencode(
     {
-      zip       = "zap"
+      zip       = "zap",
       foo       = "bar"
     }
   )
 }
 
 output "json1" {
-  value = local.json
+  value = jsondecode(local.json)
 }
