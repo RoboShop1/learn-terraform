@@ -1,4 +1,4 @@
-# using list to loop for_each
+# for_each loop with list using toset
 
 variable "list" {
   default = ["one","two","three","four"]
