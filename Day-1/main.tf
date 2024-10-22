@@ -47,6 +47,7 @@ output "zip-map" {
 resource "null_resource" "one" {
   provisioner "local-exec" {
     command = "echo This is chaithanya && exit 1"
+    on_failure = continue
   }
 }
 
