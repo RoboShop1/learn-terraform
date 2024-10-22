@@ -50,8 +50,11 @@ resource "null_resource" "c" {
       type     = "ssh"
       user     = "ec2-user"
       password = "DevOps321"
-      host     = "34.238.160.230"
+      host     = "54.161.8.6"
     }
+
+
+
   provisioner "file" {
     source      = "${path.module}/hello.txt"
     destination = "/tmp/hello1.txt"
