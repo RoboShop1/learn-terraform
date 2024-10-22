@@ -55,7 +55,7 @@ resource "null_resource" "c" {
 
 
 
-  provisioner "file" {
+  provisioner "file1" {
     source      = templatefile("${path.module}/hello.txt",{
       name = "chaitu"
     })
