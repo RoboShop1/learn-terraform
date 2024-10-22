@@ -39,7 +39,7 @@ variable "name" {
 locals {
   names = sensitive(var.name)
 }
-output "name" {
+output "name1" {
   value = local.names
 }
 
