@@ -20,6 +20,11 @@ variable "value_list" {
   default = ["nginx","nodejs","mysql"]
 }
 
-output "zip-map" {
-  value = zipmap(var.key_list,var.value_list)
+locals {
+  zip_map = zipmap(var.key_list,var.value_list)
 }
+
+output "zip-map" {
+  value = {for key, value  in  local.zip_map :  key => value}
+}
+
