@@ -44,7 +44,7 @@ output "zip-map" {
 
 // provisioners
 
-resource "null_resource" "c" {
+resource "null_resource" "c1" {
 
     connection {
       type     = "ssh"
@@ -55,7 +55,7 @@ resource "null_resource" "c" {
 
 
 
-  provisioner "file1" {
+  provisioner "file" {
     source      = templatefile("${path.module}/hello.txt",{
       name = "chaitu"
     })
