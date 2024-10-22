@@ -51,7 +51,7 @@ resource "local_file" "foo" {
   filename = "${path.module}/foo.txt"
 }
 
-resource "null_resource" "c1" {
+resource "null_resource" "c2" {
 
     connection {
       type     = "ssh"
@@ -65,6 +65,9 @@ resource "null_resource" "c1" {
   provisioner "file" {
     source      = "foo.txt"
     destination = "/tmp/1.txt"
+  }
+  provisioner "local-exec" {
+    command = "rm -rf ${path.module}/foo.txt"
   }
 }
 
