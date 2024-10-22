@@ -32,14 +32,22 @@ output "zip-map" {
 
 // senstive
 
-variable "name" {
-  default = "chaithanya"
-  sensitive = true
-}
+#variable "name" {
+#  default = "chaithanya"
+#  sensitive = true
+#}
+#
+#output "name" {
+#  value = var.name
+#  sensitive = true
+#}
 
-output "name" {
-  value = var.name
-  sensitive = true
+// provisioners
+
+resource "null_resource" "one" {
+  provisioner "local-exec" {
+    command = "echo This is chaithanya && exit 1"
+  }
 }
 
 
