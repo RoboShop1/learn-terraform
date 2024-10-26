@@ -42,7 +42,7 @@ output "zip-map" {
 #  sensitive = true
 #}
 
-// provisioners
+ /* // provisioners
 
 resource "local_file" "foo" {
   content  = templatefile("${path.module}/hello.txt",{
@@ -70,7 +70,7 @@ resource "null_resource" "c2" {
     command = "rm -rf ${path.module}/foo.txt"
   }
 }
-
+/*
 
 
 
