@@ -16,7 +16,7 @@ module "ec2" {
   subnet_id = element(module.vpc.public_subnets_ids,count.index)
 }
 
-module "ec2" {
+module "ec21" {
   source = "./modules/ec2"
   ami    = "ami-0ddc798b3f1a5117e"
   instance_type = "t2.micro"
