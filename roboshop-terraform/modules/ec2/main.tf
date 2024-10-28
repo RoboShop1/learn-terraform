@@ -16,7 +16,9 @@ resource "aws_security_group" "sg" {
   }
 }
 resource "aws_instance" "instance" {
-
+  lifecycle {
+    ignore_changes = [tags]
+  }
 
   ami           = var.ami
   instance_type = var.instance_type
