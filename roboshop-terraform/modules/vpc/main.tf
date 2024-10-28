@@ -43,3 +43,43 @@ resource "aws_route_table_association" "rta" {
   subnet_id      = aws_subnet.public_subnets[count.index].id
   route_table_id = aws_route_table.rt[count.index].id
 }
+
+
+
+
+
+resource "aws_subnet" "private_subnets" {
+  count      = length(var.private_cidr_blocks)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.private_cidr_blocks[count.index]
+  availability_zone = var.availability_zones[count.index]
+
+  tags = {
+    Name = "${var.env }-private${count.index}-${var.availability_zones[count.index]}"
+    cidr_block = "${var.private_cidr_blocks[count.index]}"
+  }
+}
+
+
+resource "aws_route_table" "private_rt" {
+  count      = length(var.private_cidr_blocks)
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env }-private-rt-${count.index}"
+  }
+}
+
+resource "aws_route_table_association" "private_rta" {
+  count          = length(var.private_cidr_blocks)
+  subnet_id      = aws_subnet.private_subnets[count.index].id
+  route_table_id = aws_route_table.private_rt[count.index].id
+}
+
+
+
+
+
+
+
+
