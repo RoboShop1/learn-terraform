@@ -11,6 +11,11 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_vpc_peering_connection" "vpc_peering" {
+  peer_vpc_id = aws_vpc.main.id
+  vpc_id      = data.aws_vpc.default.id
+}
+
 
 resource "aws_subnet" "public_subnets" {
   count      = length(var.public_cidr_blocks)
