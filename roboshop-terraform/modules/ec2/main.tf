@@ -23,6 +23,6 @@ resource "aws_instance" "instance" {
   key_name = "nvirginia"
 
   tags = {
-    Name = "demo-1-${aws_instance.instance.availability_zone}"
+    Name = "demo-1"
   }
 }
