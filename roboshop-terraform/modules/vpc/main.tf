@@ -86,6 +86,10 @@ resource "aws_route_table" "private_rt" {
   count      = length(var.private_cidr_blocks)
   vpc_id = aws_vpc.main.id
 
+  route {
+    cidr_block = data.aws_vpc.default.cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
+  }
   tags = {
     Name = "${var.env }-private-rt-${count.index}"
   }
