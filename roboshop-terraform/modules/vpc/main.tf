@@ -20,7 +20,7 @@ resource "aws_subnet" "public_subnets" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.env }-public${count[index]}-${var.availability_zones[count.index]}"
+    Name = "${var.env }-public${count.index}-${var.availability_zones[count.index]}"
     cidr_block = "${var.public_cidr_blocks[count.index]}"
   }
 }
@@ -34,7 +34,7 @@ resource "aws_route_table" "rt" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "${var.env }-public-rt${count[index]}-"
+    Name = "${var.env }-public-rt-${count.index}"
   }
 }
 
