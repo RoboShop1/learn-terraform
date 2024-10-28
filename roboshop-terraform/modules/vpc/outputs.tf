@@ -13,3 +13,7 @@ output "private_subnets_ids" {
 output "public_sample" {
   value = [ for subnets in aws_subnet.public_subnets: subnets.id ]
 }
+
+output "default_vpc" {
+  value = data.aws_vpc.default
+}

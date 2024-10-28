@@ -31,3 +31,7 @@ output "public_subnets" {
 output "private_subnets" {
   value = module.vpc.private_subnets_ids
 }
+
+output "default_vpc" {
+  value = module.vpc.default_vpc
+}
