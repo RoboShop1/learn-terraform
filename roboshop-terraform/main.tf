@@ -16,6 +16,18 @@ module "ec2" {
   subnet_id = element(module.vpc.public_subnets_ids,count.index)
 }
 
-output "main_subnets" {
-  value = module.vpc.public_sample
+module "ec2" {
+  source = "./modules/ec2"
+  ami    = "ami-0ddc798b3f1a5117e"
+  instance_type = "t2.micro"
+  vpc_id = module.vpc.vpc_id
+  subnet_id = element(module.vpc.private_subnets_ids,0)
+}
+
+output "public_subnets" {
+  value = module.vpc.public_subnets_ids
+}
+
+output "private_subnets" {
+  value = module.vpc.private_subnets_ids
 }
