@@ -18,6 +18,10 @@ resource "aws_instance" "sample" {
   }
 }
 
+output "name" {
+  value = [for tags in aws_instance.sample: tags.tags]
+}
+
 output "ips" {
   value = { for name, ip in aws_instance.sample: name => ip.public_ip }
 }
