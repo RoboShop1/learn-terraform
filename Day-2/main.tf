@@ -19,7 +19,7 @@ variable "two" {
 }
 
 output "final" {
-  value = concat(var.one,var.two)
+  value = one(concat(var.one,var.two))
 }
 
 
