@@ -8,3 +8,9 @@ resource "aws_instance" "sample" {
     Name = "demo-${count.index}"
   }
 }
+
+// With list
+
+output "ips" {
+  value = aws_instance.sample[*].public_ip
+}
