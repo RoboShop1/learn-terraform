@@ -24,7 +24,7 @@ output "ip" {
 }
 
 output "tags" {
-  value = tomap(values({
+  value = toset(values({
     for i, j in aws_instance.sample: i => j.public_ip
   }))
 }
