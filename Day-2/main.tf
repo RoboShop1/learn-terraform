@@ -24,5 +24,5 @@ output "ip" {
 }
 
 output "tags" {
-  value = keys(aws_instance.sample.*.tags)
+  value = toset(aws_instance.sample.*.tags)
 }
