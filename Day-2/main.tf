@@ -1,28 +1,10 @@
 
-variable "names" {
-  default = {
-    name1 = "name2"
-    name2 = "name2"
-  }
+
+variable "name" {}
+
+output "one_name" {
+  value = var.name
 }
-
-output "hello" {
-  value = "chaitu name -  %{if var.names["name1"] == "name1"}name1%{else}chairu1111111%{endif}"
-}
-
-variable "one" {
-  default = []
-}
-
-variable "two" {
-  default = ["two"]
-}
-
-output "final" {
-  value = one(concat(var.one,var.two))
-}
-
-
 
 
 
