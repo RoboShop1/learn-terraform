@@ -11,11 +11,11 @@ output "hello" {
 }
 
 variable "one" {
-  default = ["one","two"]
+  default = ["one"]
 }
 
 variable "two" {
-  default = ["three","four"]
+  default = ["two"]
 }
 
 output "final" {
