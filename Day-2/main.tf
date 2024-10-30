@@ -11,7 +11,7 @@ output "hello" {
 }
 
 variable "one" {
-  default = ["one"]
+  default = [""]
 }
 
 variable "two" {
