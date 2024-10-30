@@ -18,12 +18,8 @@ resource "aws_instance" "sample" {
   }
 }
 
-
-output "sample" {
-  value = aws_instance.sample
-}
 output "ips" {
-  value = [for ip in aws_instance.sample: ip.public_ip]
+  value = { for name, ip in aws_instance.sample: name => ip.public_ip }
 }
 
 // With list
