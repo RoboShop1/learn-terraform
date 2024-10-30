@@ -18,6 +18,10 @@ resource "aws_instance" "sample" {
   }
 }
 
+
+output "sample" {
+  value = aws_instance.sample
+}
 output "ips" {
   value =aws_instance.sample.*.public_ip
 }
