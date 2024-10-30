@@ -14,3 +14,7 @@ resource "aws_instance" "sample" {
 output "ips" {
   value = aws_instance.sample[*].public_ip
 }
+
+output "ip-one" {
+  value = aws_instance.sample[*].public_ip[0]
+}
