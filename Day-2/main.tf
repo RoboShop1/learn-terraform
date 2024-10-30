@@ -1,7 +1,7 @@
 
 variable "names" {
   default = {
-    name1 = "name1"
+    name1 = "name2"
     name2 = "name2"
   }
 }
