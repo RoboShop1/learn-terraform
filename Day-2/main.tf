@@ -14,7 +14,7 @@ resource "aws_instance" "sample" {
 
 
   tags = {
-    Name = "demo"
+    Name = "demo-${each.key}"
   }
 }
 
