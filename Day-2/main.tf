@@ -10,7 +10,17 @@ output "hello" {
   value = "chaitu name -  %{if var.names["name1"] == "name1"}name1%{else}chairu1111111%{endif}"
 }
 
+variable "one" {
+  default = ["one","two"]
+}
 
+variable "two" {
+  default = ["three","four"]
+}
+
+output "final" {
+  value = concat(var.one,var.two)
+}
 
 
 
