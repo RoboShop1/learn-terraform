@@ -18,6 +18,9 @@ resource "aws_instance" "sample" {
   }
 }
 
+output "values" {
+  value = aws_instance.sample
+}
 output "name" {
   value = [for tags in aws_instance.sample: tags.tags]
 }
