@@ -4,9 +4,7 @@ resource "aws_instance" "sample" {
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
 
-  lifecycle {
-    prevent_destroy = true
-  }
+
 
   tags = {
     Name = "demo-${count.index}"
