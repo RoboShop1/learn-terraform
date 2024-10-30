@@ -26,7 +26,7 @@ output "name" {
 }
 
 output "ips" {
-  value = { for name, ip in aws_instance.sample: name => ip.public_ip if ip.tags == "demo-name2" }
+  value = { for name, ip in aws_instance.sample: name => ip.public_ip if values(ip.tags) == "demo-name2" }
 }
 
 // With list
