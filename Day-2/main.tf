@@ -23,7 +23,7 @@ output "sample" {
   value = aws_instance.sample
 }
 output "ips" {
-  value =aws_instance.sample.*.public_ip
+  value = values(aws_instance.sample)
 }
 
 // With list
