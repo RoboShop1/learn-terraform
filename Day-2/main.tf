@@ -16,5 +16,5 @@ output "ips" {
 }
 
 output "ip-one" {
-  value = aws_instance.sample[*].public_ip[0]
+  value = element(aws_instance.sample.*.public_ip,0)
 }
