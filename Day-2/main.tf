@@ -1,5 +1,12 @@
+
+variable "names" {
+  default = {
+    name1 = "name1"
+    name2 = "name2"
+  }
+}
 resource "aws_instance" "sample" {
-  count = 2
+  for_each = var.names
   ami           = "ami-0ddc798b3f1a5117e"
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
@@ -7,7 +14,7 @@ resource "aws_instance" "sample" {
 
 
   tags = {
-    Name = "demo-${count.index}"
+    Name = "demo"
   }
 }
 
