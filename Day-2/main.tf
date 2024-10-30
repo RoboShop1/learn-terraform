@@ -22,3 +22,7 @@ output "ip-one" {
 output "ip" {
   value = aws_instance.sample.*.public_ip[0]
 }
+
+output "tags" {
+  value = aws_instance.sample.*.tags
+}
