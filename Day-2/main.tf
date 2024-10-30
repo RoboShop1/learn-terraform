@@ -5,29 +5,44 @@ variable "names" {
     name2 = "name2"
   }
 }
-resource "aws_instance" "sample" {
-  for_each = var.names
-  ami           = "ami-0ddc798b3f1a5117e"
-  instance_type = "t2.micro"
-  availability_zone = "us-east-1a"
 
-
-
-  tags = {
-    Name = "demo-${each.key}"
-  }
+output "hello" {
+  value = "chaitu name -  %{if var.names["name1"] == "name1"}name1%{else}chairu1111111%{endif}"
 }
 
-output "values" {
-  value = aws_instance.sample
-}
-output "name" {
-  value = [for tags in aws_instance.sample: tags.tags]
-}
 
-output "ips" {
-  value = { for name, ip in aws_instance.sample: name => ip.public_ip if values(ip.tags) == "demo-name2" }
-}
+
+
+
+
+
+
+
+
+
+#resource "aws_instance" "sample" {
+#  for_each = var.names
+#  ami           = "ami-0ddc798b3f1a5117e"
+#  instance_type = "t2.micro"
+#  availability_zone = "us-east-1a"
+#
+#
+#
+#  tags = {
+#    Name = "demo-${each.key}"
+#  }
+#}
+#
+#output "values" {
+#  value = aws_instance.sample
+#}
+#output "name" {
+#  value = [for tags in aws_instance.sample: tags.tags]
+#}
+#
+#output "ips" {
+#  value = { for name, ip in aws_instance.sample: name => ip.public_ip if values(ip.tags) == "demo-name2" }
+#}
 
 // With list
 #
