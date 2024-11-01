@@ -11,9 +11,7 @@ resource "aws_instance" "main" {
 
 variable "name" {}
 
-output "ec2" {
-  value = aws_instance.main
-}
+
 
 resource "aws_security_group" "sg" {
   name        = "${var.name}-sg"
@@ -33,4 +31,11 @@ resource "aws_security_group" "sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
+}
+
+output "ec2" {
+  value = aws_instance.main
+}
+output "sg" {
+  value = aws_security_group.sg
 }
