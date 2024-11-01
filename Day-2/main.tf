@@ -1,12 +1,34 @@
-
-
-variable "name" {}
-
-output "one_name" {
-  value = var.name
+variable "networks" {
+  default = {
+    "private" = {
+      cidr_block = "192.168.1.0/24"
+      subnets    = {
+        "sql1" = {
+          cidr_block = "192.168.1.0/25"
+        }
+        "cosmos1" = {
+          cidr_block = "192.168.1.128/25"
+        }
+      }
+    },
+    "public" = {
+      cidr_block = "192.168.2.0/24"
+      subnets    = {
+        "app1" = {
+          cidr_block = "192.168.2.0/28"
+        }
+        "app2" = {
+          cidr_block = "192.168.2.16/28"
+        }
+      }
+    }
+  }
 }
 
 
+output "variables" {
+  value = element([ for i,j in var.networks: j.subnets ],1)
+}
 
 
 
