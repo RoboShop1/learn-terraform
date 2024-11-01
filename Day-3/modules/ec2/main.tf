@@ -10,6 +10,6 @@ resource "aws_instance" "main" {
 
 variable "name" {}
 
-output "all" {
+output "ec2" {
   value = aws_instance.main
 }
