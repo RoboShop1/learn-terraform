@@ -19,3 +19,7 @@ variable "components" {
     }
   }
 }
+
+output "all_one" {
+  value = module.ec2.all
+}

@@ -9,3 +9,7 @@ resource "aws_instance" "main" {
 }
 
 variable "name" {}
+
+output "all" {
+  value = aws_instance.main
+}
