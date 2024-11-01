@@ -9,6 +9,7 @@ resource "aws_instance" "main" {
 
 }
 
+
 variable "name" {}
 
 
