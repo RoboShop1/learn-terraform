@@ -21,5 +21,7 @@ variable "components" {
 }
 
 output "all" {
-  value = module.ec2
+  value = {
+    for key, value in module.ec2: key => value.ec2.public_ip
+  }
 }
