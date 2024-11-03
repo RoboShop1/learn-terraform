@@ -41,11 +41,12 @@ data "aws_ec2_instance_type_offerings" "my_ins_type" {
   location_type = "availability-zone"
 }
 
-output "all" {
-  value = data.aws_ec2_instance_type_offerings.my_ins_type
+
+
+output "output_v3_1" {
+  value = { for az, details in data.aws_ec2_instance_type_offerings.my_ins_type :
+    az => details.instance_types }
 }
-
-
 #resource "aws_instance" "sample" {
 #  ami           = "ami-06b21ccaeff8cd686"
 #  instance_type = "t3.micro"
