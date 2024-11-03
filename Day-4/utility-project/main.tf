@@ -12,10 +12,8 @@
 data "aws_ec2_instance_type_offering" "example" {
   filter {
     name   = "instance-type"
-    values = ["t2.micro", "t3.micro"]
+    values = ["t2.micro"]
   }
+  location_type = "us-east-1a"
 }
 
-output "name" {
-  value = data.aws_ec2_instance_type_offering.example.instance_type
-}
