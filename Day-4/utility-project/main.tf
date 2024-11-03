@@ -9,11 +9,17 @@
 #  value = data.aws_availability_zones.example.names
 #}
 
-data "aws_ec2_instance_type_offering" "example" {
+data "aws_ec2_instance_type_offerings" "example" {
+  filter {
+    name   = "instance-type"
+    values = ["t2.micro"]
+  }
+
   filter {
     name   = "location"
-    values = ["us-east-1a"]
+    values = ["us-eas1-1a"]
   }
-  location_type = "availability-zone"
+
+  location_type = "availability-zone-id"
 }
 
