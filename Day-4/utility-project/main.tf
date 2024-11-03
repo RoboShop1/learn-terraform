@@ -9,11 +9,13 @@
 #  value = data.aws_availability_zones.example.names
 #}
 
-
-data "aws_ec2_instance_type" "example" {
-  instance_type = "t2.micro"
+data "aws_ec2_instance_type_offering" "example" {
+  filter {
+    name   = "instance-type"
+    values = ["t2.micro", "t3.micro"]
+  }
 }
 
 output "name" {
-  value = data.aws_ec2_instance_type.example
+  value = data.aws_ec2_instance_type_offering.example
 }
