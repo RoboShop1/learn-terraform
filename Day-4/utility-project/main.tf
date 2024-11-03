@@ -5,12 +5,12 @@ data "aws_availability_zones" "zones" {
   }
 }
 
-output "zones" {
-  value = data.aws_availability_zones.zones.names
-}
-/*
+#output "zones" {
+#  value = data.aws_availability_zones.zones.names
+#}
+
 data "aws_ec2_instance_type_offerings" "example" {
-  for_each = toset(data.aws_availability_zones.example.names)
+  for_each = toset(data.aws_availability_zones.zones.names)
   filter {
     name   = "instance-type"
     values = ["t2.micro"]
@@ -24,8 +24,4 @@ data "aws_ec2_instance_type_offerings" "example" {
   location_type = "availability-zone-id"
 }
 
-output "names" {
-  value =
-}
 
-*/
