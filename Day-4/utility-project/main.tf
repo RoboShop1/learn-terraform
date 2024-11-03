@@ -19,7 +19,7 @@ data "aws_ec2_instance_type_offerings" "example" {
 
   filter {
     name   = "location"
-    values = [each.value]
+    values = ["${each.value}"]
   }
 
   location_type = "availability-zone"
