@@ -33,4 +33,5 @@
 resource "aws_instance" "sample" {
   ami           = "ami-06b21ccaeff8cd686"
   instance_type = "t3.micro"
+  availability_zone = "us-east-1e"
 }
