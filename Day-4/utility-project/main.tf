@@ -15,11 +15,6 @@ data "aws_ec2_instance_type_offerings" "example" {
     values = ["t2.micro"]
   }
 
-  filter {
-    name   = "location"
-    values = ["us-eas1-1a"]
-  }
-
   location_type = "availability-zone-id"
 }
 
