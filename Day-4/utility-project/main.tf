@@ -25,6 +25,6 @@ data "aws_ec2_instance_type_offerings" "example" {
 }
 
 output "instance_types" {
-  value = data.aws_ec2_instance_type_offerings.example
+  value = keys(data.aws_ec2_instance_type_offerings.example)
 }
 
