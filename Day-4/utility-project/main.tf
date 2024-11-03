@@ -9,24 +9,40 @@ data "aws_availability_zones" "zones" {
 #  value = data.aws_availability_zones.zones.names
 #}
 
-data "aws_ec2_instance_type_offerings" "example" {
-  for_each = toset(data.aws_availability_zones.zones.names)
-
+#data "aws_ec2_instance_type_offerings" "example" {
+#  for_each = toset(data.aws_availability_zones.zones.names)
+#
+#  filter {
+#    name   = "instance-type"
+#    values = ["t3,micro"]
+#  }
+#
+#  filter {
+#    name   = "location"
+#    values = ["${each.value}"]
+#  }
+#
+#  location_type = "availability-zone"
+#}
+#
+#output "instance_types" {
+#  value = data.aws_ec2_instance_type_offerings.example
+#}
+data "aws_ec2_instance_type_offerings" "my_ins_type" {
+  for_each=toset(data.aws_availability_zones.zones.names)
   filter {
     name   = "instance-type"
-    values = ["t3,micro"]
+    values = ["t3.micro"]
   }
-
   filter {
     name   = "location"
-    values = ["${each.value}"]
+    values = [each.key]
   }
-
   location_type = "availability-zone"
 }
 
-output "instance_types" {
-  value = data.aws_ec2_instance_type_offerings.example
+output "all" {
+  value = data.aws_ec2_instance_type_offerings.my_ins_type
 }
 
 
