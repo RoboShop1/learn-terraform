@@ -14,7 +14,7 @@ data "aws_ec2_instance_type_offerings" "example" {
 
   filter {
     name   = "instance-type"
-    values = ["t3.micro"]
+    values = ["t2.small"]
   }
 
   filter {
@@ -26,6 +26,6 @@ data "aws_ec2_instance_type_offerings" "example" {
 }
 
 output "instance_types" {
-  value = data.aws_ec2_instance_type_offerings.example
+  value = keys(data.aws_ec2_instance_type_offerings.example)
 }
 
