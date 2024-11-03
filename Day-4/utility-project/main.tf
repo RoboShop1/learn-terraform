@@ -22,7 +22,7 @@ data "aws_ec2_instance_type_offerings" "example" {
     values = [each.value]
   }
 
-  location_type = "availability-zone-id"
+  location_type = "availability-zone"
 }
 
 output "instance_types" {
