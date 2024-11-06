@@ -3,6 +3,10 @@ resource "aws_instance" "main" {
   instance_type = "t3.micro"
   availability_zone = "us-east-1c"
 
+  lifecycle {
+    ignore_changes = [tags]
+  }
+
   tags = {
     Name = "demo2"
     project = "roboshop"
