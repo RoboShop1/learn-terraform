@@ -4,5 +4,6 @@ resource "aws_instance" "main" {
 
   tags = {
     Name = "demo2"
+    project = "roboshop"
   }
 }
