@@ -70,6 +70,36 @@ resource "aws_route_table_association" "public-rta" {
   subnet_id = aws_subnet.public_subnets.*.id[count.index]
 }
 
+# EOF -------- public ------------ #
+
+resource "aws_route_table" "common-rt" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "common-rt"
+  }
+}
+
+resource "aws_route_table_association" "web-rta" {
+  count = length(aws_subnet.web_subnets)
+  route_table_id = aws_route_table.common-rt.id
+  subnet_id = aws_subnet.web_subnets.*.id[count.index]
+}
+
+resource "aws_route_table_association" "app-rta" {
+  count = length(aws_subnet.app_subnets)
+  route_table_id = aws_route_table.common-rt.id
+  subnet_id = aws_subnet.app_subnets.*.id[count.index]
+}
+resource "aws_route_table_association" "db-rta" {
+  count = length(aws_subnet.db_subnets)
+  route_table_id = aws_route_table.common-rt.id
+  subnet_id = aws_subnet.db_subnets.*.id[count.index]
+}
+
+
+
+
 
 # //////////////////
 # web-subnets ////
