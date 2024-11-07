@@ -10,10 +10,7 @@ output "all" {
   value = [ for value in module.vpc.rt: value.id if value.tags.Name == "public-rt1" ]
 }
 
-output "subnets" {
-  value = module.vpc.subnets
-}
 
 output "subnets1" {
-  value = module.vpc.subnets1.*.availability_zone
+  value = [ for value in module.vpc.subnets1: value.availability_zone => value.cidr_block ]
 }
