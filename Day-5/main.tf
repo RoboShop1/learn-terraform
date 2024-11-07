@@ -9,3 +9,7 @@ module "vpc" {
 output "all" {
   value = [ for value in module.vpc.rt: value.id if value.tags.Name == "public-rt1" ]
 }
+
+output "subnets" {
+  value = module.vpc.subnets
+}

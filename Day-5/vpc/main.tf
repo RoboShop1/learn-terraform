@@ -54,7 +54,9 @@ output "rt" {
   value = aws_route_table.rt-main
 }
 
-
+output "subnets" {
+  value = aws_subnet.public_subnets
+}
 
 
 
