@@ -9,5 +9,14 @@ module "vpc" {
   db_subnets_cidr = ["10.0.7.0/24","10.0.8.0/24"]
 }
 
-#
+
+output "web" {
+  value = module.vpc.web_subnets
+}
+
+#module "ec2" {
+#  count = length(module.vpc.app_subnets)
+#  source = "./ec2"
+#  name   =
+#}
 
