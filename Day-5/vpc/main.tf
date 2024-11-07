@@ -13,3 +13,15 @@ resource "aws_internet_gateway" "gw" {
       Name = "${var.env}-igw"
     },local.common_tags)
 }
+
+resource "aws_subnet" "public_subnets" {
+  length = var.public_subnets_cidr
+  vpc_id = aws_vpc.main.id
+  cidr_block = var.public_subnets_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
+
+  tags = merge({
+    Name = "public-subnet${count.index+1}"
+  },local.common_tags)
+}
+
