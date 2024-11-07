@@ -51,11 +51,11 @@ resource "aws_route_table_association" "rt-a" {
 }
 
 
-#resource "aws_route" "route" {
-#  route_table_id = "local.m
-#  destination_cidr_block    = "0.0.0.0/0"
-#  gateway_id = aws_internet_gateway.gw.id
-#}
+resource "aws_route" "route" {
+  route_table_id = local.k.public-rt3
+  destination_cidr_block   = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.gw.id
+}
 
 locals {
   k = {
