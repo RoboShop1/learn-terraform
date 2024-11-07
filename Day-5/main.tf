@@ -12,3 +12,7 @@ locals {
     for value in module.vpc.subnets1: value.availability_zone => value.id
   }
 }
+
+output "all" {
+  value = local.subnets
+}
