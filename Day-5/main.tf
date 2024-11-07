@@ -14,6 +14,7 @@ module "ec2-public" {
   source    = "./ec2"
   name      = module.vpc.public_subnets[count.index].tags["Name"]
   subnet_id = module.vpc.public_subnets[count.index].id
+  app_ports = 80
 }
 
 #module "ec2-web" {
