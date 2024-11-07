@@ -51,9 +51,15 @@ resource "aws_route_table_association" "rt-a" {
 }
 
 
-
-
-
+#resource "aws_route" "route" {
+#  route_table_id = <<EOT
+#%{ for rt in aws_route_table.rt-main }
+#%if{ rt.tags.Name == "public-rt2" }rt.id%{else}null%{endif}
+#%{ endfor }
+#EOT
+#  destination_cidr_block    = "0.0.0.0/0"
+#  gateway_id = aws_internet_gateway.gw.id
+#}
 
 output "rt" {
   value = aws_route_table.rt-main
