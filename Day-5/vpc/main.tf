@@ -66,14 +66,14 @@ locals  {
 EOT
 }
 
-
-locals {
-  G = "%{ if aws_route_table.rt-main.*.tags.Name == "public-rt2" }${aws_route_table.rt-main.id}%{ endif }"
-}
-
-output "g" {
-  value = local.G
-}
+#
+#locals {
+#  G = "%{ if aws_route_table.rt-main.*.tags.Name == "public-rt2" }${aws_route_table.rt-main.id}%{ endif }"
+#}
+#
+#output "g" {
+#  value = local.G
+#}
 output "k" {
   value = local.m
 }
