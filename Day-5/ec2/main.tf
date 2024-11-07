@@ -11,6 +11,7 @@ resource "aws_instance" "main" {
 }
 
 resource "aws_security_group" "main" {
+  vpc_id = var.vpc_id
   ingress {
     from_port        = var.app_ports
     to_port          = var.app_ports
@@ -33,3 +34,4 @@ resource "aws_security_group" "main" {
 variable "name" {}
 variable "subnet_id" {}
 variable "app_ports" {}
+variable "vpc_id" {}
