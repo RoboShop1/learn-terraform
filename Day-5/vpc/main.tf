@@ -55,7 +55,7 @@ resource "aws_subnet" "db_subnets" {
   availability_zone = var.availability_zone[count.index]
 
   tags = merge({
-    Name = "app-subnet${count.index+1}-${var.availability_zone[count.index]}${var.db_subnets_cidr[count.index]}"
+    Name = "db-subnet${count.index+1}-${var.availability_zone[count.index]}${var.db_subnets_cidr[count.index]}"
   },local.common_tags)
 }
 
