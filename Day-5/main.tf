@@ -7,5 +7,5 @@ module "vpc" {
 }
 
 output "all" {
-  value = module.vpc.rt
+  value = [ for value in module.vpc.rt: value.id if value.tags.Name == "public-rt1" ]
 }
