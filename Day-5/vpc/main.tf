@@ -116,6 +116,7 @@ resource "aws_route_table_association" "db-rta" {
 # web-subnets ////
 # /////////////////
 
+
 resource "aws_subnet" "web_subnets" {
   count = length(var.web_subnets_cidr)
   vpc_id = aws_vpc.main.id
