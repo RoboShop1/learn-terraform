@@ -33,6 +33,9 @@ output "j" {
   value = module.vpc.k
 }
 
+output "G" {
+  value = module.vpc.g
+}
 resource "aws_instance" "main" {
   for_each = local.subnets
   ami           = "ami-0ddc798b3f1a5117e"

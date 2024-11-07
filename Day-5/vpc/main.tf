@@ -51,11 +51,11 @@ resource "aws_route_table_association" "rt-a" {
 }
 
 
-resource "aws_route" "route" {
-  route_table_id = local.m
-  destination_cidr_block    = "0.0.0.0/0"
-  gateway_id = aws_internet_gateway.gw.id
-}
+#resource "aws_route" "route" {
+#  route_table_id = local.m
+#  destination_cidr_block    = "0.0.0.0/0"
+#  gateway_id = aws_internet_gateway.gw.id
+#}
 
 
 locals  {
@@ -66,6 +66,13 @@ locals  {
 EOT
 }
 
+locals {
+  G = "%{ if aws_route_table.rt-main.*.tags.Name == "public-rt2" }${aws_route_table.rt-main.id}%{ endif }"
+}
+
+output "g" {
+  value = local.G
+}
 output "k" {
   value = local.m
 }
