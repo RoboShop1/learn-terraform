@@ -9,20 +9,12 @@ module "vpc" {
   db_subnets_cidr = ["10.0.7.0/24","10.0.8.0/24"]
 }
 
-
-output "count" {
-  value = "${length(module.vpc.public_subnets)-1}"
+module "ec2-public" {
+  count     = 1
+  source    = "./ec2"
+  name      = module.vpc.public_subnets[count.index].tags["Name"]
+  subnet_id = module.vpc.public_subnets[count.index].id
 }
-output "count1" {
-  value = index(module.vpc.public_subnets,0)
-}
-#
-#module "ec2-public" {
-#  count     = length(element(module.vpc.public_subnets,0))
-#  source    = "./ec2"
-#  name      = module.vpc.public_subnets[count.index].tags["Name"]
-#  subnet_id = module.vpc.public_subnets[count.index].id
-#}
 
 #module "ec2-web" {
 #  count     = length(module.vpc.web_subnets)
