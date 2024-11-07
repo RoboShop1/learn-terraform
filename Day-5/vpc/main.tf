@@ -13,6 +13,26 @@ resource "aws_internet_gateway" "gw" {
     },local.common_tags)
 }
 
+# //////////////////
+# Nat-gateway ////
+# /////////////////
+resource "aws_eip" "main" {
+  domain   = "vpc"
+
+  tags = {
+    Name = "dev-vpc-eip"
+  }
+}
+
+resource "aws_nat_gateway" "main" {
+  allocation_id = aws_eip.main.id
+  subnet_id     = aws_subnet.public_subnets.*.id[0]
+
+  tags = {
+    Name = "dev-vpc-nat"
+  }
+}
+
 
 
 # //////////////////
