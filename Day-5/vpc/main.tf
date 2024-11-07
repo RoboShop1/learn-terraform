@@ -52,7 +52,8 @@ resource "aws_route_table_association" "rt-a" {
 
 
 resource "aws_route" "route" {
-  route_table_id = local.k.public-rt3
+  for_each = local.k
+  route_table_id = each.value
   destination_cidr_block   = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.gw.id
 }
