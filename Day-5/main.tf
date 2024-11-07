@@ -24,7 +24,7 @@ output "rt" {
 output "j" {
   value = <<EOT
 %{ for rt in module.vpc.rt }
-%if{ rt.tags.Name == "public-rt2" }rt.id%{ else }null%{ endif }
+rt.id
 %{ endfor }
 EOT
 }
