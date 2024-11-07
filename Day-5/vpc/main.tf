@@ -50,6 +50,11 @@ resource "aws_route_table_association" "rt-a" {
   subnet_id = aws_subnet.public_subnets[count.index].id
 }
 
+
+
+
+
+
 output "rt" {
   value = aws_route_table.rt-main
 }

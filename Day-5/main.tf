@@ -22,6 +22,8 @@ resource "aws_instance" "main" {
   ami           = "ami-0ddc798b3f1a5117e"
   instance_type = "t2.micro"
   subnet_id = each.value
+  key_name = "nvirginia"
+  associate_public_ip_address = true
 
   tags = {
     Name = each.key
