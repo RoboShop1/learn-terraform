@@ -61,7 +61,7 @@ resource "aws_route_table_association" "rt-a" {
 locals  {
   m = <<EOT
 %{ for rt in aws_route_table.rt-main }
-%if{ rt.tags.Name == "public-rt2" }${rt.id}%{ endif }
+${rt.id}
 %{ endfor }
 EOT
 }
