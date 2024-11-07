@@ -17,13 +17,13 @@ locals {
 #  value = module.vpc.subnets
 #}
 
-resource "aws_instance" "main" {
-  for_each = local.subnets
-  ami           = "ami-0ddc798b3f1a5117e"
-  instance_type = "t2.micro"
-  availability_zone = each.key
-
-  tags = {
-    Name = each.key
-  }
-}
+#resource "aws_instance" "main" {
+#  for_each = local.subnets
+#  ami           = "ami-0ddc798b3f1a5117e"
+#  instance_type = "t2.micro"
+#  availability_zone = each.key
+#
+#  tags = {
+#    Name = each.key
+#  }
+#}
