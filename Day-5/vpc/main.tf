@@ -50,12 +50,12 @@ resource "aws_route_table_association" "rt-a" {
   subnet_id = aws_subnet.public_subnets[count.index].id
 }
 
-#
-#resource "aws_route" "route" {
-#  route_table_id = local.m
-#  destination_cidr_block    = "0.0.0.0/0"
-#  gateway_id = aws_internet_gateway.gw.id
-#}
+
+resource "aws_route" "route" {
+  route_table_id = local.m
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.gw.id
+}
 
 
 locals  {
