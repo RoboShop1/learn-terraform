@@ -56,6 +56,9 @@ output "rt" {
 
 
 
+output "rt1" {
+  value = aws_route_table.rt-main.*.id
+}
 
 
 

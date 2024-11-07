@@ -9,3 +9,6 @@ module "vpc" {
 output "all" {
   value = { for key, value in module.vpc.rt: key => value.id }
 }
+output "rt" {
+  value = module.vpc.rt1
+}
