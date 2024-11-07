@@ -7,7 +7,7 @@ module "vpc" {
 }
 
 output "all" {
-  value = { for key, value in module.vpc.rt: key => value.id }
+  value = module.vpc.rt.*.id
 }
 output "rt" {
   value = module.vpc.rt1
