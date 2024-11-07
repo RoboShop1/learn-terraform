@@ -6,11 +6,9 @@ module "vpc" {
   public_subnets_cidr = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
 }
 
-output "all" {
-  value = [ for value in module.vpc.rt: value.id if value.tags.Name == "public-rt1" ]
-}
 
-
-output "subnets1" {
-  value = [ for value in module.vpc.subnets1:  value.id if value.availability_zone == "us-east-1b" ]
+locals {
+  subnets = {
+    for value in module.vpc.subnets1: value.availability_zone => value.id
+  }
 }
