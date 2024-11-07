@@ -44,6 +44,13 @@ resource "aws_route_table" "rt-main" {
   }
 }
 
+resource "aws_route_table_association" "rt-a" {
+  count = length(aws_route_table.rt-main)
+  vpc_id = aws_vpc.main.id
+  route_table_id = aws_route_table.rt-main[count.index]
+  subnet_id = aws_subnet.public_subnets[count.index].id
+}
+
 
 
 
