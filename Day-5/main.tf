@@ -13,3 +13,7 @@ output "all" {
 output "subnets" {
   value = module.vpc.subnets
 }
+
+output "subnets1" {
+  value = module.vpc.subnets1.*.availability_zone
+}

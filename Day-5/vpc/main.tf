@@ -58,6 +58,9 @@ output "subnets" {
   value = aws_subnet.public_subnets.*.availability_zone
 }
 
+output "subnets1" {
+  value = aws_subnet.public_subnets
+}
 
 
 
