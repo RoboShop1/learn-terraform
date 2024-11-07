@@ -55,7 +55,7 @@ output "rt" {
 }
 
 
-output "subnets1" {
+output "subnets" {
   value = aws_subnet.public_subnets
 }
 

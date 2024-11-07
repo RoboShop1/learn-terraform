@@ -13,6 +13,10 @@ locals {
   }
 }
 
+output "subnet" {
+  value = module.vpc.subnets
+}
+
 resource "aws_instance" "main" {
   for_each = local.subnets
   ami           = "ami-0ddc798b3f1a5117e"
