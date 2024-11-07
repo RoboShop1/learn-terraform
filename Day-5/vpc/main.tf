@@ -14,6 +14,14 @@ resource "aws_internet_gateway" "gw" {
     },local.common_tags)
 }
 
+resource "aws_route" "default_route" {
+  route_table_id = aws_vpc.main.default_route_table_id
+
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.gw.id
+
+}
+
 resource "aws_subnet" "public_subnets" {
   count = length(var.public_subnets_cidr)
   vpc_id = aws_vpc.main.id
