@@ -7,8 +7,5 @@ module "vpc" {
 }
 
 output "all" {
-  value = module.vpc.rt.*.id
-}
-output "rt" {
-  value = module.vpc.rt1
+  value = module.vpc.rt
 }
