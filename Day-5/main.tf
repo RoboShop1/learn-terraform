@@ -10,13 +10,25 @@ module "vpc" {
 }
 
 
-output "web" {
-  value = module.vpc.web_subnets
+module "ec2-web" {
+  count     = length(module.vpc.web_subnets)
+  source    = "./ec2"
+  name      = module.vpc.web_subnets[count.index].tags["Name"]
+  subnet_id = module.vpc.web_subnets[count.index].id
 }
 
-#module "ec2" {
-#  count = length(module.vpc.app_subnets)
-#  source = "./ec2"
-#  name   =
-#}
+module "ec2-app" {
+  count     = length(module.vpc.app_subnets)
+  source    = "./ec2"
+  name      = module.vpc.app_subnets[count.index].tags["Name"]
+  subnet_id = module.vpc.app_subnets[count.index].id
+}
 
+
+
+module "ec2-db" {
+  count        = length(module.vpc.db_subnets)
+  source       = "./ec2"
+  name         = module.vpc.db_subnets[count.index].tags["Name"]
+  subnet_id    = module.vpc.db_subnets[count.index].id
+}
