@@ -12,5 +12,5 @@ output "all" {
 
 
 output "subnets1" {
-  value = { for value in module.vpc.subnets1: value.availability_zone => value.cidr_block }
+  value = [ for value in module.vpc.subnets1:  value.id if value.availability_zone == "us-east-1b" ]
 }
