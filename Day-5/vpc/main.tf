@@ -35,6 +35,8 @@ resource "aws_nat_gateway" "main" {
 
 
 
+
+
 # //////////////////
 # Public-subnets ////
 # /////////////////
@@ -105,6 +107,16 @@ resource "aws_route_table_association" "db-rta" {
   count = length(aws_subnet.db_subnets)
   route_table_id = aws_route_table.common-rt.id
   subnet_id = aws_subnet.db_subnets.*.id[count.index]
+}
+
+
+resource "aws_security_group_rule" "sg-rule" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_vpc.main.default_security_group_id
 }
 
 # EOF ----------- common ---------- #
