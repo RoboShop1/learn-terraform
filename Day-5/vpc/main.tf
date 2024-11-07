@@ -102,6 +102,7 @@ resource "aws_route_table_association" "app-rta" {
   count = length(aws_subnet.app_subnets)
   route_table_id = aws_route_table.common-rt.id
   subnet_id = aws_subnet.app_subnets.*.id[count.index]
+
 }
 resource "aws_route_table_association" "db-rta" {
   count = length(aws_subnet.db_subnets)
