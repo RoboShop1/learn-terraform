@@ -21,12 +21,16 @@ output "rt" {
   value = module.vpc.rt
 }
 
+#output "j" {
+#  value = <<EOT
+#%{ for rt in module.vpc.rt }
+#%{ if rt.tags.Name == "public-rt2" }${rt.id}%{ endif }
+#%{ endfor }
+#EOT
+#}
+
 output "j" {
-  value = <<EOT
-%{ for rt in module.vpc.rt }
-%{ if rt.tags.Name == "public-rt2" }${rt.id}%{ endif }
-%{ endfor }
-EOT
+  value = module.vpc.k
 }
 
 resource "aws_instance" "main" {
