@@ -75,7 +75,7 @@ EOT
 #  value = local.G
 #}
 output "k" {
-  value = local.m["public-rt2"]
+  value = local.m
 }
 
 output "rt" {
