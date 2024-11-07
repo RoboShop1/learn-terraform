@@ -7,10 +7,15 @@ module "vpc" {
 }
 
 
+locals {
+  subnets = {
+    for value in module.vpc.subnets : value.availability_zone => value.id
+  }
+}
+
 output "k" {
   value = module.vpc.k
 }
-
 
 resource "aws_instance" "main" {
   for_each = local.subnets

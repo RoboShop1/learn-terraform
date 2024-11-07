@@ -50,25 +50,30 @@ resource "aws_route_table_association" "rt-a" {
   subnet_id = aws_subnet.public_subnets[count.index].id
 }
 
-#
+
 #resource "aws_route" "route" {
-#  route_table_id =
+#  route_table_id = "local.m
 #  destination_cidr_block    = "0.0.0.0/0"
 #  gateway_id = aws_internet_gateway.gw.id
 #}
 
-
 locals {
-  rt_ids = {
+  k = {
     for value in aws_route_table.rt-main: value.tags.Name => value.id
   }
 }
 
 
-
 output "k" {
-  value = local.rt_ids
+  value = local.k
 }
+
+
+
+output "subnets" {
+  value = aws_subnet.public_subnets
+}
+
 
 
 
