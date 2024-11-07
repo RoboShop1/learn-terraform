@@ -24,7 +24,7 @@ output "rt" {
 output "j" {
   value = <<EOT
 %{ for rt in module.vpc.rt }
-${rt.id}
+${rt.tags.Name}
 %{ endfor }
 EOT
 }
