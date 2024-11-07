@@ -6,7 +6,6 @@ resource "aws_vpc" "main" {
     },local.common_tags)
 }
 
-
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
   tags = merge({
@@ -14,14 +13,6 @@ resource "aws_internet_gateway" "gw" {
     },local.common_tags)
 }
 
-resource "aws_security_group_rule" "example" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_vpc.main.default_security_group_id
-}
 
 resource "aws_subnet" "public_subnets" {
   count = length(var.public_subnets_cidr)
@@ -30,50 +21,47 @@ resource "aws_subnet" "public_subnets" {
   availability_zone = var.availability_zone[count.index]
 
   tags = merge({
-    Name = "public-subnet${count.index+1}-${var.availability_zone[count.index]}"
+    Name = "public-subnet${count.index+1}-${var.availability_zone[count.index]}-${var.public_subnets_cidr[count.index]}"
   },local.common_tags)
 }
 
-resource "aws_route_table" "rt-main" {
-  count = length(aws_subnet.public_subnets)
 
+resource "aws_subnet" "web_subnets" {
+  count = length(var.web_subnets_cidr)
   vpc_id = aws_vpc.main.id
+  cidr_block = var.web_subnets_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
 
-  tags = {
-    Name = "public-rt${count.index+1}"
-  }
+  tags = merge({
+    Name = "web-subnet${count.index+1}-${var.availability_zone[count.index]}-${var.web_subnets_cidr[count.index]}"
+  },local.common_tags)
 }
 
-resource "aws_route_table_association" "rt-a" {
-  count = length(aws_route_table.rt-main)
-  route_table_id = aws_route_table.rt-main[count.index].id
-  subnet_id = aws_subnet.public_subnets[count.index].id
-}
+resource "aws_subnet" "app_subnets" {
+  count = length(var.app_subnets_cidr)
+  vpc_id = aws_vpc.main.id
+  cidr_block = var.app_subnets_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
 
-
-resource "aws_route" "route" {
-  for_each = local.k
-  route_table_id = each.value
-  destination_cidr_block   = "0.0.0.0/0"
-  gateway_id = aws_internet_gateway.gw.id
-}
-
-locals {
-  k = {
-    for value in aws_route_table.rt-main: value.tags.Name => value.id
-  }
+  tags = merge({
+    Name = "app-subnet${count.index+1}-${var.availability_zone[count.index]}${var.app_subnets_cidr[count.index]}"
+  },local.common_tags)
 }
 
 
-output "k" {
-  value = local.k
+resource "aws_subnet" "db_subnets" {
+  count = length(var.db_subnets_cidr)
+  vpc_id = aws_vpc.main.id
+  cidr_block = var.db_subnets_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
+
+  tags = merge({
+    Name = "app-subnet${count.index+1}-${var.availability_zone[count.index]}${var.db_subnets_cidr[count.index]}"
+  },local.common_tags)
 }
 
 
 
-output "subnets" {
-  value = aws_subnet.public_subnets
-}
 
 
 
