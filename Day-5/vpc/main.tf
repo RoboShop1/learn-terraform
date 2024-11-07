@@ -61,10 +61,11 @@ resource "aws_route_table_association" "rt-a" {
 locals  {
   m = <<EOT
 %{ for rt in aws_route_table.rt-main }
-%{ if rt.tags.Name == "public-rt2" }${rt.id}%{ endif }
+%{ if rt.tags.Name == "public-rt2" }id = ${rt.id}%{ endif }
 %{ endfor }
 EOT
 }
+
 
 locals {
   G = "%{ if aws_route_table.rt-main.*.tags.Name == "public-rt2" }${aws_route_table.rt-main.id}%{ endif }"
