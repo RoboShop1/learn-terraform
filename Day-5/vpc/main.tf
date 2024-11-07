@@ -14,6 +14,14 @@ resource "aws_internet_gateway" "gw" {
     },local.common_tags)
 }
 
+resource "aws_security_group_rule" "example" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_vpc.main.default_security_group_id
+}
 
 resource "aws_subnet" "public_subnets" {
   count = length(var.public_subnets_cidr)
@@ -26,12 +34,40 @@ resource "aws_subnet" "public_subnets" {
   },local.common_tags)
 }
 
+resource "aws_route_table" "rt-main" {
+  count = length(aws_subnet.public_subnets)
 
-resource "aws_security_group_rule" "example" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_vpc.main.default_security_group_id
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "public-rt${count.index+1}"
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
