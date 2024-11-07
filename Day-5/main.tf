@@ -7,23 +7,23 @@ module "vpc" {
 }
 
 
-locals {
-  subnets = {
-    for value in module.vpc.subnets1: value.availability_zone => value.id
-  }
-}
+#locals {
+#  subnets = {
+#    for value in module.vpc.subnets: value.availability_zone => value.id
+#  }
+#}
 
 output "subnet" {
   value = module.vpc.subnets
 }
 
-resource "aws_instance" "main" {
-  for_each = local.subnets
-  ami           = "ami-0ddc798b3f1a5117e"
-  instance_type = "t2.micro"
-  availability_zone = each.value
-
-  tags = {
-    Name = each.key
-  }
-}
+#resource "aws_instance" "main" {
+#  for_each = local.subnets
+#  ami           = "ami-0ddc798b3f1a5117e"
+#  instance_type = "t2.micro"
+#  availability_zone = each.value
+#
+#  tags = {
+#    Name = each.key
+#  }
+#}
