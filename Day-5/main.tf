@@ -11,7 +11,7 @@ module "vpc" {
 
 
 output "count" {
-  value = length(element(module.vpc.public_subnets,0))
+  value = "${length(module.vpc.public_subnets)-1}"
 }
 #
 #module "ec2-public" {
