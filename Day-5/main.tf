@@ -9,6 +9,10 @@ module "vpc" {
   db_subnets_cidr = ["10.0.7.0/24","10.0.8.0/24"]
 }
 
+
+output "count" {
+  value = length(element(module.vpc.public_subnets,0))
+}
 #
 #module "ec2-public" {
 #  count     = length(element(module.vpc.public_subnets,0))

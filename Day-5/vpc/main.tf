@@ -16,6 +16,7 @@ resource "aws_internet_gateway" "gw" {
 # //////////////////
 # Nat-gateway ////
 # /////////////////
+
 resource "aws_eip" "main" {
   domain   = "vpc"
 
