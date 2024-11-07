@@ -13,7 +13,6 @@ resource "aws_internet_gateway" "gw" {
     },local.common_tags)
 }
 
-
 resource "aws_subnet" "public_subnets" {
   count = length(var.public_subnets_cidr)
   vpc_id = aws_vpc.main.id
