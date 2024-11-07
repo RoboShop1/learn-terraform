@@ -7,29 +7,7 @@ module "vpc" {
 }
 
 
-locals {
-  subnets = {
-    for value in module.vpc.subnets: value.availability_zone => value.id
-  }
-}
-
-#output "subnet" {
-#  value = module.vpc.subnets
-#}
-
-output "rt" {
-  value = module.vpc.rt
-}
-
-#output "j" {
-#  value = <<EOT
-#%{ for rt in module.vpc.rt }
-#%{ if rt.tags.Name == "public-rt2" }${rt.id}%{ endif }
-#%{ endfor }
-#EOT
-#}
-
-output "j" {
+output "k" {
   value = module.vpc.k
 }
 
