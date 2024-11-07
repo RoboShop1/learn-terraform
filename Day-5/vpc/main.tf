@@ -55,7 +55,7 @@ output "rt" {
 }
 
 output "subnets" {
-  value = aws_subnet.public_subnets
+  value = aws_subnet.public_subnets.*.availability_zone
 }
 
 
