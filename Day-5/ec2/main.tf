@@ -16,7 +16,7 @@ resource "aws_security_group" "main" {
     from_port        = var.app_ports
     to_port          = var.app_ports
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = var.cidr_blocks
   }
 
   egress {
@@ -35,3 +35,4 @@ variable "name" {}
 variable "subnet_id" {}
 variable "app_ports" {}
 variable "vpc_id" {}
+variable "cidr_blocks" {}
