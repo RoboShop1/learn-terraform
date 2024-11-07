@@ -13,6 +13,10 @@ resource "aws_internet_gateway" "gw" {
     },local.common_tags)
 }
 
+# //////////////////
+# Public-subnets ////
+# /////////////////
+
 resource "aws_subnet" "public_subnets" {
   count = length(var.public_subnets_cidr)
   vpc_id = aws_vpc.main.id
@@ -24,42 +28,6 @@ resource "aws_subnet" "public_subnets" {
     Name = "public-subnet${count.index+1}-${var.availability_zone[count.index]}-${var.public_subnets_cidr[count.index]}"
   },local.common_tags)
 }
-
-
-resource "aws_subnet" "web_subnets" {
-  count = length(var.web_subnets_cidr)
-  vpc_id = aws_vpc.main.id
-  cidr_block = var.web_subnets_cidr[count.index]
-  availability_zone = var.availability_zone[count.index]
-
-  tags = merge({
-    Name = "web-subnet${count.index+1}-${var.availability_zone[count.index]}-${var.web_subnets_cidr[count.index]}"
-  },local.common_tags)
-}
-
-resource "aws_subnet" "app_subnets" {
-  count = length(var.app_subnets_cidr)
-  vpc_id = aws_vpc.main.id
-  cidr_block = var.app_subnets_cidr[count.index]
-  availability_zone = var.availability_zone[count.index]
-
-  tags = merge({
-    Name = "app-subnet${count.index+1}-${var.availability_zone[count.index]}${var.app_subnets_cidr[count.index]}"
-  },local.common_tags)
-}
-
-
-resource "aws_subnet" "db_subnets" {
-  count = length(var.db_subnets_cidr)
-  vpc_id = aws_vpc.main.id
-  cidr_block = var.db_subnets_cidr[count.index]
-  availability_zone = var.availability_zone[count.index]
-
-  tags = merge({
-    Name = "db-subnet${count.index+1}-${var.availability_zone[count.index]}${var.db_subnets_cidr[count.index]}"
-  },local.common_tags)
-}
-
 
 resource "aws_route_table" "public-rt" {
   vpc_id = aws_vpc.main.id
@@ -73,6 +41,63 @@ resource "aws_route_table" "public-rt" {
     Name = "public-rt"
   }
 }
+
+resource "aws_route_table_association" "public-rta" {
+  count = length(aws_subnet.public_subnets)
+  route_table_id = aws_route_table.public-rt.id
+  subnet_id = aws_subnet.public_subnets.*.id[count.index]
+}
+
+
+# //////////////////
+# web-subnets ////
+# /////////////////
+
+resource "aws_subnet" "web_subnets" {
+  count = length(var.web_subnets_cidr)
+  vpc_id = aws_vpc.main.id
+  cidr_block = var.web_subnets_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
+
+  tags = merge({
+    Name = "web-subnet${count.index+1}-${var.availability_zone[count.index]}-${var.web_subnets_cidr[count.index]}"
+  },local.common_tags)
+}
+
+
+
+# //////////////////
+# app-subnets ////
+# /////////////////
+
+resource "aws_subnet" "app_subnets" {
+  count = length(var.app_subnets_cidr)
+  vpc_id = aws_vpc.main.id
+  cidr_block = var.app_subnets_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
+
+  tags = merge({
+    Name = "app-subnet${count.index+1}-${var.availability_zone[count.index]}${var.app_subnets_cidr[count.index]}"
+  },local.common_tags)
+}
+
+# //////////////////
+# db-subnets ////
+# /////////////////
+
+resource "aws_subnet" "db_subnets" {
+  count = length(var.db_subnets_cidr)
+  vpc_id = aws_vpc.main.id
+  cidr_block = var.db_subnets_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
+
+  tags = merge({
+    Name = "db-subnet${count.index+1}-${var.availability_zone[count.index]}${var.db_subnets_cidr[count.index]}"
+  },local.common_tags)
+}
+
+
+
 
 
 
