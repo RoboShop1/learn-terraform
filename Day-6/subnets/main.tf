@@ -13,3 +13,8 @@ variable "cidr_block" {}
 variable "vpc_id" {}
 variable "availability_zone" {}
 variable "name" {}
+
+
+output "subnets" {
+  value = aws_subnet.main
+}
