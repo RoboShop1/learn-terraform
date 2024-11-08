@@ -5,3 +5,7 @@ resource "aws_vpc" "main" {
     Name = "vpc-${var.name}"
   }
 }
+
+output "vpc" {
+  value = aws_vpc.main
+}
