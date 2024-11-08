@@ -24,6 +24,10 @@ variable "instances" {
   }
 }
 
+output "main" {
+  value = module.ec2
+}
+
 
 
 

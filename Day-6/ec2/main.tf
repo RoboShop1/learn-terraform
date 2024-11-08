@@ -10,3 +10,8 @@ resource "aws_instance" "main" {
 variable "name" {}
 variable "ami" {}
 variable "instance_type" {}
+
+
+output "main" {
+  value = aws_instance.main.id
+}
