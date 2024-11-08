@@ -7,5 +7,5 @@ module "vpc" {
 
 
 output "main" {
-  value = module.vpc
+  value = module.vpc.vpc
 }
