@@ -18,3 +18,7 @@ variable "name" {}
 output "subnets" {
   value = aws_subnet.main.*.id
 }
+
+output "availability_zone" {
+  value = aws_subnet.main.*.availability_zone
+}
