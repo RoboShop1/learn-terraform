@@ -15,3 +15,7 @@ variable "instance_type" {}
 output "main" {
   value = aws_instance.main.id
 }
+
+output "main1" {
+  value = aws_instance.main
+}

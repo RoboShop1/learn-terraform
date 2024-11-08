@@ -28,6 +28,10 @@ output "main" {
   value = module.ec2
 }
 
+output "main1" {
+  value = module.ec2
+}
+
 
 
 
