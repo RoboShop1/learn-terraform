@@ -4,7 +4,7 @@ module "ec2" {
   for_each = var.instances
   name     = each.key
   ami      = each.value["ami"]
-  instance_type = each.value["ami"]
+  instance_type = each.value["instance_type"]
 }
 
 variable "instances" {
