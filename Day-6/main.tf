@@ -20,6 +20,11 @@ module "subnets" {
 }
 
 
+output "main1" {
+  value = module.subnets
+}
+
+
 variable "subnets" {
   default = {
     public = {
