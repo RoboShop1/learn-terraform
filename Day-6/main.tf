@@ -11,3 +11,7 @@ module "vpc" {
 #    for key, value in module.vpc: key => value.vpc_id.id
 #  }
 #}
+
+output "main" {
+  value = module.vpc
+}
