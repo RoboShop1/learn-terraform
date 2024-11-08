@@ -6,8 +6,6 @@ resource "aws_vpc" "main" {
   }
 }
 
-output "vpc" {
-  value = {
-    for key, value in aws_vpc.main: key => value.id
-  }
+output "vpc_id" {
+  value = aws_vpc.main.id
 }
