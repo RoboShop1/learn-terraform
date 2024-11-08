@@ -7,5 +7,7 @@ resource "aws_vpc" "main" {
 }
 
 output "vpc" {
-  value = aws_vpc.main
+  value = {
+    for key, value in aws_vpc.main: key => value
+  }
 }

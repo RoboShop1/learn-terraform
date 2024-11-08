@@ -5,6 +5,7 @@ module "vpc" {
   cidr_block     = each.value["cidr_block"]
 }
 
+
 output "main" {
-  value = module.vpc
+  value = module.vpc.vpc
 }
