@@ -6,7 +6,7 @@ module "vpc" {
 }
 
 output "main" {
-  value = module.vpc.vpc_id
+  value = module.vpc
 }
 
 #module "subnets" {
