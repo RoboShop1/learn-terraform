@@ -10,15 +10,15 @@ module "ec2" {
 variable "instances" {
   default = {
     web = {
-      ami = "ami-0ddc798b3f1a5117e"
+      ami = "ami-0984f4b9e98be44bf"
       instance_type = "t2.micro"
     }
     app = {
-      ami = "ami-0ddc798b3f1a5117e"
+      ami = "ami-0984f4b9e98be44bf"
       instance_type = "t2.micro"
     }
     db = {
-      ami = "ami-0ddc798b3f1a5117e"
+      ami = "ami-0984f4b9e98be44bf"
       instance_type = "t2.micro"
     }
   }
