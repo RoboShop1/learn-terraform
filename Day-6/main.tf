@@ -23,11 +23,11 @@ module "subnets" {
 variable "subnets" {
   default = {
     public = {
-      cidr_block        = ["10.0.1.0/24","10.0.1.0/24"]
+      cidr_block        = ["10.0.1.0/24","10.0.2.0/24"]
       availability_zone = ["us-east-1a","us-east-1b"]
     }
     web = {
-      cidr_block        = ["10.0.1.0/24","10.0.1.0/24"]
+      cidr_block        = ["10.0.1.0/24","10.0.2.0/24"]
       availability_zone = ["us-east-1a","us-east-1b"]
     }
   }
