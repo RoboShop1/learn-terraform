@@ -27,6 +27,14 @@ resource "aws_nat_gateway" "example" {
   }
 }
 
+resource "aws_security_group_rule" "main" {
+  from_port         = 22
+  protocol          = "tcp"
+  security_group_id = aws_vpc.main.default_security_group_id
+  to_port           = 22
+  type              = "ingress"
+}
+
 module "public_subnets" {
   source                = "./subnets"
   for_each              = var.subnets["public"]
@@ -52,6 +60,7 @@ module "private_subnets" {
   nat                   = lookup(each.value,"nat",false)  # This to true, so we need to pass ngw_id
   ngw_id                = aws_nat_gateway.example.id      # we need to pass it.
 }
+
 
 
 output "vpc_private" {
