@@ -8,7 +8,6 @@ module "vpc" {
 
 
 
-
 variable "availability_zones" {
   default = ["us-east-1a","us-east-1b"]
 }
@@ -17,6 +16,7 @@ variable "subnets" {
     public = {
       public = {
         cidr_block = ["10.0.1.0/24","10.0.2.0/24"]
+        igw        = true
       }
     }
     private = {

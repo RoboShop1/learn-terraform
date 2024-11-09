@@ -24,7 +24,8 @@ resource "aws_route_table_association" "rt-a" {
   route_table_id = aws_route_table.rt.id
 }
 
-
-output "in_subnets" {
-  value = aws_subnet.main
+resource "aws_route" "igw" {
+  count                     = var.igw ? 1 : 0
+  route_table_id            = aws_route_table.rt.id
+  destination_cidr_block    = "0.0.0.0/0"
 }

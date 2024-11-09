@@ -25,6 +25,7 @@ module "public_subnets" {
   name                  = each.key
   cidr_block            = each.value["cidr_block"]
   availability_zones    = var.availability_zones
+  igw                   = lookup(each.value,"igw",false)
 }
 
 
