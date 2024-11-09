@@ -10,7 +10,7 @@ module "vpc" {
 
 module "ec2-public" {
   source = "./ec2"
-  name   = public
+  name   = "public"
   associate_public_ip_address = 1
   subnet_id = element(lookup(lookup(lookup(module.vpc,"vpc_public",null),"public",null),"subnets_full",null),0).id
 }
@@ -18,7 +18,7 @@ module "ec2-public" {
 
 module "ec2-private" {
   source = "./ec2"
-  name   = private
+  name   = "private"
   associate_public_ip_address = 0
   subnet_id = element(lookup(lookup(lookup(module.vpc,"vpc_private",null),"db",null),"subnets_full",null),0).id
 }
