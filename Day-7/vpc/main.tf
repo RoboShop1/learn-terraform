@@ -20,7 +20,7 @@ resource "aws_eip" "main" {
 
 resource "aws_nat_gateway" "example" {
   allocation_id = aws_eip.main.id
-  subnet_id     = lookup(lookup(module.public_subnets,"public",null),"subnets_ids",null)[0]
+  subnet_id     = lookup(lookup(module.public_subnets,"public",null),"subnets_full",null)[0].id
 
   tags = {
     Name = "dev-vpc-ngw"
@@ -53,6 +53,7 @@ module "private_subnets" {
   ngw_id                = aws_nat_gateway.example.id      # we need to pass it.
 }
 
+
 output "vpc_private" {
   value = module.private_subnets
 }
@@ -60,3 +61,9 @@ output "vpc_private" {
 output "vpc_public" {
   value = module.public_subnets
 }
+
+
+
+#output "all" {
+#  value =  lookup(lookup(module.public_subnets,"public",null),"subnets_1",null)[0].id
+#}

@@ -38,10 +38,10 @@ resource "aws_route" "ngw" {
   nat_gateway_id            = var.ngw_id
 }
 
-
-output "subnets_ids" {
-  value = aws_subnet.main.*.id
-}
+#
+#output "subnets_ids" {
+#  value = aws_subnet.main.*.id
+#}
 
 output "subnets_full" {
   value = aws_subnet.main
