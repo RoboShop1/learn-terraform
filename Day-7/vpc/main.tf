@@ -36,20 +36,21 @@ module "public_subnets" {
   name                  = each.key
   cidr_block            = each.value["cidr_block"]
   availability_zones    = var.availability_zones
-  igw                   = lookup(each.value,"igw",false)
-  igw_id                = aws_internet_gateway.gw.id
+  igw                   = lookup(each.value,"igw",false)  # This to be true so we need to igw_id
+  igw_id                = aws_internet_gateway.gw.id      # we need to pass it.
   nat                   = lookup(each.value,"nat",false)
 }
 
 
-#
-#module "private_subnets" {
-#  source   = "./subnets"
-#  for_each = var.subnets["private"]
-#  vpc_id                = aws_vpc.main.id
-#  name                  = each.key
-#  cidr_block            = each.value["cidr_block"]
-#  availability_zones    = var.availability_zones
-#  igw                   = lookup(each.value,"igw",false)
-#  nat                   = lookup(each.value,"nat",false)
-#}
+
+module "private_subnets" {
+  source                = "./subnets"
+  for_each              = var.subnets["private"]
+  vpc_id                = aws_vpc.main.id
+  name                  = each.key
+  cidr_block            = each.value["cidr_block"]
+  availability_zones    = var.availability_zones
+  igw                   = lookup(each.value,"igw",false)  # This to false
+  nat                   = lookup(each.value,"nat",false)  # This to true, so we need to pass ngw_id
+  ngw_id                = aws_nat_gateway.example.id      # we need to pass it.
+}

@@ -31,6 +31,14 @@ resource "aws_route" "igw" {
   gateway_id                = var.igw_id
 }
 
+resource "aws_route" "ngw" {
+  count                     = var.nat ? 1 : 0
+  route_table_id            = aws_route_table.rt.id
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id            = var.ngw_id
+}
+
+
 output "subnets_ids" {
   value = aws_subnet.main.*.id
 }

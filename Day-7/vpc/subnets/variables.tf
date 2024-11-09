@@ -8,3 +8,6 @@ variable "igw_id" {
   default = null
 }
 variable "nat" {}
+variable "ngw_id" {
+  default = null
+}
