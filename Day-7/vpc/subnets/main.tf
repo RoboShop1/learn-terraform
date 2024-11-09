@@ -5,7 +5,7 @@ resource "aws_subnet" "main" {
   availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name = "${var.name}-${var.cidr_block[count.index]}-${var.availability_zones[count.index]}"
+    Name = "${var.name[count.index+1]}-${var.cidr_block[count.index]}-${var.availability_zones[count.index]}"
   }
 }
 
