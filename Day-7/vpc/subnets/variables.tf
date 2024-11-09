@@ -3,3 +3,4 @@ variable "cidr_block" {}
 variable "availability_zones" {}
 variable "name" {}
 variable "igw" {}
+variable "igw_id" {}

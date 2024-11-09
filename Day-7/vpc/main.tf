@@ -26,6 +26,7 @@ module "public_subnets" {
   cidr_block            = each.value["cidr_block"]
   availability_zones    = var.availability_zones
   igw                   = lookup(each.value,"igw",false)
+  igw_id                = aws_internet_gateway.gw.id
 }
 
 
