@@ -9,3 +9,17 @@ resource "aws_subnet" "main" {
   }
 }
 
+resource "aws_route_table" "rt" {
+  vpc_id = var.vpc_id
+
+  tags = {
+    Name = "${var.name}-rt"
+  }
+}
+
+
+resource "aws_route_table_association" "rt-a" {
+  count          = length(aws_subnet.main)
+  subnet_id      =  aws_subnet.main[count.index].id
+  route_table_id = aws_route_table.rt.id
+}
