@@ -42,3 +42,7 @@ resource "aws_route" "ngw" {
 output "subnets_ids" {
   value = aws_subnet.main.*.id
 }
+
+output "subnets_1" {
+  value = aws_subnet.main
+}

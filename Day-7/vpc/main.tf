@@ -60,3 +60,8 @@ output "vpc_private" {
 output "vpc_public" {
   value = module.public_subnets
 }
+
+
+output "vpc_pub1" {
+  value = module.public_subnets
+}
