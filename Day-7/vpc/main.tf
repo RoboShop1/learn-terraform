@@ -29,7 +29,7 @@ module "public_subnets" {
 
 
 
-output "in_vpc" {
+output "public_subnets" {
   value = lookup(lookup(module.public_subnets,"public",null),"in_subnets",null)
 }
 
