@@ -60,12 +60,3 @@ output "vpc_private" {
 output "vpc_public" {
   value = module.public_subnets
 }
-
-
-output "vpc_pub1" {
-  value = module.public_subnets
-}
-
-output "all" {
-  value =  lookup(lookup(module.public_subnets,"public",null),"subnets_1",null)[0].id
-}

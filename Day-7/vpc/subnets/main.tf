@@ -43,6 +43,6 @@ output "subnets_ids" {
   value = aws_subnet.main.*.id
 }
 
-output "subnets_1" {
+output "subnets_full" {
   value = aws_subnet.main
 }
