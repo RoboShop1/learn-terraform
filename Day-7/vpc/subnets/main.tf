@@ -23,3 +23,8 @@ resource "aws_route_table_association" "rt-a" {
   subnet_id      =  aws_subnet.main[count.index].id
   route_table_id = aws_route_table.rt.id
 }
+
+
+output "in_subnets" {
+  value = aws_subnet.main
+}
