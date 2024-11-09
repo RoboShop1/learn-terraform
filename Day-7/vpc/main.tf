@@ -15,3 +15,15 @@ resource "aws_internet_gateway" "gw" {
 }
 
 
+
+
+module "public_subnets" {
+  source                = "./subnets"
+  for_each              = var.subnets["public"]
+  vpc_id                = aws_vpc.main.id
+  name                  = each.key
+  cidr_block            = each.value["cidr_block"]
+  availability_zones    = var.availability_zones
+}
+
+
