@@ -8,6 +8,22 @@ module "vpc" {
 
 
 
+#module "ec2-public" {
+#  source = "./ec2"
+#  name   = public
+#  associate_public_ip_address = 1
+#  subnet_id =
+#}
+#
+#
+#module "ec2-private" {
+#  source = "./ec2"
+#  name   = private
+#  associate_public_ip_address = 0
+#  subnet_id =
+#}
+
+
 variable "availability_zones" {
   default = ["us-east-1a","us-east-1b"]
 }
@@ -36,3 +52,7 @@ variable "subnets" {
   }
 }
 
+
+output "out" {
+  value = module.vpc
+}

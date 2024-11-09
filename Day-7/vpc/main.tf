@@ -27,7 +27,6 @@ resource "aws_nat_gateway" "example" {
   }
 }
 
-
 module "public_subnets" {
   source                = "./subnets"
   for_each              = var.subnets["public"]
@@ -42,7 +41,6 @@ module "public_subnets" {
 }
 
 
-
 module "private_subnets" {
   source                = "./subnets"
   for_each              = var.subnets["private"]
@@ -53,4 +51,12 @@ module "private_subnets" {
   igw                   = lookup(each.value,"igw",false)  # This to false
   nat                   = lookup(each.value,"nat",false)  # This to true, so we need to pass ngw_id
   ngw_id                = aws_nat_gateway.example.id      # we need to pass it.
+}
+
+output "vpc_private" {
+  value = module.private_subnets
+}
+
+output "vpc_public" {
+  value = module.public_subnets
 }
