@@ -21,18 +21,18 @@ variable "subnets" {
     }
     private = {
       web = {
-        cidr_block = ["10.0.1.0/24","10.0.2.0/24"]
+        cidr_block = ["10.0.3.0/24","10.0.4.0/24"]
+        nat        = true
       }
       app = {
-        cidr_block = ["10.0.1.0/24","10.0.2.0/24"]
+        cidr_block = ["10.0.5.0/24","10.0.6.0/24"]
+        nat        = true
       }
       db = {
-        cidr_block = ["10.0.1.0/24","10.0.2.0/24"]
+        cidr_block = ["10.0.7.0/24","10.0.8.0/24"]
+        nat        = true
       }
     }
   }
 }
 
-output "out" {
-  value = module.vpc
-}

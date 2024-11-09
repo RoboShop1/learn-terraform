@@ -30,3 +30,7 @@ resource "aws_route" "igw" {
   destination_cidr_block    = "0.0.0.0/0"
   gateway_id                = var.igw_id
 }
+
+output "subnets_ids" {
+  value = aws_subnet.main.*.id
+}
