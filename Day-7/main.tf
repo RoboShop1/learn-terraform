@@ -34,5 +34,5 @@ variable "subnets" {
 }
 
 output "out" {
-  value = module.vpc.public_subnets
+  value = module.vpc
 }
