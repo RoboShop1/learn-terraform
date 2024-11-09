@@ -30,6 +30,6 @@ module "public_subnets" {
 
 
 output "in_vpc" {
-  value = module.public_subnets.in_subnets
+  value = module.public_subnets["public"]["in_subnets"]
 }
 
