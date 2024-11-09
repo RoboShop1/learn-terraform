@@ -1,0 +1,254 @@
+out = {
+  "vpc_private" = {
+    "app" = {
+      "subnets_full" = [
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-0f2b243bcc5a76134"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1a"
+          "availability_zone_id" = "use1-az2"
+          "cidr_block" = "10.0.5.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-0f2b243bcc5a76134"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "app1-10.0.5.0/24-us-east-1a"
+          })
+          "tags_all" = tomap({
+            "Name" = "app1-10.0.5.0/24-us-east-1a"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-0f21d57ef22a733bb"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1b"
+          "availability_zone_id" = "use1-az4"
+          "cidr_block" = "10.0.6.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-0f21d57ef22a733bb"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "app2-10.0.6.0/24-us-east-1b"
+          })
+          "tags_all" = tomap({
+            "Name" = "app2-10.0.6.0/24-us-east-1b"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+      ]
+    }
+    "db" = {
+      "subnets_full" = [
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-00d1224c7a8457315"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1a"
+          "availability_zone_id" = "use1-az2"
+          "cidr_block" = "10.0.7.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-00d1224c7a8457315"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "db1-10.0.7.0/24-us-east-1a"
+          })
+          "tags_all" = tomap({
+            "Name" = "db1-10.0.7.0/24-us-east-1a"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-0b2b7d8c6dcb3b459"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1b"
+          "availability_zone_id" = "use1-az4"
+          "cidr_block" = "10.0.8.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-0b2b7d8c6dcb3b459"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "db2-10.0.8.0/24-us-east-1b"
+          })
+          "tags_all" = tomap({
+            "Name" = "db2-10.0.8.0/24-us-east-1b"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+      ]
+    }
+    "web" = {
+      "subnets_full" = [
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-09216bcaef4b7aa4b"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1a"
+          "availability_zone_id" = "use1-az2"
+          "cidr_block" = "10.0.3.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-09216bcaef4b7aa4b"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "web1-10.0.3.0/24-us-east-1a"
+          })
+          "tags_all" = tomap({
+            "Name" = "web1-10.0.3.0/24-us-east-1a"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-04efbc70e15620eb9"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1b"
+          "availability_zone_id" = "use1-az4"
+          "cidr_block" = "10.0.4.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-04efbc70e15620eb9"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "web2-10.0.4.0/24-us-east-1b"
+          })
+          "tags_all" = tomap({
+            "Name" = "web2-10.0.4.0/24-us-east-1b"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+      ]
+    }
+  }
+  "vpc_public" = {
+    "public" = {
+      "subnets_full" = [
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-06a0d4cc5c00e7208"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1a"
+          "availability_zone_id" = "use1-az2"
+          "cidr_block" = "10.0.1.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-06a0d4cc5c00e7208"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "public1-10.0.1.0/24-us-east-1a"
+          })
+          "tags_all" = tomap({
+            "Name" = "public1-10.0.1.0/24-us-east-1a"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+        {
+          "arn" = "arn:aws:ec2:us-east-1:339712959230:subnet/subnet-0b3628eecc694227e"
+          "assign_ipv6_address_on_creation" = false
+          "availability_zone" = "us-east-1b"
+          "availability_zone_id" = "use1-az4"
+          "cidr_block" = "10.0.2.0/24"
+          "customer_owned_ipv4_pool" = ""
+          "enable_dns64" = false
+          "enable_lni_at_device_index" = 0
+          "enable_resource_name_dns_a_record_on_launch" = false
+          "enable_resource_name_dns_aaaa_record_on_launch" = false
+          "id" = "subnet-0b3628eecc694227e"
+          "ipv6_cidr_block" = ""
+          "ipv6_cidr_block_association_id" = ""
+          "ipv6_native" = false
+          "map_customer_owned_ip_on_launch" = false
+          "map_public_ip_on_launch" = false
+          "outpost_arn" = ""
+          "owner_id" = "339712959230"
+          "private_dns_hostname_type_on_launch" = "ip-name"
+          "tags" = tomap({
+            "Name" = "public2-10.0.2.0/24-us-east-1b"
+          })
+          "tags_all" = tomap({
+            "Name" = "public2-10.0.2.0/24-us-east-1b"
+          })
+          "timeouts" = null /* object */
+          "vpc_id" = "vpc-09a59c009f65012a1"
+        },
+      ]
+    }
+  }
+}
