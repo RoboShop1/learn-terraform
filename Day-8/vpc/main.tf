@@ -49,7 +49,7 @@ resource "aws_route_table" "public-rt" {
     gateway_id = aws_internet_gateway.gw.id
   }
   tags = {
-    Name = "${env}-public-rt"
+    Name = "${var.env}-public-rt"
   }
 }
 
@@ -83,7 +83,7 @@ resource "aws_route_table" "private-rt" {
     gateway_id = aws_nat_gateway.nat.id
   }
   tags = {
-    Name = "${env}-private-rt"
+    Name = "${var.env}-private-rt"
   }
 }
 
