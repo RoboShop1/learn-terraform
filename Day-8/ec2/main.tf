@@ -16,7 +16,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "dev-vpc-public" {
   vpc_id             = "vpc-0cdf0504e5f63fd78"
 }
 
-resource "aws_ec2_transit_gateway_connect" "dev-vpc" {
+resource "aws_ec2_transit_gateway_connect" "dev-vpc-p" {
   transport_attachment_id = aws_ec2_transit_gateway_vpc_attachment.dev-vpc-private.id
   transit_gateway_id      = aws_ec2_transit_gateway.transit.id
 
@@ -25,7 +25,7 @@ resource "aws_ec2_transit_gateway_connect" "dev-vpc" {
   }
 }
 
-resource "aws_ec2_transit_gateway_connect" "dev-vpc" {
+resource "aws_ec2_transit_gateway_connect" "dev-vpc-public" {
   transport_attachment_id = aws_ec2_transit_gateway_vpc_attachment.dev-vpc-public.id
   transit_gateway_id      = aws_ec2_transit_gateway.transit.id
 
