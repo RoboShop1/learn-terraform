@@ -17,7 +17,16 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "dev-vpc-public" {
 }
 
 resource "aws_ec2_transit_gateway_connect" "dev-vpc" {
-  transport_attachment_id = aws_ec2_transit_gateway_vpc_attachment.dev-vpc.id
+  transport_attachment_id = aws_ec2_transit_gateway_vpc_attachment.dev-vpc-private.id
+  transit_gateway_id      = aws_ec2_transit_gateway.transit.id
+
+  tags = {
+    Name = "dev-vpc-connect"
+  }
+}
+
+resource "aws_ec2_transit_gateway_connect" "dev-vpc" {
+  transport_attachment_id = aws_ec2_transit_gateway_vpc_attachment.dev-vpc-public.id
   transit_gateway_id      = aws_ec2_transit_gateway.transit.id
 
   tags = {
