@@ -49,9 +49,10 @@ resource "aws_route_table" "public-rt" {
     gateway_id = aws_internet_gateway.gw.id
   }
   tags = {
-    Name = "${env}-private-rt"
+    Name = "${env}-public-rt"
   }
 }
+
 
 resource "aws_route_table_association" "public-rta" {
   count          = length(aws_subnet.public_subnets)
@@ -86,7 +87,7 @@ resource "aws_route_table" "private-rt" {
   }
 }
 
-resource "aws_route_table_association" "public-rta" {
+resource "aws_route_table_association" "private-rta" {
   count          = length(aws_subnet.private_subnets)
   route_table_id = aws_route_table.private-rt.id
   subnet_id      = aws_subnet.private_subnets[count.index].id
