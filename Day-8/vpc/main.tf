@@ -6,6 +6,16 @@ resource "aws_vpc" "main" {
   }
 }
 
+
+resource "aws_security_group_rule" "rule" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_vpc.main.default_security_group_id
+}
+
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
