@@ -1,5 +1,6 @@
-resource "aws_ec2_transit_gateway" "transit" {
-  tags = {
-    Name = "cgit-transit"
-  }
-}
+#resource "aws_ec2_transit_gateway" "transit" {
+#  count = 1
+#  tags = {
+#    Name = "cgit-transit"
+#  }
+#}
