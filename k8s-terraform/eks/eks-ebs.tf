@@ -1,28 +1,26 @@
 
 
-resource "aws_iam_role" "ebs-role" {
-  name               = "eks-pod-identity-example"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        actions = [
-          "sts:AssumeRole",
-          "sts:TagSession"
-        ]
-        Effect    = "Allow"
-        principals =  {
-          type        = "Service"
-          identifiers = ["pods.eks.amazonaws.com"]
-        }
-      }
-    ]
-  })
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
 
-  tags = {
-    Name = "eks-pod-identity-role"
+    principals {
+      type        = "Service"
+      identifiers = ["pods.eks.amazonaws.com"]
+    }
+
+    actions = [
+      "sts:AssumeRole",
+      "sts:TagSession"
+    ]
   }
 }
+
+resource "aws_iam_role" "ebs-role" {
+  name               = "role-aws-elb"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
 
 
 resource "aws_iam_role_policy" "ebs_policy" {
@@ -168,7 +166,7 @@ resource "aws_iam_role_policy" "ebs_policy" {
 resource "helm_release" "ebs-csi" {
   name       = "my-redis-release"
   repository = "https://charts.bitnami.com/bitnami"
-  chart      = "ws-ebs-csi-driver"
+  chart      = "aws-ebs-csi-driver"
 }
 
 resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
