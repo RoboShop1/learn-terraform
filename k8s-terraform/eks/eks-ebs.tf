@@ -166,8 +166,9 @@ resource "aws_iam_role_policy" "ebs_policy" {
 
 
 resource "helm_release" "ebs-csi" {
-  chart = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
-  name  = "aws-ebs-csi-driver"
+  name       = "my-redis-release"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "ws-ebs-csi-driver"
 }
 
 resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
