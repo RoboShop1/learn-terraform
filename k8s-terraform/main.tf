@@ -15,3 +15,7 @@ module "eks" {
   public_subnets = module.dev-vpc.public_subnets
   private_subnets = module.dev-vpc.private_subnets
 }
+
+output "main" {
+  value = module.eks.data-body
+}
