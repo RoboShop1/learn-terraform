@@ -6,13 +6,16 @@ resource "aws_iam_role" "ebs-role" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "pods.eks.amazonaws.com"
+        actions = [
+          "sts:AssumeRole",
+          "sts:TagSession"
+        ]
+        Effect    = "Allow"
+        principals =  {
+          type        = "Service"
+          identifiers = ["pods.eks.amazonaws.com"]
         }
-      },
+      }
     ]
   })
 
@@ -159,9 +162,6 @@ resource "aws_iam_role_policy" "ebs_policy" {
     ]
   })
 }
-
-
-
 
 
 
