@@ -164,8 +164,8 @@ resource "aws_iam_role_policy" "ebs_policy" {
 
 
 resource "helm_release" "ebs-csi" {
-  name       = "my-redis-release"
-  repository = "https://charts.bitnami.com/bitnami"
+  name       = "ebs-csi"
+  repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
   chart      = "aws-ebs-csi-driver"
 }
 
