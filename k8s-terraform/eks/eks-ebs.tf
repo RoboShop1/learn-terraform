@@ -171,12 +171,19 @@ resource "helm_release" "ebs-csi" {
 
 resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
   cluster_name    = aws_eks_cluster.dev-eks.name
-  namespace       = "kube-system"
+  namespace       = "default"
   service_account = "ebs-csi-controller-sa"
   role_arn        = aws_iam_role.ebs-role.arn
 }
 
+data "kubectl_file_documents" "docs" {
+  content = file("ebs-storage-class.yaml")
+}
 
+resource "kubectl_manifest" "test" {
+  for_each  = data.kubectl_file_documents.docs.manifests
+  yaml_body = each.value
+}
 
 
 
