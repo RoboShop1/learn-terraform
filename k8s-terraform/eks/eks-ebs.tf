@@ -176,14 +176,14 @@ resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
   role_arn        = aws_iam_role.ebs-role.arn
 }
 
-data "kubectl_file_documents" "ebs-csi" {
-  content = file("./ebs-storage-class.yaml")
-}
+#data "kubectl_file_documents" "ebs-csi" {
+#  content = file("./ebs-storage-class.yaml")
+#}
 
-resource "kubectl_manifest" "test" {
-  for_each  = data.kubectl_file_documents.ebs-csi
-  yaml_body = each.value
-}
+#resource "kubectl_manifest" "test" {
+#  for_each  = data.kubectl_file_documents.ebs-csi
+#  yaml_body = each.value
+#}
 
 
 
