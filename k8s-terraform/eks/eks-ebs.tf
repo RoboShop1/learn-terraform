@@ -4,9 +4,35 @@ data "http" "ebs-policy" {
   request_headers = {
     Accept = "application/json"
   }
-
 }
 
-output "data-body" {
-  value = data.http.ebs-policy.body
+
+
+resource "aws_iam_role" "ebs-role" {
+  name               = "eks-pod-identity-example"
+  assume_role_policy = jsondecode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "pods.eks.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  tags = {
+    Name = "eks-pod-identity-role"
+  }
 }
+
+
+resource "aws_iam_role_policy" "ebs_policy" {
+  name = "test_policy"
+  role = aws_iam_role.ebs-role.id
+  policy = data.http.ebs-policy.body
+}
+
