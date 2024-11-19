@@ -160,3 +160,46 @@ resource "aws_iam_role_policy" "ebs_policy" {
   })
 }
 
+
+
+
+
+
+resource "helm_release" "ebs-csi" {
+  chart = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
+  name  = "aws-ebs-csi-driver"
+}
+
+resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
+  cluster_name    = aws_eks_cluster.dev-eks.name
+  namespace       = "kube-system"
+  service_account = "ebs-csi-controller-sa"
+  role_arn        = aws_iam_role.ebs-role.arn
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
