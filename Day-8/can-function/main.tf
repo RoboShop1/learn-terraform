@@ -7,5 +7,5 @@ variable "name" {
 #}
 
 output "main" {
-  value = can(length(var.name) > 10)
+  value = can(length(var.name))
 }
