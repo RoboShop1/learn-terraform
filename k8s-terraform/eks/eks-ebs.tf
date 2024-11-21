@@ -164,7 +164,7 @@ resource "aws_iam_role_policy" "ebs_policy" {
 
 
 resource "helm_release" "ebs-csi" {
-  depends_on = [null_resource.get-config]
+  depends_on = [null_resource.get-config, aws_eks_pod_identity_association.eks-ebs-pod-association]
   name       = "ebs-csi"
   repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
   chart      = "aws-ebs-csi-driver"
@@ -177,6 +177,23 @@ resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
   role_arn        = aws_iam_role.ebs-role.arn
 }
 
+
+resource "kubernetes_manifest" "storage-class" {
+
+  depends_on = [helm_release.ebs-csi]
+  manifest = {
+    "apiVersion": "storage.k8s.io/v1",
+    "kind": "StorageClass",
+    "metadata": {
+      "name": "ebs-sc"
+    },
+    "provisioner": "ebs.csi.aws.com",
+    "volumeBindingMode": "WaitForFirstConsumer"
+  }
+}
+
+
+/*
 resource "null_resource" "kubectl-apply" {
 
   depends_on = [helm_release.ebs-csi]
@@ -188,7 +205,7 @@ kubectl apply -f ./"${path.module}"/yaml-files/ebs-storage-class.yaml
 EOT
   }
 }
-
+*/
 
 
 
