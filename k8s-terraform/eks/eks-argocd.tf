@@ -1,6 +1,6 @@
 
 resource "null_resource" "install-argocd" {
-  depends_on = [null_resource.get-config]
+  depends_on = [null_resource.get-config,helm_release.external-dns]
 
   provisioner "local-exec" {
     command = <<EOT
@@ -10,6 +10,18 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 sleep 20
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 EOT
+  }
+}
+
+resource "kubernetes_annotations" "example" {
+  api_version = "v1"
+  kind        = "Service"
+  metadata {
+    name = "argocd-server"
+    namespace = "argocd"
+  }
+  annotations = {
+    external-dns.alpha.kubernetes.io/hostname: "argocd.azcart.online"
   }
 }
 
