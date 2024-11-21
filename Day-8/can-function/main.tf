@@ -7,5 +7,5 @@ variable "name" {
 #}
 
 output "main" {
-  value = can(tobool(false))
+  value = can(tostring(false))
 }
