@@ -3,5 +3,5 @@ variable "name" {
 }
 
 output "main" {
-  value = can(startswith("hello world", "main"))
+  value = startswith("hello world", "main")
 }
