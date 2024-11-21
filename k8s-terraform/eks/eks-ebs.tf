@@ -164,6 +164,7 @@ resource "aws_iam_role_policy" "ebs_policy" {
 
 
 resource "helm_release" "ebs-csi" {
+  depends_on = [null_resource.get-config]
   name       = "ebs-csi"
   repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
   chart      = "aws-ebs-csi-driver"
@@ -176,14 +177,18 @@ resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
   role_arn        = aws_iam_role.ebs-role.arn
 }
 
-#data "kubectl_file_documents" "ebs-csi" {
-#  content = file("./ebs-storage-class.yaml")
-#}
+resource "null_resource" "kubectl-apply" {
 
-#resource "kubectl_manifest" "test" {
-#  for_each  = data.kubectl_file_documents.ebs-csi
-#  yaml_body = each.value
-#}
+  depends_on = [helm_release.ebs-csi]
+
+  provisioner "local-exec" {
+    command = <<EOT
+sleep 10
+kubectl apply -f ./"${path.module}"/ebs-storage-class.yaml
+EOT
+  }
+}
+
 
 
 
