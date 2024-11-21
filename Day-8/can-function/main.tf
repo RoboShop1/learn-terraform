@@ -3,5 +3,5 @@ variable "name" {
 }
 
 output "main" {
-  value = can(strcontains("hello world", "boy"))
+  value = can(strcontains(var.name, "main"))
 }
