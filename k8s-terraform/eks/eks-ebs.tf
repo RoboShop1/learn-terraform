@@ -180,7 +180,7 @@ resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
 
 resource "kubernetes_manifest" "storage-class" {
 
-  depends_on = [helm_release.ebs-csi]
+  depends_on = [helm_release.ebs-csi,null_resource.get-config]
   manifest = {
     "apiVersion": "storage.k8s.io/v1",
     "kind": "StorageClass",
