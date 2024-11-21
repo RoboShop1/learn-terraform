@@ -2,6 +2,10 @@ variable "name" {
   default = "linux"
 }
 
+#output "main" {
+#  value = can(startswith("hello world", "main"))
+#}
+
 output "main" {
-  value = startswith("hello world", "main")
+  value = can(false)
 }
