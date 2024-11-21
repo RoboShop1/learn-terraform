@@ -184,7 +184,7 @@ resource "null_resource" "kubectl-apply" {
   provisioner "local-exec" {
     command = <<EOT
 sleep 10
-kubectl apply -f ./"${path.module}"/ebs-storage-class.yaml
+kubectl apply -f ./"${path.module}"/yaml-files/ebs-storage-class.yaml
 EOT
   }
 }
