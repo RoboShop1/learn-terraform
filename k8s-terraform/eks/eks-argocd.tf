@@ -22,7 +22,7 @@ resource "kubernetes_annotations" "example" {
     namespace = "argocd"
   }
   annotations = {
-    external-dns.alpha.kubernetes.io/hostname: "argocd.azcart.online"
+    "external-dns.alpha.kubernetes.io/hostname": "argocd.azcart.online"
   }
 }
 
