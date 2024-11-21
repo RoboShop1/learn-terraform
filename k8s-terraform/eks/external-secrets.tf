@@ -13,6 +13,9 @@ variable "vault_ip" {
 }
 
 resource "null_resource" "external-secrets" {
+
+  depends_on = [null_resource.get-config]
+
   provisioner "local-exec" {
     command = <<EOT
 helm repo add external-secrets https://charts.external-secrets.io
