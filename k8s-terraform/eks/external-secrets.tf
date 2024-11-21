@@ -28,7 +28,7 @@ variable "vault_ip" {
 
 
 resource "kubernetes_manifest" "secret-vault-token" {
-  depends_on = [null_resource.external-secrets]
+  // depends_on = [null_resource.external-secrets]
   manifest = {
     "apiVersion" = "v1"
     "kind"       = "Secret"
@@ -45,7 +45,7 @@ resource "kubernetes_manifest" "secret-vault-token" {
 
 resource "kubernetes_manifest" "cluster-secret-store" {
 
-depends_on = [null_resource.external-secrets]
+// depends_on = [null_resource.external-secrets]
   manifest = {
     "apiVersion": "external-secrets.io/v1beta1",
     "kind": "ClusterSecretStore",
