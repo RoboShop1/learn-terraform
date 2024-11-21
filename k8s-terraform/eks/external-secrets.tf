@@ -8,9 +8,22 @@
 #  version = "main"
 #}
 
+variable "vault_ip" {
+  default = "54.234.229.240"
+}
+
+resource "null_resource" "external-secrets" {
+  provisioner "local-exec" {
+    command = <<EOT
+helm repo add external-secrets https://charts.external-secrets.io
+helm install external-secrets external-secrets/external-secrets -n external-secrets --create-namespace
+EOT
+  }
+}
+
 
 resource "kubernetes_manifest" "secret-vault-token" {
-  // depends_on = [helm_release.external-secrets1]
+  depends_on = [null_resource.external-secrets]
   manifest = {
     "apiVersion" = "v1"
     "kind"       = "Secret"
@@ -24,12 +37,10 @@ resource "kubernetes_manifest" "secret-vault-token" {
   }
 }
 
-variable "vault_ip" {
-  default = "54.234.229.240"
-}
-resource "kubernetes_manifest" "cluster-secret-store" {
- // depends_on = [helm_release.external-secrets1]
 
+resource "kubernetes_manifest" "cluster-secret-store" {
+
+depends_on = [null_resource.external-secrets]
   manifest = {
     "apiVersion": "external-secrets.io/v1beta1",
     "kind": "ClusterSecretStore",
