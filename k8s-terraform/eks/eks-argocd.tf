@@ -14,6 +14,7 @@ EOT
 }
 
 resource "kubernetes_annotations" "example" {
+  depends_on = [null_resource.install-argocd]
   api_version = "v1"
   kind        = "Service"
   metadata {
