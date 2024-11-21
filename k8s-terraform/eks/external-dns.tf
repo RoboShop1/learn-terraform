@@ -57,7 +57,7 @@ resource "aws_eks_pod_identity_association" "external-pod-identity" {
   role_arn        = aws_iam_role.eks-route-role.arn
 }
 
-resource "helm_release" "example" {
+resource "helm_release" "external-dns" {
   depends_on = [aws_eks_pod_identity_association.external-pod-identity]
   name       = "external-dns"
   repository = "https://kubernetes-sigs.github.io/external-dns/"

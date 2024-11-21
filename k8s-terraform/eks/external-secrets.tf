@@ -1,15 +1,17 @@
-#resource "helm_release" "external-secrets1" {
-#  depends_on = [null_resource.get-config]
-#  name             = "external-secrets"
-#  repository       = "https://charts.external-secrets.io"
-#  chart            = "external-secrets"
-#  namespace         = "external-secrets"
-#  create_namespace = true
-#  version = "main"
-#}
+/*
+resource "helm_release" "external-secrets" {
+  depends_on        = [null_resource.get-config]
+
+  name              = "external-secrets"
+  repository        = "https://charts.external-secrets.io"
+  chart             = "external-secrets"
+  namespace         = "external-secrets"
+  create_namespace  = true
+
+}
 
 variable "vault_ip" {
-  default = "3.87.239.221"
+  default = "0.0.0.0"
 }
 
 #resource "null_resource" "external-secrets" {
@@ -28,7 +30,7 @@ variable "vault_ip" {
 
 
 resource "kubernetes_manifest" "secret-vault-token" {
-  // depends_on = [null_resource.external-secrets]
+  depends_on = [helm_release.external-secrets]
   manifest = {
     "apiVersion" = "v1"
     "kind"       = "Secret"
@@ -70,3 +72,4 @@ resource "kubernetes_manifest" "cluster-secret-store" {
     }
   }
 }
+*/
