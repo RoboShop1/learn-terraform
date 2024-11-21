@@ -57,7 +57,7 @@ resource "kubernetes_manifest" "secret-vault-token" {
 
 resource "kubernetes_manifest" "cluster-secret-store" {
   depends_on = [helm_release.external-secrets]
-  manifest = {
+  manifest   = {
     "apiVersion" : "external-secrets.io/v1beta1",
     "kind" : "ClusterSecretStore",
     "metadata" : {
@@ -80,3 +80,4 @@ resource "kubernetes_manifest" "cluster-secret-store" {
       }
     }
   }
+}
