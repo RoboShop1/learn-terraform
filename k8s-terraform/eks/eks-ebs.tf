@@ -177,20 +177,20 @@ resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
   role_arn        = aws_iam_role.ebs-role.arn
 }
 
-#
-#resource "kubernetes_manifest" "storage-class" {
-#
-#  depends_on = [helm_release.ebs-csi,null_resource.get-config]
-#  manifest = {
-#    "apiVersion": "storage.k8s.io/v1",
-#    "kind": "StorageClass",
-#    "metadata": {
-#      "name": "ebs-sc"
-#    },
-#    "provisioner": "ebs.csi.aws.com",
-#    "volumeBindingMode": "WaitForFirstConsumer"
-#  }
-#}
+
+resource "kubernetes_manifest" "storage-class" {
+
+  depends_on = [helm_release.ebs-csi,null_resource.get-config]
+  manifest = {
+    "apiVersion": "storage.k8s.io/v1",
+    "kind": "StorageClass",
+    "metadata": {
+      "name": "ebs-sc"
+    },
+    "provisioner": "ebs.csi.aws.com",
+    "volumeBindingMode": "WaitForFirstConsumer"
+  }
+}
 
 
 /*
