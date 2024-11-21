@@ -12,19 +12,19 @@ variable "vault_ip" {
   default = "54.234.229.240"
 }
 
-resource "null_resource" "external-secrets" {
-
-  // depends_on = [null_resource.get-config]
-
-  provisioner "local-exec" {
-    command = <<EOT
-helm repo add external-secrets https://charts.external-secrets.io
-helm install external-secrets external-secrets/external-secrets -n external-secrets --create-namespace
-
-sleep 20
-EOT
-  }
-}
+#resource "null_resource" "external-secrets" {
+#
+#  // depends_on = [null_resource.get-config]
+#
+#  provisioner "local-exec" {
+#    command = <<EOT
+#helm repo add external-secrets https://charts.external-secrets.io
+#helm install external-secrets external-secrets/external-secrets -n external-secrets --create-namespace
+#
+#sleep 20
+#EOT
+#  }
+#}
 
 
 resource "kubernetes_manifest" "secret-vault-token" {
@@ -37,7 +37,7 @@ resource "kubernetes_manifest" "secret-vault-token" {
       "namespace" = "external-secrets"
     }
     "data" = {
-      "token" = "aHZzLnhmbENMcThjcnIzNm9uWTdBaHY1eVJGcA=="
+      "vault-token" = "aHZzLnhmbENMcThjcnIzNm9uWTdBaHY1eVJGcA=="
     }
   }
 }
