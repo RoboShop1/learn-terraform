@@ -47,8 +47,8 @@ resource "kubernetes_manifest" "secret-vault-token" {
 resource "null_resource"  "kubectl-css" {
   provisioner "local-exec" {
     command = <<EOT
-kubectl apply -f  templatefile("${path.module}/yaml-files/css.yaml" , {
-vault_ip = ${var.vault_ip}
+kubectl apply -f  templatefile("${path.module}/yaml-files/css.yaml",{
+vault_ip = "${var.vault_ip}"
 })
 EOT
   }
