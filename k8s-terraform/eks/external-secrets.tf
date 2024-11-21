@@ -1,5 +1,4 @@
 resource "helm_release" "external-secrets1" {
-  depends_on      = [null_resource.get-config]
   name             = "external-secrets"
   repository       = "https://charts.external-secrets.io"
   chart            = "external-secrets"
