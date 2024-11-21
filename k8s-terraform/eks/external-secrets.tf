@@ -60,7 +60,7 @@ resource "kubernetes_manifest" "cluster-secret-store" {
           "version": "v2",
           "auth": {
             "tokenSecretRef": {
-              "name": "vault-token",
+              "name": "secret-vault-token",
               "key": "token",
               "namespace": "external-secrets"
             }
