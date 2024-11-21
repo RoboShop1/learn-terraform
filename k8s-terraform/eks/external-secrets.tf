@@ -9,7 +9,7 @@
 #}
 
 variable "vault_ip" {
-  default = "54.234.229.240"
+  default = "3.87.239.221"
 }
 
 #resource "null_resource" "external-secrets" {
