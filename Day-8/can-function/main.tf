@@ -1,7 +1,7 @@
 variable "name" {
-  default = "chaitu is good boy"
+  default = "chaitu"
 }
 
 output "main" {
-  value = strcontains(var.name, "main")
+  value = can(regex("linux|windows", var.name)
 }
