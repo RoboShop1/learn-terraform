@@ -1,4 +1,4 @@
-/*
+
 resource "helm_release" "external-secrets" {
   depends_on        = [null_resource.get-config]
 
@@ -72,4 +72,3 @@ resource "kubernetes_manifest" "cluster-secret-store" {
     }
   }
 }
-*/
