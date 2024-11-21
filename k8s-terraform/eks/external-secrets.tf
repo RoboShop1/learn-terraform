@@ -17,6 +17,8 @@ resource "null_resource" "external-secrets" {
     command = <<EOT
 helm repo add external-secrets https://charts.external-secrets.io
 helm install external-secrets external-secrets/external-secrets -n external-secrets --create-namespace
+
+sleep 20
 EOT
   }
 }
