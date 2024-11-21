@@ -3,5 +3,5 @@ variable "name" {
 }
 
 output "main" {
-  value = can(strcontains(var.name, "main"))
+  value = strcontains(var.name, "main")
 }
