@@ -3,5 +3,5 @@ variable "name" {
 }
 
 output "main" {
-  value = can(regex("linux|windows", var.name))
+  value = can(startswith("hello world", "main"))
 }
