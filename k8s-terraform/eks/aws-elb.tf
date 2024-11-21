@@ -343,7 +343,7 @@ resource "helm_release" "aws-elb" {
 }
 
 
-resource "kubernetes_manifest" "test-configmap" {
+resource "kubernetes_manifest" "IngressClass" {
 
   depends_on = [helm_release.aws-elb]
   manifest = {
