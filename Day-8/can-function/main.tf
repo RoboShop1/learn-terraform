@@ -1,5 +1,5 @@
 variable "name" {
-  default = "chaitu"
+  default = "linux"
 }
 
 output "main" {
