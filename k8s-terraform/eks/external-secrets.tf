@@ -37,7 +37,7 @@ resource "kubernetes_manifest" "cluster-secret-store" {
     "spec": {
       "provider": {
         "vault": {
-          "server": "http://${vault_ip}:8200",
+          "server": "http://${var.vault_ip}:8200",
           "path": "secret",
           "version": "v2",
           "auth": {
