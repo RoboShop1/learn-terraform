@@ -44,36 +44,14 @@ resource "kubernetes_manifest" "secret-vault-token" {
   }
 }
 
-#resource "null_resource"  "sleep" {
-#  provisioner "local-exec" {
-#    command = "sleep 20"
-#  }
-#}
-
-resource "kubernetes_manifest" "cluster-secret-store" {
-
-depends_on = [helm_release.external-secrets]
-  manifest = {
-    "apiVersion": "external-secrets.io/v1beta1",
-    "kind": "ClusterSecretStore",
-    "metadata": {
-      "name": "vault-backend"
-    },
-    "spec": {
-      "provider": {
-        "vault": {
-          "server": "http://${var.vault_ip}:8200",
-          "path": "secret",
-          "version": "v2",
-          "auth": {
-            "tokenSecretRef": {
-              "name": "secret-vault-token",
-              "key": "vault-token",
-              "namespace": "external-secrets"
-            }
-          }
-        }
-      }
-    }
+resource "null_resource"  "kubectl-css" {
+  provisioner "local-exec" {
+    command = <<EOT
+kubectl apply -f templatefile("${path.module}/yaml-files/css.yaml",{
+vault_ip = var.vault_ip
+})}
+EOT
   }
 }
+
+

@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+spec:
+  provider:
+    vault:
+      server: 'http://${vault_ip}:8200'
+      path: secret
+      version: v2
+      auth:
+        tokenSecretRef:
+          name: secret-vault-token
+          key: vault-token
+          namespace: external-secrets
