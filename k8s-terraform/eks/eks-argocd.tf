@@ -1,3 +1,4 @@
+/*
 resource "null_resource" "install-argocd" {
   depends_on = [null_resource.get-config]
 
@@ -11,3 +12,4 @@ EOT
   }
 }
 
+*/
