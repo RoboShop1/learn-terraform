@@ -1,21 +1,9 @@
-variable "ports" {
-  default = {
-    port1 = {
-      port = 80
-      cidr_block =  ["0.0.0.0/0"]
-    }
-    port2 = {
-      port = 8080
-      cidr_block =  ["0.0.0.0/0"]
-    }
-  }
+data "aws_vpc" "default" {
+  default = true
 }
 
-variable "ports1" {
-  default = [80,9090]
-}
-resource "aws_security_group" "allow_tls" {
-  name        = "allow_all"
+resource "aws_security_group" "main" {
+  name        = "${var.component}-sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = data.aws_vpc.default.id
 
@@ -24,7 +12,7 @@ resource "aws_security_group" "allow_tls" {
   }
 
   dynamic "ingress" {
-    for_each = toset(var.ports1)
+    for_each = toset(var.app_ports)
     content {
       from_port        = ingress.value
       to_port          = ingress.value
@@ -43,6 +31,38 @@ resource "aws_security_group" "allow_tls" {
 
 
 
-data "aws_vpc" "default" {
-default = true
+resource "aws_launch_template" "main" {
+  name = "${var.component}-template"
+  image_id = "ami-0453ec754f44f9a4a"
+  instance_type = "t2.micro"
+  key_name = "nvirginia"
+  vpc_security_group_ids = [aws_security_group.main.id]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
