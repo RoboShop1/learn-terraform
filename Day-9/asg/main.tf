@@ -1,6 +1,46 @@
 data "aws_vpc" "default" {
   default = true
 }
+resource "aws_iam_role" "main" {
+  name = "${var.component}-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
+
+resource "aws_iam_role_policy" "main_policy" {
+  name = "ec2-policy"
+  role = aws_iam_role.main.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
+
+resource "aws_iam_instance_profile" "main_profile" {
+  name = "${var.component}_profile"
+  role = aws_iam_role.main.name
+}
+
+
 
 resource "aws_security_group" "main" {
   name        = "${var.component}-sg"
@@ -37,7 +77,13 @@ resource "aws_launch_template" "main" {
   instance_type = "t2.micro"
   key_name = "nvirginia"
   vpc_security_group_ids = [aws_security_group.main.id]
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.main_profile.name
+  }
 }
+
+
 
 
 
