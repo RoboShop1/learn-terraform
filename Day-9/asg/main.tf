@@ -11,6 +11,9 @@ variable "ports" {
   }
 }
 
+variable "ports1" {
+  default = [80,9090]
+}
 resource "aws_security_group" "allow_tls" {
   name        = "allow_all"
   description = "Allow TLS inbound traffic and all outbound traffic"
@@ -21,12 +24,12 @@ resource "aws_security_group" "allow_tls" {
   }
 
   dynamic "ingress" {
-    for_each = var.ports
+    for_each = toset(var.ports1)
     content {
-      from_port        = ingress.value.port
-      to_port          = ingress.value.port
+      from_port        = ingress.value.key
+      to_port          = ingress.value.key
       protocol         = "tcp"
-      cidr_blocks      = ingress.value.cidr_block
+      cidr_blocks      = ["0.0.0.0/0"]
     }
   }
   egress {
