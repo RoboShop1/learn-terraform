@@ -26,8 +26,8 @@ resource "aws_security_group" "allow_tls" {
   dynamic "ingress" {
     for_each = toset(var.ports1)
     content {
-      from_port        = ingress.value.key
-      to_port          = ingress.value.key
+      from_port        = ingress.value.value
+      to_port          = ingress.value.value
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
     }
