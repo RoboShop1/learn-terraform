@@ -1,0 +1,3 @@
+module "asg" {
+  source = "./asg"
+}
