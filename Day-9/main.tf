@@ -9,10 +9,12 @@ module "asg" {
 
 
 variable "components" {
-  frontend = {
-    app_ports = [80,443]
-  }
-  catalogue = {
-    app_ports = [8080]
+  default = {
+    frontend = {
+      app_ports = [80, 443]
+    }
+    catalogue = {
+      app_ports = [8080]
+    }
   }
 }
