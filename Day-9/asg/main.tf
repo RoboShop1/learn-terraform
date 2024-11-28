@@ -81,6 +81,8 @@ resource "aws_launch_template" "main" {
   iam_instance_profile {
     name = aws_iam_instance_profile.main_profile.name
   }
+
+  user_data =
 }
 
 
