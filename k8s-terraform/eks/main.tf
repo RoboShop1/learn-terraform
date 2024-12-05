@@ -12,6 +12,10 @@ resource "aws_eks_cluster" "dev-eks" {
     endpoint_public_access = true
   }
 
+  access_config {
+    authentication_mode = "API_AND_CONFIG_MAP"
+  }
+
   kubernetes_network_config {
     service_ipv4_cidr = "192.168.0.0/16"
   }
