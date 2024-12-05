@@ -17,3 +17,7 @@ variable "token" {}
 data "github_repository" "example" {
   name =  "r-cart"
 }
+
+output "demo" {
+  value = data.github_repository.example.http_clone_url
+}
