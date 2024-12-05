@@ -6,7 +6,6 @@ resource "aws_iam_role" "test_role" {
       {
         Action = "sts:AssumeRole"
         Effect = "Allow"
-        Sid    = ""
         Principal = {
           Service = "ec2.amazonaws.com"
         }
@@ -44,5 +43,4 @@ resource "aws_eks_access_policy_association" "example" {
     type       = "namespace"
     namespaces = ["default"]
   }
-
 }
