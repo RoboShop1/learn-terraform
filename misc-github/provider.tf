@@ -17,13 +17,17 @@ variable "token" {}
 variable "env" {
   default = ["dev","qa","uat","prof"]
 }
+
+data "github_user" "current" {
+  username = "chaithanya1812"
+}
 resource "github_repository_environment" "example" {
   for_each = toset(var.env)
   environment         = each.key
   repository          = "r-cart"
   prevent_self_review = false
   reviewers {
-    users = ["chaithanya1812"]
+    users = [data.github_user.current.id]
   }
 }
 
