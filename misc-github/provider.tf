@@ -14,10 +14,23 @@ provider "github" {
 }
 variable "token" {}
 
-data "github_repository" "example" {
-  name =  "r-cart"
+variable "env" {
+  default = ["dev","qa","uat","prof"]
+}
+resource "github_repository_environment" "example" {
+  for_each = toset(var.env)
+  environment         = each.key
+  repository          = "r-cart"
+  prevent_self_review = false
+  reviewers {
+    users = ["chaithanya1812"]
+  }
 }
 
-output "demo" {
-  value = data.github_repository.example.http_clone_url
-}
+#data "github_repository" "example" {
+#  name =  "r-cart"
+#}
+#
+#output "demo" {
+#  value = data.github_repository.example.http_clone_url
+#}
