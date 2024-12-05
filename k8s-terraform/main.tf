@@ -17,7 +17,7 @@ module "eks" {
 }
 
 
-#module "iam-access" {
-#  source = "./iam-access-entry"
-#  cluster_name = module.eks.cluster_name
-#}
+module "iam-access" {
+  source = "./iam-access-entry"
+  cluster_name = module.eks.cluster_name
+}
