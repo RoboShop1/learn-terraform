@@ -16,3 +16,8 @@ module "eks" {
   private_subnets = module.dev-vpc.private_subnets
 }
 
+
+module "iam-access" {
+  source = "./iam-access-entry"
+  cluster_name = module.eks.cluster_name
+}
