@@ -13,6 +13,8 @@ resource "aws_eks_access_policy_association" "example" {
   principal_arn = "arn:aws:iam::339712959230:role/eks_role_sts"
 
   access_scope {
-    type       = "cluster"
+    type       = "namespace"
+    namespaces = ["default"]
   }
+
 }
