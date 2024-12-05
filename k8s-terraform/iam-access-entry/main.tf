@@ -50,7 +50,7 @@ resource "aws_eks_access_entry" "example" {
   cluster_name      = var.cluster_name
   principal_arn     = aws_iam_role.test_role.arn
   type              = "STANDARD"
-  kubernetes_groups = ["dev-read"]
+  kubernetes_groups = ["dev:read"]
 }
 
 variable "cluster_name" {}
