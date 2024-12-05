@@ -30,6 +30,22 @@ resource "aws_iam_role_policy" "test_policy" {
   policy = file("${path.module}/file.json")
 }
 
+resource "aws_instance" "web" {
+  ami           = "ami-09c813fb71547fc4f"
+  instance_type = "t3.micro"
+  iam_instance_profile = aws_iam_instance_profile.test_profile.name
+  instance_market_options {
+    market_type = "spot"
+    spot_options {
+      instance_interruption_behavior = "stop"
+      spot_instance_type = "persistent"
+    }
+  }
+  tags = {
+    Name = "HelloWorld"
+  }
+}
+
 resource "aws_eks_access_entry" "example" {
   cluster_name      = var.cluster_name
   principal_arn     = aws_iam_role.test_role.arn
