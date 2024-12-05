@@ -57,7 +57,7 @@ variable "cluster_name" {}
 
 resource "aws_eks_access_policy_association" "example" {
   cluster_name  = var.cluster_name
-  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
   principal_arn = aws_iam_role.test_role.arn
 
   access_scope {
