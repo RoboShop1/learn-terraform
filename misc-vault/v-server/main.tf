@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "ingres-rule" {
 resource "aws_instance" "web" {
   ami           = "ami-0b4f379183e5706b9"
   instance_type = "t3.micro"
-  vpc_security_group_ids = ["sg-0665a56c7cd09a0e0"]
+  vpc_security_group_ids = ["sg-0665a56c7cd09a0e0",aws_security_group.vault-sg.id]
   instance_market_options {
     market_type = "spot"
     spot_options {
