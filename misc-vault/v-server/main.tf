@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "ingres-rule" {
   from_port         = 8080
   to_port           = 8080
   protocol          = "tcp"
-  cidr_blocks       = [0.0.0.0/0]
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 resource "aws_instance" "web" {
