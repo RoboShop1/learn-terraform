@@ -23,7 +23,7 @@ variable "services" {
 
 
 resource "vault_mount" "app_mount" {
-  for_each = var.services
+  for_each    = var.services
   path        = each.key
   type        = "kv"
   options     = { version = "2" }
