@@ -30,14 +30,16 @@ resource "vault_mount" "app_mount" {
   description = "KV Version 2 Roboshop ${each.key}"
 }
 
-
-resource "vault_kv_secret_v2" "env-dev" {
-  for_each                   = vault_mount.app_mount
-
-  mount                      = each.key
-  name                       = "dev-env"
-  cas                        = 1
-  delete_all_versions        = true
-  data_json                  = jsonencode(lookup(lookup(var.services,[each.key],"null"),["dev-env"],"null"))
-
+output "all" {
+  value = vault_mount.app_mount
 }
+# resource "vault_kv_secret_v2" "env-dev" {
+#   for_each                   = vault_mount.app_mount
+#
+#   mount                      = each.key
+#   name                       = "dev-env"
+#   cas                        = 1
+#   delete_all_versions        = true
+#   data_json                  = jsonencode(lookup(lookup(var.services,[each.key],"null"),["dev-env"],"null"))
+#
+# }
