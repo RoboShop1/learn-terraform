@@ -22,6 +22,8 @@ resource "aws_security_group_rule" "ingres-rule" {
   to_port           = 8080
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
+
+  security_group_id = aws_security_group.vault-sg.id
 }
 
 resource "aws_instance" "web" {
