@@ -32,11 +32,12 @@ resource "vault_mount" "app_mount" {
 
 
 resource "vault_kv_secret_v2" "env-dev" {
-  for_each                   = var.services
-  mount                      = vault_mount.app_mount.path
+  for_each                   = vault_mount.app_mount
+
+  mount                      = each.key
   name                       = "dev-env"
   cas                        = 1
   delete_all_versions        = true
-  data_json                  = jsonencode(each.value["dev-env"])
+  data_json                  = jsonencode(lookup(lookup(var.services,each.key,"null"),["dev-env"],"null"))
 
 }
