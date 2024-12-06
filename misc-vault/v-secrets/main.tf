@@ -64,6 +64,10 @@ variable "services" {
 locals {
   keys = values(var.services)
 }
+
+output "demo" {
+  value = local.keys
+}
 # resource "vault_mount" "app_mount" {
 #   for_each = var.services
 #   path        = each.key
