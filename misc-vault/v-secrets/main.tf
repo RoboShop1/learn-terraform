@@ -2,10 +2,10 @@ variable "services" {
   default = {
     frontend = {
       dev-env = {
-
+       app = "dev"
       }
       prod-env = {
-
+       app = "prod"
       }
 
     }
@@ -62,7 +62,7 @@ variable "services" {
 
 
 locals {
-  keys = values(var.services)
+  keys = { for k,v in var.services: k => values(v) }
 }
 
 output "demo" {
