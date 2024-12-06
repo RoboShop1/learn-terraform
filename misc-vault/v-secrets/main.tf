@@ -39,6 +39,6 @@ resource "vault_kv_secret_v2" "env-dev" {
   name                       = each.key
   cas                        = 1
   delete_all_versions        = true
-  data_json                  = jsonencode(lookup(each.value,["dev-env"],"null"))
+  data_json                  = jsonencode(lookup(each.value,"dev-env","null"))
 
 }
