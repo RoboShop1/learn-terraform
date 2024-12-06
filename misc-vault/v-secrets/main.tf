@@ -62,7 +62,7 @@ variable "services" {
 
 
 locals {
-  keys = { for k,v in var.services: k => values(v) }
+  keys = { for k,v in var.services: keys(k) => values(v) }
 }
 
 output "demo" {
