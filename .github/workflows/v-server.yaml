@@ -23,13 +23,13 @@ jobs:
         working-directory: ./misc-vault/v-server
 
       - name: terraform apply
-        if: ${{ inputs.action == "apply" }}
+        if: ${{ inputs.action == 'apply' }}
         run: |
           terraform apply -auto-approve
         working-directory: ./misc-vault/v-server
 
       - name: terraform destroy
-        if: ${{ inputs.action == "destroy" }}
+        if: ${{ inputs.action == 'destroy' }}
         run: |
           terraform destroy -auto-approve
         working-directory: ./misc-vault/v-server
