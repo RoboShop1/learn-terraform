@@ -34,15 +34,9 @@ resource "vault_mount" "app_mount" {
 resource "vault_kv_secret_v2" "env-dev" {
   for_each                   = var.services
   mount                      = vault_mount.app_mount.path
-  name                       = "env-dev"
+  name                       = "dev-env"
   cas                        = 1
   delete_all_versions        = true
-  data_json                  = jsonencode(each.value["env-dev"])
-  custom_metadata {
-    max_versions = 5
-    data = {
-      foo = "vault@example.com",
-      bar = "12345"
-    }
-  }
+  data_json                  = jsonencode(each.value["dev-env"])
+
 }
