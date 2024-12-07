@@ -7,5 +7,4 @@ aws eks update-kubeconfig --name ${aws_eks_cluster.dev-eks.name}
 sleep 10s
 EOT
   }
-
 }
