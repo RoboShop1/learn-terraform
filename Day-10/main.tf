@@ -2,7 +2,7 @@ data "aws_iam_policy_document" "example" {
   statement {
       sid = "VisualEditor0"
       effect =  "Allow"
-      action = ["s3:*"]
+      actions = ["s3:*"]
       resources =  ["*"]
     }
 }
