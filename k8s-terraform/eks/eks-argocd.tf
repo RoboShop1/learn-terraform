@@ -1,5 +1,28 @@
+/* Add eks entry to access k8s-cluster */
+
+data "aws_iam_role" "terraform-role" {
+  name = "terraform_role"
+}
+resource "aws_eks_access_entry" "k8s-access" {
+  cluster_name      = aws_eks_cluster.dev-eks.name
+  principal_arn     = data.aws_iam_role.terraform-role.arn
+  type              = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "k8s-access-policy" {
+  cluster_name  = aws_eks_cluster.dev-eks.name
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = data.aws_iam_role.terraform-role.arn
+
+  access_scope {
+    type = "cluster"
+  }
+}
+
+
+
 resource "null_resource" "install-argocd" {
- depends_on = [null_resource.get-config,aws_eks_node_group.dev-eks-public-nodegroup]
+ depends_on = [null_resource.get-config,aws_eks_access_policy_association.k8s-access-policy]
 
  provisioner "local-exec" {
    command = <<EOT
