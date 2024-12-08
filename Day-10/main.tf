@@ -11,7 +11,7 @@ resource "aws_iam_policy" "example" {
   name   = "example_policy"
   path   = "/"
   policy = <<EOT
-  {
+{
     Version = "2012-10-17"
     Statement = [
       {
@@ -20,8 +20,8 @@ resource "aws_iam_policy" "example" {
         ]
         Effect   = "Allow"
         Resource = "*"
-      },
+      }
     ]
- }
+}
 EOT
 }
