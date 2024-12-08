@@ -10,5 +10,18 @@ data "aws_iam_policy_document" "example" {
 resource "aws_iam_policy" "example" {
   name   = "example_policy"
   path   = "/"
-  policy = data.aws_iam_policy_document.example.json
+  policy = <<EOT
+  {
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+ }
+EOT
 }
