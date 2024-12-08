@@ -36,14 +36,14 @@ EOT
  }
 }
 
-resource "null_resource" "argocd-secret1" {
+resource "null_resource" "argocd-secret" {
   depends_on = [null_resource.install-argocd]
 
   provisioner "local-exec" {
     command = <<EOT
-echo -e "\e[32m"
-kubectl get secret argocd-initial-admin-secret  -n argocd -o yaml | grep "password" | echo $(awk -F":" '{print $2}') | base64 -d
-echo -e "\e[0m"
+
+echo -e "\e[32m $(kubectl get secret argocd-initial-admin-secret  -n argocd -o yaml | grep 'password' | echo $(awk -F: '{print $2}') | base64 -d) \e[0m"
+
 EOT
   }
 }
