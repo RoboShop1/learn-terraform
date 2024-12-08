@@ -1,4 +1,3 @@
-
 resource "null_resource" "install-argocd" {
  depends_on = [null_resource.get-config,aws_eks_node_group.dev-eks-public-nodegroup]
 
