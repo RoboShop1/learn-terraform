@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.2"
+    }
+  }
+}
 /* Add eks entry to access k8s-cluster */
 
 data "aws_iam_role" "terraform-role" {
@@ -33,6 +41,16 @@ sleep 20
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 EOT
  }
+}
+
+resource "null_resource" "argocd-secret" {
+  depends_on = [null_resource.install-argocd]
+
+  provisioner "local-exec" {
+    command = <<EOT
+kubectl get secret argocd-initial-admin-secret  -n argocd -o yaml | grep "password" | echo $(awk -F":" '{print $2}') | base64 -d
+EOT
+  }
 }
 
 #resource "kubernetes_annotations" "example" {
