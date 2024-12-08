@@ -48,6 +48,16 @@ EOT
   }
 }
 
+
+resource "null_resource" "delete-argocd-svc" {
+
+  provisioner "local-exec" {
+    when = destroy
+    command = <<EOT
+kubectl delete svc argocd-server -n argocd
+EOT
+  }
+}
 #resource "kubernetes_annotations" "example" {
 #  depends_on = [null_resource.install-argocd]
 #  api_version = "v1"
