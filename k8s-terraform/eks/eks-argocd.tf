@@ -2,6 +2,7 @@
 /* Add eks entry to access k8s-cluster */
 
 data "aws_iam_role" "terraform-role" {
+  depends_on = [aws_eks_addon.eks-pod-identity-agent]
   name = "terraform_role"
 }
 resource "aws_eks_access_entry" "k8s-access" {
