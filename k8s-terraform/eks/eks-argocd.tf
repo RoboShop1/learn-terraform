@@ -54,6 +54,7 @@ resource "null_resource" "delete-argocd-svc" {
 
   provisioner "local-exec" {
     when = destroy
+    on_failure = continue
     command = <<EOT
 kubectl delete svc argocd-server -n argocd
 EOT
