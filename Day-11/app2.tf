@@ -56,6 +56,6 @@ resource "kubernetes_annotations" "app2-service-annotation" {
     name = "app2-service"
   }
   annotations = {
-    alb.ingress.kubernetes.io/healthcheck-path: "/app2/index.html"
+    "alb.ingress.kubernetes.io/healthcheck-path": "/app2/index.html"
   }
 }
