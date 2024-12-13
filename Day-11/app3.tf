@@ -48,7 +48,7 @@ resource "kubernetes_manifest" "app3-service" {
   }
 }
 
-resource "kubernetes_annotations" "app1-service-annotation" {
+resource "kubernetes_annotations" "app3-service-annotation" {
   api_version = "v1"
   kind        = "Service"
   metadata {
