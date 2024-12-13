@@ -9,6 +9,7 @@ resource "kubernetes_manifest" "app1-pod" {
     "kind": "Pod",
     "metadata": {
       "name": "app1",
+      "namespace": "dafault"
       "labels": {
         "nginx": "app1"
       }
@@ -34,7 +35,8 @@ resource "kubernetes_manifest" "app1-service" {
     "apiVersion": "v1",
     "kind": "Service",
     "metadata": {
-      "name": "app1-service"
+      "name": "app1-service",
+      "namespace": "dafault"
     },
     "spec": {
       "selector": {
