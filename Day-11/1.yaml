@@ -36,7 +36,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: "/app2"
+            path: "/app3"
             backend:
               service:
                 name: app3-service
