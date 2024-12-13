@@ -40,6 +40,7 @@ resource "kubernetes_manifest" "app2-service" {
       "selector": {
         "nginx": "app2"
       },
+      "type": "NodePort",
       "ports": [
         {
           "protocol": "TCP",

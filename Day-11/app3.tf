@@ -40,6 +40,7 @@ resource "kubernetes_manifest" "app3-service" {
       "selector": {
         "nginx": "app3"
       },
+      "type": "NodePort",
       "ports": [
         {
           "protocol": "TCP",
