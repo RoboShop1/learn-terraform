@@ -11,6 +11,7 @@ resource "kubernetes_manifest" "ing1" {
         "alb.ingress.kubernetes.io/subnets": "subnet-01b34120f49bf5a7d, subnet-02b95e02658fcde81",
         "alb.ingress.kubernetes.io/target-type": "instance",
         "alb.ingress.kubernetes.io/listen-ports": "[{\"HTTP\": 80}]"
+        "alb.ingress.kubernetes.io/healthcheck-port": "traffic-port"
       }
     },
     "spec": {

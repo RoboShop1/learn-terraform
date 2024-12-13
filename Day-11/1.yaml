@@ -9,6 +9,7 @@ metadata:
 
     alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+
 spec:
   rules:
     - http:
