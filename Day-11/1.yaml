@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: project1-ingress
+  namespace: default
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: project2
     alb.ingress.kubernetes.io/scheme: internet-facing
