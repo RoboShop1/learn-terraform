@@ -51,14 +51,3 @@ resource "kubernetes_manifest" "app3-service" {
   }
 }
 
-resource "kubernetes_annotations" "app3-service-annotation" {
-  api_version = "v1"
-  kind        = "Service"
-  metadata {
-    name = "app3-service"
-    namespace = "default"
-  }
-  annotations = {
-    "alb.ingress.kubernetes.io/healthcheck-path": "/app3/index.html"
-  }
-}
