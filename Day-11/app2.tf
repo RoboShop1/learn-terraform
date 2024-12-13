@@ -47,3 +47,15 @@ resource "kubernetes_manifest" "app2-service" {
     }
   }
 }
+
+
+resource "kubernetes_annotations" "app1-service-annotation" {
+  api_version = "v1"
+  kind        = "Service"
+  metadata {
+    name = "app2-service"
+  }
+  annotations = {
+    alb.ingress.kubernetes.io/healthcheck-path: "/app2/index.html"
+  }
+}
