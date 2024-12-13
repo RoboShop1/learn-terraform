@@ -4,6 +4,7 @@ resource "kubernetes_manifest" "ing1" {
     "kind": "Ingress",
     "metadata": {
       "name": "project-ingress",
+      "namespace": "default"
       "annotations": {
         "alb.ingress.kubernetes.io/load-balancer-name": "project",
         "alb.ingress.kubernetes.io/scheme": "internet-facing",
