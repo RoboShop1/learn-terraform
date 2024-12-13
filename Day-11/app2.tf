@@ -31,7 +31,10 @@ resource "kubernetes_manifest" "app2-service" {
     "kind": "Service",
     "metadata": {
       "name": "app2-service",
-      "namespace": "default"
+      "namespace": "default",
+      "annotations": {
+        "alb.ingress.kubernetes.io/healthcheck-path": "/app2/index.html"
+      }
     },
     "spec": {
       "selector": {
@@ -48,15 +51,15 @@ resource "kubernetes_manifest" "app2-service" {
   }
 }
 
-
-resource "kubernetes_annotations" "app2-service-annotation" {
-  api_version = "v1"
-  kind        = "Service"
-  metadata {
-    name = "app2-service"
-    namespace = "default"
-  }
-  annotations = {
-    "alb.ingress.kubernetes.io/healthcheck-path": "/app2/index.html"
-  }
-}
+#
+# resource "kubernetes_annotations" "app2-service-annotation" {
+#   api_version = "v1"
+#   kind        = "Service"
+#   metadata {
+#     name = "app2-service"
+#     namespace = "default"
+#   }
+#   annotations = {
+#     "alb.ingress.kubernetes.io/healthcheck-path": "/app2/index.html"
+#   }
+# }

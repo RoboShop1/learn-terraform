@@ -36,7 +36,10 @@ resource "kubernetes_manifest" "app1-service" {
     "kind": "Service",
     "metadata": {
       "name": "app1-service",
-      "namespace": "default"
+      "namespace": "default",
+      "annotations": {
+        "alb.ingress.kubernetes.io/healthcheck-path": "/app1/index.html"
+      }
     },
     "spec": {
       "selector": {
