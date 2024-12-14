@@ -5,6 +5,7 @@ data "aws_iam_role" "terraform-role" {
   depends_on = [aws_eks_addon.eks-pod-identity-agent]
   name = "terraform_role"
 }
+
 resource "aws_eks_access_entry" "k8s-access" {
   cluster_name      = aws_eks_cluster.dev-eks.name
   principal_arn     = data.aws_iam_role.terraform-role.arn
@@ -22,7 +23,7 @@ resource "aws_eks_access_policy_association" "k8s-access-policy" {
 }
 
 
-
+#
 # resource "null_resource" "install-argocd" {
 #  depends_on = [null_resource.get-config,aws_eks_access_policy_association.k8s-access-policy,aws_eks_access_entry.k8s-access]
 #
@@ -52,6 +53,7 @@ resource "aws_eks_access_policy_association" "k8s-access-policy" {
 
 
 # resource "null_resource" "delete-argocd-svc" {
+#   depends_on = [null_resource.get-config]
 #
 #   provisioner "local-exec" {
 #     when = destroy
@@ -61,7 +63,8 @@ resource "aws_eks_access_policy_association" "k8s-access-policy" {
 # EOT
 #   }
 # }
-#resource "kubernetes_annotations" "example" {
+#
+# resource "kubernetes_annotations" "example" {
 #  depends_on = [null_resource.install-argocd]
 #  api_version = "v1"
 #  kind        = "Service"
@@ -72,5 +75,5 @@ resource "aws_eks_access_policy_association" "k8s-access-policy" {
 #  annotations = {
 #    "external-dns.alpha.kubernetes.io/hostname": "argocd.azcart.online"
 #  }
-#}
-#
+# }
+
