@@ -3,6 +3,19 @@ provider "kubernetes" {
 
 }
 
+
+resource "kubernetes_annotations" "example" {
+  api_version = "v1"
+  kind        = "Pod"
+  metadata {
+    name = "pod1"
+    namespace = "dafalt"
+  }
+  annotations = {
+    "owner" = "myteam"
+  }
+}
+
 resource "kubernetes_manifest" "app1-pod" {
   manifest = {
     "apiVersion": "v1",
