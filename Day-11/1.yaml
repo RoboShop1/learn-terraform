@@ -35,7 +35,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: project2
     alb.ingress.kubernetes.io/group.name: project2.group
-    alb.ingress.kubernetes.io/group.order: '10'
+    alb.ingress.kubernetes.io/group.order: '20'
 
 spec:
   rules:
@@ -58,11 +58,11 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: project2
     alb.ingress.kubernetes.io/group.name: project2.group
-    alb.ingress.kubernetes.io/group.order: '10'
+    alb.ingress.kubernetes.io/group.order: '30'
 
 spec:
   rules:
-    - host: "app2.azcart.online"
+    - host: "app3.azcart.online"
       http:
         paths:
           - pathType: Prefix
