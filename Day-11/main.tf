@@ -9,7 +9,7 @@ resource "kubernetes_manifest" "app1-pod" {
     "kind": "Pod",
     "metadata": {
       "name": "app1",
-      "namespace": "default"
+      "namespace": "dev"
       "labels": {
         "nginx": "app1"
       }
@@ -36,7 +36,7 @@ resource "kubernetes_manifest" "app1-service" {
     "kind": "Service",
     "metadata": {
       "name": "app1-service",
-      "namespace": "default",
+      "namespace": "dev",
       "annotations": {
         "alb.ingress.kubernetes.io/healthcheck-path": "/app1/index.html"
       }

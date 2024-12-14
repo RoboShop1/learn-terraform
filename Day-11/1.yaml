@@ -1,14 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: project1-ingress
-  namespace: default
+  name: app1-ingress
+  namespace: dev
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: project2
+    alb.ingress.kubernetes.io/group.name: project2.group
+    alb.ingress.kubernetes.io/group.order: '10'
+
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/subnets: subnet-01b34120f49bf5a7d, subnet-02b95e02658fcde81
+    alb.ingress.kubernetes.io/subnets: subnet-0b57ecbc29767f892, subnet-014bd2bf39258dc0b
     alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
 
 spec:
   rules:
@@ -22,6 +25,20 @@ spec:
                 name: app1-service
                 port:
                   number: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app2-ingress
+  namespace: qa
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: project2
+    alb.ingress.kubernetes.io/group.name: project2.group
+    alb.ingress.kubernetes.io/group.order: '10'
+
+spec:
+  rules:
     - host: "app2.azcart.online"
       http:
         paths:
@@ -32,7 +49,20 @@ spec:
                 name: app2-service
                 port:
                   number: 80
-    - host: "app3.azcart.online"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app3-ingress
+  namespace: uat
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: project2
+    alb.ingress.kubernetes.io/group.name: project2.group
+    alb.ingress.kubernetes.io/group.order: '10'
+
+spec:
+  rules:
+    - host: "app2.azcart.online"
       http:
         paths:
           - pathType: Prefix

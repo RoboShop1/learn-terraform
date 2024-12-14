@@ -4,7 +4,7 @@ resource "kubernetes_manifest" "app3-pod" {
     "kind": "Pod",
     "metadata": {
       "name": "app3",
-      "namespace": "default"
+      "namespace": "uat"
       "labels": {
         "nginx": "app3"
       }
@@ -31,7 +31,7 @@ resource "kubernetes_manifest" "app3-service" {
     "kind": "Service",
     "metadata": {
       "name": "app3-service",
-      "namespace": "default",
+      "namespace": "uat",
       "annotations": {
         "alb.ingress.kubernetes.io/healthcheck-path": "/app3/index.html"
       }

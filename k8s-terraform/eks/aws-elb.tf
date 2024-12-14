@@ -365,7 +365,7 @@ resource "helm_release" "aws-elb" {
 
 # resource "kubernetes_manifest" "IngressClass" {
 #
-#  depends_on = [helm_release.aws-elb,null_resource.get-config,aws_eks_node_group.dev-eks-public-nodegroup]
+#  depends_on = [helm_release.aws-elb,null_resource.get-config]
 #  manifest = {
 #    "apiVersion": "networking.k8s.io/v1",
 #    "kind": "IngressClass",
