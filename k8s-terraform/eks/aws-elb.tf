@@ -363,20 +363,20 @@ resource "helm_release" "aws-elb" {
 
 # Ingressclass creation
 
-resource "kubernetes_manifest" "IngressClass" {
-
- depends_on = [helm_release.aws-elb,null_resource.get-config,aws_eks_node_group.dev-eks-public-nodegroup]
- manifest = {
-   "apiVersion": "networking.k8s.io/v1",
-   "kind": "IngressClass",
-   "metadata": {
-     "name": "ing-class",
-     "annotations": {
-       "ingressclass.kubernetes.io/is-default-class": "true"
-     }
-   },
-   "spec": {
-     "controller": "ingress.k8s.aws/alb"
-   }
- }
-}
+# resource "kubernetes_manifest" "IngressClass" {
+#
+#  depends_on = [helm_release.aws-elb,null_resource.get-config,aws_eks_node_group.dev-eks-public-nodegroup]
+#  manifest = {
+#    "apiVersion": "networking.k8s.io/v1",
+#    "kind": "IngressClass",
+#    "metadata": {
+#      "name": "ing-class",
+#      "annotations": {
+#        "ingressclass.kubernetes.io/is-default-class": "true"
+#      }
+#    },
+#    "spec": {
+#      "controller": "ingress.k8s.aws/alb"
+#    }
+#  }
+# }
