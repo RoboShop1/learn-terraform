@@ -13,7 +13,7 @@ resource "aws_eks_cluster" "dev-eks" {
   }
 
   access_config {
-    authentication_mode = "API_AND_CONFIG_MAP"
+    authentication_mode = "CONFIG_MAP"
   }
 
   kubernetes_network_config {
