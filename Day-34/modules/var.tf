@@ -1,5 +1,7 @@
 variable "env" {}
 
+variable "vpc_cidr_block" {}
+
 variable "public_subnet_cidr_blocks" {}
 variable "web_subnet_cidr_blocks" {}
 variable "app_subnet_cidr_blocks" {}

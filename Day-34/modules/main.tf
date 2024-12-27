@@ -1,5 +1,13 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.54.1"
+    }
+  }
+}
 resource "aws_vpc" "main" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = var.vpc_cidr_block
 
   tags = {
     Name = "${var.env}-vpc"
@@ -12,6 +20,20 @@ resource "aws_internet_gateway" "igw" {
   tags = {
     Name = "${var.env}-vpc-igw"
   }
+}
+
+resource "aws_eip" "eip" {
+  domain   = "vpc"
+}
+
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.eip.id
+  subnet_id     = aws_subnet.public_subnet[0].id
+
+  tags = {
+    Name = "${var.env}-vpc-nat"
+  }
+  depends_on = [aws_internet_gateway.igw]
 }
 
 
@@ -51,7 +73,7 @@ resource "aws_route_table_association" "public_rta" {
   route_table_id = elemet(aws_route_table.public_rtb,count.index)
 }
 
-//
+////////////////////////
 
 
 // web_subnets...
