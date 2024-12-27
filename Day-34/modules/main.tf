@@ -94,6 +94,11 @@ resource "aws_route_table" "web_rtb" {
   count           = length(aws_subnet.web_subnet)
   vpc_id          = aws_vpc.main.id
 
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
   tags = {
     Name = "${var.env}-web-rtb-${count.index}"
   }
@@ -126,6 +131,11 @@ resource "aws_route_table" "app_rtb" {
   count           = length(aws_subnet.app_subnet)
   vpc_id          = aws_vpc.main.id
 
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
   tags = {
     Name = "${var.env}-app-rtb-${count.index}"
   }
@@ -156,6 +166,12 @@ resource "aws_subnet" "db_subnet" {
 resource "aws_route_table" "db_rtb" {
   count           = length(aws_subnet.db_subnet)
   vpc_id          = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
 
   tags = {
     Name = "${var.env}-db-rtb-${count.index}"
