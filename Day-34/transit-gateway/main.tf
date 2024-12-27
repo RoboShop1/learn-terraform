@@ -20,7 +20,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "dev-vpc-attach" {
 
 
 resource "aws_ec2_transit_gateway_connect" "dev-attachments" {
-  count                   = length(aws_ec2_transit_gateway_vpc_attachment)
+  count                   = length(aws_ec2_transit_gateway_vpc_attachment.dev-vpc-attach)
   transport_attachment_id = aws_ec2_transit_gateway_vpc_attachment.dev-vpc-attach.*.id[count.index]
   transit_gateway_id      = aws_ec2_transit_gateway.dev-to-prod.id
 }
