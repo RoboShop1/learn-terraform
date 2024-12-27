@@ -44,7 +44,7 @@ resource "aws_subnet" "public_subnet" {
   count              = length(var.public_subnet_cidr_blocks)
 
   vpc_id             = aws_vpc.main.id
-  cidr_block         = elemet(var.public_subnet_cidr_blocks,count.index)
+  cidr_block         = element(var.public_subnet_cidr_blocks,count.index)
   availability_zone  = element(var.public_availability_zones,count.index)
 
   tags = {
@@ -69,8 +69,8 @@ resource "aws_route_table" "public_rtb" {
 
 resource "aws_route_table_association" "public_rta" {
   count          = length(aws_subnet.public_subnet)
-  subnet_id      = elemet(aws_subnet.public_subnet,count.index)
-  route_table_id = elemet(aws_route_table.public_rtb,count.index)
+  subnet_id      = element(aws_subnet.public_subnet,count.index)
+  route_table_id = element(aws_route_table.public_rtb,count.index)
 }
 
 ////////////////////////
