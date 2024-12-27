@@ -15,6 +15,8 @@ module "dev-vpc" {
 
   peer_cidr_block = "10.2.0.0/16"
   transit_gateway_id = "tgw-0962e1979a204fdf0"
+
+
 }
 
 
