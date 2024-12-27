@@ -62,6 +62,11 @@ resource "aws_route_table" "public_rtb" {
     gateway_id = aws_internet_gateway.igw.id
   }
 
+  route {
+    cidr_block = var.peer_cidr_block
+    transit_gateway_id = var.transit_gateway_id
+  }
+
   tags = {
     Name = "${var.env}-public-rtb-${count.index}"
   }
@@ -97,6 +102,11 @@ resource "aws_route_table" "web_rtb" {
   route {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
+  route {
+    cidr_block = var.peer_cidr_block
+    transit_gateway_id = var.transit_gateway_id
   }
 
   tags = {
@@ -136,6 +146,11 @@ resource "aws_route_table" "app_rtb" {
     nat_gateway_id = aws_nat_gateway.nat.id
   }
 
+  route {
+    cidr_block = var.peer_cidr_block
+    transit_gateway_id = var.transit_gateway_id
+  }
+
   tags = {
     Name = "${var.env}-app-rtb-${count.index}"
   }
@@ -170,6 +185,11 @@ resource "aws_route_table" "db_rtb" {
   route {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
+  route {
+    cidr_block = var.peer_cidr_block
+    transit_gateway_id = var.transit_gateway_id
   }
 
 

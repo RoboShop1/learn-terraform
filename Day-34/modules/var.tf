@@ -11,3 +11,8 @@ variable "db_availability_zones" {}
 variable "app_availability_zones" {}
 variable "web_availability_zones" {}
 variable "public_availability_zones" {}
+
+
+variable "peer_cidr_block" {}
+
+variable "transit_gateway_id" {}
