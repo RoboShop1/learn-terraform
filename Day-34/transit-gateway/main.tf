@@ -33,6 +33,6 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "prod-vpc-attach" {
   subnet_ids         = ["subnet-0fd3662750b14f157","subnet-0623e5af9ee103f1f"]
 
   tags = {
-    Name = "dev-tgw-vpc-attachment"
+    Name = "prod-tgw-vpc-attachment"
   }
 }
