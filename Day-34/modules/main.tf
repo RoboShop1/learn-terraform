@@ -102,8 +102,8 @@ resource "aws_route_table" "web_rtb" {
 resource "aws_route_table_association" "web_rta" {
   count          = length(aws_subnet.web_subnet)
 
-  subnet_id      = elemet(aws_subnet.web_subnet,count.index)
-  route_table_id = elemet(aws_route_table.web_rtb,count.index)
+  subnet_id      = element(aws_subnet.web_subnet,count.index)
+  route_table_id = element(aws_route_table.web_rtb,count.index)
 }
 
 // app_subnets..
@@ -134,8 +134,8 @@ resource "aws_route_table" "app_rtb" {
 resource "aws_route_table_association" "ap_rta" {
   count          = length(aws_subnet.app_subnet)
 
-  subnet_id      = elemet(aws_subnet.app_subnet,count.index)
-  route_table_id = elemet(aws_route_table.app_rtb,count.index)
+  subnet_id      = element(aws_subnet.app_subnet,count.index)
+  route_table_id = element(aws_route_table.app_rtb,count.index)
 }
 
 
@@ -167,8 +167,8 @@ resource "aws_route_table" "db_rtb" {
 resource "aws_route_table_association" "db_rta" {
   count          = length(aws_subnet.app_subnet)
 
-  subnet_id      = elemet(aws_subnet.db_subnet,count.index)
-  route_table_id = elemet(aws_route_table.db_rtb,count.index)
+  subnet_id      = element(aws_subnet.db_subnet,count.index)
+  route_table_id = element(aws_route_table.db_rtb,count.index)
 }
 
 
