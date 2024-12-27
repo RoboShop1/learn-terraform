@@ -13,7 +13,7 @@ module "dev-vpc" {
   app_availability_zones    = ["us-east-1a", "us-east-1b"]
   db_availability_zones     = ["us-east-1a", "us-east-1b"]
 
-  peer_cidr_block = ["10.2.0.0/16"]
+  peer_cidr_block = "10.2.0.0/16"
   transit_gateway_id = "tgw-0962e1979a204fdf0"
 }
 
@@ -34,7 +34,7 @@ module "prod-vpc" {
   db_availability_zones     = ["us-east-1a", "us-east-1b"]
 
 
-  peer_cidr_block = ["10.1.0.0/16"]
+  peer_cidr_block = "10.1.0.0/16"
   transit_gateway_id = "tgw-0962e1979a204fdf0"
 
 }
