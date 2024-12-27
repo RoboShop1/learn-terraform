@@ -29,4 +29,5 @@ module "prod-vpc" {
   web_availability_zones    = ["us-east-1a", "us-east-1b"]
   app_availability_zones    = ["us-east-1a", "us-east-1b"]
   db_availability_zones     = ["us-east-1a", "us-east-1b"]
+
 }
