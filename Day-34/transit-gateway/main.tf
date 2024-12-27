@@ -14,5 +14,9 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "dev-vpc-attach" {
   subnet_ids         = [var.dev_subnets]
   transit_gateway_id = aws_ec2_transit_gateway.dev-to-prod.id
   vpc_id             = "vpc-0878f6ef79e3c3551"
+
+  tags = {
+    Name  = "dev-vpc-attachment"
+  }
 }
 
