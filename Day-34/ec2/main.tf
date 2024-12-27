@@ -28,9 +28,28 @@ resource "aws_instance" "prod" {
   count = length(var.prod_subnets)
   ami = "ami-0b4f379183e5706b9"
   instance_type = "t2.micro"
-  subnet_id = var.dev_subnets[count.index]
+  subnet_id = var.prod_subnets[count.index]
 
   tags = {
     Name  = "Prod-${count.index}"
   }
 }
+
+
+# resource "aws_vpc_security_group_ingress_rule" "dev-rule" {
+#   security_group_id = ""
+#
+#   cidr_ipv4   = "0.0.0.0/0"
+#   from_port   = 22
+#   ip_protocol = "tcp"
+#   to_port     = 22
+# }
+#
+# resource "aws_vpc_security_group_ingress_rule" "prod-rule" {
+#   security_group_id = "sg-0224bec37138516d9"
+#
+#   cidr_ipv4   = "0.0.0.0/0"
+#   from_port   = 22
+#   ip_protocol = "tcp"
+#   to_port     = 22
+# }
