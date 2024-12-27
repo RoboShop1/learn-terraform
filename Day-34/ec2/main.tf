@@ -36,20 +36,20 @@ resource "aws_instance" "prod" {
 }
 
 
-# resource "aws_vpc_security_group_ingress_rule" "dev-rule" {
-#   security_group_id = ""
-#
-#   cidr_ipv4   = "0.0.0.0/0"
-#   from_port   = 22
-#   ip_protocol = "tcp"
-#   to_port     = 22
-# }
-#
-# resource "aws_vpc_security_group_ingress_rule" "prod-rule" {
-#   security_group_id = "sg-0224bec37138516d9"
-#
-#   cidr_ipv4   = "0.0.0.0/0"
-#   from_port   = 22
-#   ip_protocol = "tcp"
-#   to_port     = 22
-# }
+resource "aws_vpc_security_group_ingress_rule" "dev-rule" {
+  security_group_id = "sg-0224bec37138516d9"
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 22
+  ip_protocol = "tcp"
+  to_port     = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "prod-rule" {
+  security_group_id = "sg-08f3091bc8d189451"
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 22
+  ip_protocol = "tcp"
+  to_port     = 22
+}
