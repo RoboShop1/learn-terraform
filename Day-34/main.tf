@@ -1,7 +1,7 @@
 module "dev-vpc" {
   source                    = "./modules"
   env                       = "dev"
-  vpc_cidr_block            = ["10.1.0.0/16"]
+  vpc_cidr_block            = "10.1.0.0/16"
 
   public_subnet_cidr_blocks = ["10.1.1.0/16","10.1.2.0/16"]
   web_subnet_cidr_blocks    = ["10.1.3.0/16","10.1.4.0/16"]
