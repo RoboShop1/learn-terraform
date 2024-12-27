@@ -22,7 +22,7 @@ variable "prod_subnets" {
 }
 
 resource "aws_instance" "prod" {
-  count = length(var.dev_subnets)
+  count = length(var.prod_subnets)
   ami = "ami-0b4f379183e5706b9"
   instance_type = "t2.micro"
   subnet_id = var.dev_subnets[count.index]
