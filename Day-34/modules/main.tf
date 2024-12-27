@@ -58,7 +58,7 @@ resource "aws_route_table" "public_rtb" {
 
 
   route {
-    cidr_block = "0.0.0.0"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
 
