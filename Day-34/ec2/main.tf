@@ -1,3 +1,6 @@
+provider "aws" {
+  region = "us-east-1"
+}
 
 variable "dev_subnets" {
   default = ["subnet-0a02de54972fc07ce","subnet-06dcbcef454ba0730"]
