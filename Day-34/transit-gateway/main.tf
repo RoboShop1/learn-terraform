@@ -13,7 +13,7 @@ variable "dev_subnets" {
 resource "aws_ec2_transit_gateway_vpc_attachment" "dev-vpc-attach" {
   count              = length(var.dev_subnets)
 
-  subnet_ids         = var.dev_subnets[count.index]
+  subnet_ids         = "${var.dev_subnets[count.index]}"
   transit_gateway_id = aws_ec2_transit_gateway.dev-to-prod.id
   vpc_id             = "vpc-0878f6ef79e3c3551"
 }
