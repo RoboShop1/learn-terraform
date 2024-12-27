@@ -69,8 +69,8 @@ resource "aws_route_table" "public_rtb" {
 
 resource "aws_route_table_association" "public_rta" {
   count          = length(aws_subnet.public_subnet)
-  subnet_id      = element(aws_subnet.public_subnet,count.index)
-  route_table_id = element(aws_route_table.public_rtb,count.index)
+  subnet_id      = element(aws_subnet.public_subnet.*.id,count.index)
+  route_table_id = element(aws_route_table.public_rtb.*.id,count.index)
 }
 
 ////////////////////////
@@ -102,8 +102,8 @@ resource "aws_route_table" "web_rtb" {
 resource "aws_route_table_association" "web_rta" {
   count          = length(aws_subnet.web_subnet)
 
-  subnet_id      = element(aws_subnet.web_subnet,count.index)
-  route_table_id = element(aws_route_table.web_rtb,count.index)
+  subnet_id      = element(aws_subnet.web_subnet.*.id,count.index)
+  route_table_id = element(aws_route_table.web_rtb.*.id,count.index)
 }
 
 // app_subnets..
@@ -134,8 +134,8 @@ resource "aws_route_table" "app_rtb" {
 resource "aws_route_table_association" "ap_rta" {
   count          = length(aws_subnet.app_subnet)
 
-  subnet_id      = element(aws_subnet.app_subnet,count.index)
-  route_table_id = element(aws_route_table.app_rtb,count.index)
+  subnet_id      = element(aws_subnet.app_subnet.*.id,count.index)
+  route_table_id = element(aws_route_table.app_rtb.*.id,count.index)
 }
 
 
@@ -167,8 +167,8 @@ resource "aws_route_table" "db_rtb" {
 resource "aws_route_table_association" "db_rta" {
   count          = length(aws_subnet.app_subnet)
 
-  subnet_id      = element(aws_subnet.db_subnet,count.index)
-  route_table_id = element(aws_route_table.db_rtb,count.index)
+  subnet_id      = element(aws_subnet.db_subnet.*.id,count.index)
+  route_table_id = element(aws_route_table.db_rtb.*.id,count.index)
 }
 
 
