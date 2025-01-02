@@ -14,3 +14,7 @@ resource "aws_instance" "main" {
     Name = var.instances[count.index]
   }
 }
+
+output "of_list" {
+  value = aws_instance.main
+}
