@@ -15,6 +15,9 @@ output "contact" {
   value = concat(var.instances,var.names)
 }
 
+output "faltten" {
+  value = flatten(var.instances,var.names)
+}
 
 # resource "aws_instance" "main" {
 #   count = length(var.instances)
