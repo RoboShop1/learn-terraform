@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 variable "instances" {
-  default = ["db","web","app"]
+  default = ["web","app","db"]
 }
 resource "aws_instance" "main" {
   count = length(var.instances)
