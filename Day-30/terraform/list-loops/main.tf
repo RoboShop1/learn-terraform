@@ -15,6 +15,11 @@ resource "aws_instance" "main" {
   }
 }
 
+# output "of_list" {
+#   value = element(aws_instance.main[*].id,0)
+# }
+
+
 output "of_list" {
-  value = element(aws_instance.main[*].id,0)
+  value = aws_instance.main.*.id[0]
 }
