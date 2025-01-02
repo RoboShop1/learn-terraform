@@ -16,5 +16,5 @@ resource "aws_instance" "main" {
 }
 
 output "of_list" {
-  value = aws_instance.main[0]["id"]
+  value = aws_instance.main[0].id
 }
