@@ -24,4 +24,7 @@ resource "aws_instance" "main" {
 #   value = aws_instance.main.*.id[0]
 # }
 
+# List of map .*. we can use 0
+# list of map [*] we can user element(, 0)
+
 
