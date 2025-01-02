@@ -16,7 +16,7 @@ output "contact" {
 }
 
 output "faltten" {
-  value = flatten(var.instances,var.names)
+  value = flatten([var.instances,var.names])
 }
 
 # resource "aws_instance" "main" {
