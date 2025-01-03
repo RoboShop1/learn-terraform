@@ -42,3 +42,26 @@ resource "aws_iam_role_policy" "test_policy" {
   })
 }
 
+
+
+
+
+resource "aws_iam_group" "developers" {
+  name = "developers"
+}
+
+
+resource "aws_iam_group" "developers" {
+  name = "qa"
+}
+
+
+
+
+
+
+
+
+
+
+
