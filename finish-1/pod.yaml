@@ -9,7 +9,7 @@ spec:
         nodeSelectorTerms:
           - matchExpressions:
               - key: topology.kubernetes.io/zone
-                operator: Exists
+                operator: DoesNotExist
   containers:
     - name: with-node-affinity
       image: alpine
