@@ -11,7 +11,7 @@ spec:
               - key: count
                 operator: Lt
                 values:
-                  - "10"
+                  - "11"
   containers:
     - name: with-node-affinity
       image: alpine
