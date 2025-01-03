@@ -8,8 +8,10 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
           - matchExpressions:
-              - key: topology.kubernetes.io/zones
-                operator: DoesNotExist
+              - key: count
+                operator: Gt
+                values:
+                  - 10
   containers:
     - name: with-node-affinity
       image: alpine
