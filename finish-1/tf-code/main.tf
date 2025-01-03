@@ -85,6 +85,36 @@ resource "aws_iam_group" "qa" {
 }
 
 
+resource "aws_iam_group_policy" "my_qa_policy" {
+  name  = "my_qa_policy"
+  group = aws_iam_group.qa.name
+
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "VisualEditor0",
+        "Effect": "Allow",
+        "Action": [
+          "sts:GetSessionToken",
+          "sts:DecodeAuthorizationMessage",
+          "sts:GetAccessKeyInfo",
+          "sts:GetCallerIdentity",
+          "sts:GetServiceBearerToken"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Sid": "VisualEditor1",
+        "Effect": "Allow",
+        "Action": "sts:*",
+        "Resource": "arn:aws:iam::339712959230:role/arn:aws:iam::339712959230:role/eks_role_admin"
+      }
+    ]
+  })
+}
+
+
 
 
 
