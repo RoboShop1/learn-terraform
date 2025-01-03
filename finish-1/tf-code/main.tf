@@ -51,7 +51,7 @@ resource "aws_iam_group" "developers" {
 }
 
 
-resource "aws_iam_group" "developers" {
+resource "aws_iam_group" "qa" {
   name = "qa"
 }
 
