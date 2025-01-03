@@ -8,7 +8,7 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
           - matchExpressions:
-              - key: topology.kubernetes.io/zone
+              - key: topology.kubernetes.io/zones
                 operator: DoesNotExist
   containers:
     - name: with-node-affinity
