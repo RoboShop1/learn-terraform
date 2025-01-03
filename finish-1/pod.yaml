@@ -11,7 +11,7 @@ spec:
               - key: count
                 operator: Gt
                 values:
-                  - 10
+                  - "10"
   containers:
     - name: with-node-affinity
       image: alpine
