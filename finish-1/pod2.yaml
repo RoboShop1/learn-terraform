@@ -9,10 +9,10 @@ spec:
         - weight: 1
           preference:
             matchExpressions:
-              - key:
+              - key: name
                 operator: In
                 values:
-                  - another-node-label-value
+                  - chaitu
   containers:
     - name: with-node-affinity
       image: alpine
