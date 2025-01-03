@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: with-pod-affinity
+  labels:
+    app: s1
 spec:
   affinity:
     podAntiAffinity:
