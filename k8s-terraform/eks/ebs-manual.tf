@@ -13,26 +13,26 @@
 
 
 
-data "aws_iam_policy_document" "eks-route-assume-role" {
- statement {
-   effect = "Allow"
-
-   principals {
-     type        = "Service"
-     identifiers = ["pods.eks.amazonaws.com"]
-   }
-
-   actions = [
-     "sts:AssumeRole",
-     "sts:TagSession"
-   ]
- }
-}
-
-resource "aws_iam_role" "ebs-csi-role" {
- name               = "aws_elb_role"
- assume_role_policy = data.aws_iam_policy_document.eks-route-assume-role.json
-}
+# data "aws_iam_policy_document" "eks-route-assume-role" {
+#  statement {
+#    effect = "Allow"
+#
+#    principals {
+#      type        = "Service"
+#      identifiers = ["pods.eks.amazonaws.com"]
+#    }
+#
+#    actions = [
+#      "sts:AssumeRole",
+#      "sts:TagSession"
+#    ]
+#  }
+# }
+#
+# resource "aws_iam_role" "ebs-csi-role" {
+#  name               = "aws_elb_role"
+#  assume_role_policy = data.aws_iam_policy_document.eks-route-assume-role.json
+# }
 
 
 # resource "aws_iam_role" "ebs-csi-role" {
@@ -52,17 +52,17 @@ resource "aws_iam_role" "ebs-csi-role" {
 #     ]
 #   })
 # }
-
-resource "aws_iam_role_policy_attachment" "ebs-policy-attach" {
-  role       = aws_iam_role.ebs-csi-role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-}
-
-resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
- cluster_name    = aws_eks_cluster.dev-eks.name
- namespace       = "kube-system"
- service_account = "ebs-csi-controller-sa"
- role_arn        = aws_iam_role.ebs-csi-role.arn
-}
+#
+# resource "aws_iam_role_policy_attachment" "ebs-policy-attach" {
+#   role       = aws_iam_role.ebs-csi-role.name
+#   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+# }
+#
+# resource "aws_eks_pod_identity_association" "eks-ebs-pod-association" {
+#  cluster_name    = aws_eks_cluster.dev-eks.name
+#  namespace       = "kube-system"
+#  service_account = "ebs-csi-controller-sa"
+#  role_arn        = aws_iam_role.ebs-csi-role.arn
+# }
 
 
