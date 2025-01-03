@@ -12,7 +12,7 @@ spec:
               - key: name
                 operator: In
                 values:
-                  - chaitu
+                  - "chaitu"
   containers:
     - name: with-node-affinity
       image: alpine
