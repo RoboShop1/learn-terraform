@@ -9,9 +9,9 @@ spec:
         nodeSelectorTerms:
           - matchExpressions:
               - key: count
-                operator: Gt
+                operator: Lt
                 values:
-                  - "20"
+                  - "10"
   containers:
     - name: with-node-affinity
       image: alpine
