@@ -9,7 +9,7 @@ spec:
         - labelSelector:
             matchExpressions:
               - key: app
-                operator: In
+                operator: NotIn
                 values:
                   - s1
           topologyKey: kubernetes.io/hostname
