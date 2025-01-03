@@ -120,6 +120,52 @@ resource "aws_iam_group_policy" "my_qa_policy" {
 
 
 
+variable "devs" {
+  default = ["dev1","dev2"]
+}
+
+resource "aws_iam_user" "dev_user" {
+  for_each = toset(var.devs)
+  name = each.value
+  tags = {
+    tag-key = "${each.value}"
+  }
+}
+
+
+
+variable "qa" {
+  default = ["qa1","qa2"]
+}
+
+resource "aws_iam_user" "qa_user" {
+  for_each = toset(var.qa)
+  name = each.value
+  tags = {
+    tag-key = "${each.value}"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
