@@ -74,7 +74,7 @@ resource "aws_iam_group_policy" "my_developer_policy" {
         "Sid": "VisualEditor1",
         "Effect": "Allow",
         "Action": "sts:*",
-        "Resource": "arn:aws:iam::339712959230:role/arn:aws:iam::339712959230:role/eks_role_admin"
+        "Resource": "arn:aws:iam::339712959230:role/eks_role_admin"
       }
     ]
   })
@@ -108,7 +108,7 @@ resource "aws_iam_group_policy" "my_qa_policy" {
         "Sid": "VisualEditor1",
         "Effect": "Allow",
         "Action": "sts:*",
-        "Resource": "arn:aws:iam::339712959230:role/arn:aws:iam::339712959230:role/eks_role_admin"
+        "Resource": "arn:aws:iam::339712959230:role/eks_role_admin"
       }
     ]
   })

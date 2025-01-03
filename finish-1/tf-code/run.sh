@@ -9,6 +9,7 @@ SESSION_NAME="sample"
 CREDENTIALS=$(aws sts assume-role --role-arn "$ROLE_ARN" --role-session-name "$SESSION_NAME"   --output json)
 
 
+aws sts assume-role --role-arn arn:aws:iam::339712959230:role/eks_role_admin  --role-session-name sample
 AWS_ACCESS_KEY_ID=$(echo "$CREDENTIALS" | jq -r '.Credentials.AccessKeyId')
 AWS_SECRET_ACCESS_KEY=$(echo "$CREDENTIALS" | jq -r '.Credentials.SecretAccessKey')
 AWS_SESSION_TOKEN=$(echo "$CREDENTIALS" | jq -r '.Credentials.SessionToken')
