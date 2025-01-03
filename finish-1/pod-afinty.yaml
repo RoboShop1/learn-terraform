@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-pod-affinity
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - s1
+          topologyKey: kubernetes.io/hostname
+  containers:
+    - name: with-pod-affinity
+      image: alpine
+      command: ["sleep","10000"]
+
