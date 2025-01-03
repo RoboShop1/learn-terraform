@@ -136,6 +136,14 @@ output "mains" {
   value = aws_iam_user.dev_user
 }
 
+resource "aws_iam_user_group_membership" "dev-g-mem" {
+  for_each = aws_iam_user.dev_user
+  user = each.key
+
+  groups = [
+    aws_iam_group.developers.name
+  ]
+}
 
 
 variable "qa" {
@@ -150,10 +158,14 @@ resource "aws_iam_user" "qa_user" {
   }
 }
 
+resource "aws_iam_user_group_membership" "qa-g-mem" {
+  for_each = aws_iam_user.qa_user
+  user = each.key
 
-
-
-
+  groups = [
+    aws_iam_group.qa.name
+  ]
+}
 
 
 
