@@ -132,6 +132,10 @@ resource "aws_iam_user" "dev_user" {
   }
 }
 
+output "mains" {
+  value = aws_iam_user.dev_user
+}
+
 
 
 variable "qa" {
