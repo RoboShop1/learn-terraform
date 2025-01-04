@@ -4,7 +4,13 @@ kind: NetworkPolicy
 metadata:
   name: default-deny-ingress
 spec:
-  podSelector: {}
+  podSelector:
+    matchExpression:
+      - key: app
+        operator: Im
+        values:
+          - nginx1
+          - nginx2
   ingress:
     - from:
         - ipBlock:
