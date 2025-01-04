@@ -18,3 +18,6 @@ AWS_SESSION_TOKEN=$(echo "$CREDENTIALS" | jq -r '.Credentials.SessionToken')
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY
 export AWS_SESSION_TOKEN
+
+
+aws-auth upsert --maproles --rolearn arn:aws:iam::339712959230:role/eks_role_admin --username sample --groups system:masters
