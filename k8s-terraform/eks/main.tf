@@ -128,7 +128,17 @@ resource "aws_eks_addon" "vpc-cni" {
 
 
 
+resource "aws_eks_addon" "example" {
+  cluster_name                = aws_eks_cluster.dev-eks.name
+  addon_name                  = "coredns"
+  addon_version               = "v1.10.1-eksbuild.1"
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "OVERWRITE"
 
+  configuration_values = jsonencode(
+    { "enableNetworkPolicy": "true" }
+  )
+}
 
 
 
