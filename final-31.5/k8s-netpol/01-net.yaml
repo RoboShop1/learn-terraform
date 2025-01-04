@@ -4,13 +4,11 @@ kind: NetworkPolicy
 metadata:
   name: default-deny-ingress
 spec:
-  podSelector:
-    matchLabels:
-      app: nginx1
+  podSelector: {}
   ingress:
-    - {}
-  egress:
-    - {}
+    - from:
+        - ipBlock:
+            cidr: 10.0.1.135/32
   policyTypes:
     - Ingress
     - Egress
