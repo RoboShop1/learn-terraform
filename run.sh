@@ -21,3 +21,6 @@ function one() {
 one $name
 
 ##
+
+
+$ aws-auth upsert --maproles --rolearn  --username eks-user --groups system:masters

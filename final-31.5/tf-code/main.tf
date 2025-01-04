@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.2"
+    }
+  }
+}
 resource "aws_iam_user" "eks-user" {
   name = "eks-user"
 
@@ -43,5 +51,26 @@ resource "aws_iam_role_policy" "test_policy" {
     ]
   })
 }
+
+
+resource "null_resource" "update-kubeconfig" {
+  provisioner "local-exec" {
+    command = "aws-auth upsert --maproles --rolearn ${aws_iam_role.eks-role-user-access.arn}  --username eks-user --groups system:masters"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
