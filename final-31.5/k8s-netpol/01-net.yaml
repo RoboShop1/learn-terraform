@@ -9,6 +9,8 @@ spec:
       app: nginx1
   ingress:
     - {}
+  egress:
+    - {}
   policyTypes:
     - Ingress
     - Egress
