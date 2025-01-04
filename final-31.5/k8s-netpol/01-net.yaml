@@ -5,7 +5,7 @@ metadata:
   name: default-deny-ingress
 spec:
   podSelector:
-    matchExpression:
+    matchExpressions:
       - key: app
         operator: Im
         values:
