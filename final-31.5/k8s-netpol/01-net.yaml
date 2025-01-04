@@ -7,7 +7,7 @@ spec:
   podSelector:
     matchExpressions:
       - key: app
-        operator: Im
+        operator: In
         values:
           - nginx1
           - nginx2
