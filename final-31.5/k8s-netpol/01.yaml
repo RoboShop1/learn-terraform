@@ -87,4 +87,4 @@ spec:
         maxAllowed:
           cpu: 250m
           memory: 400Mi
-        controlledResources: ["cpu"]
+        controlledResources: ["cpu","memory"]
