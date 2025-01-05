@@ -88,7 +88,7 @@ spec:
         maxAllowed:
           cpu: 250m
           memory: 200Mi
-        controlledResources: ["cpu","memory"]
+
 
 #---
 #apiVersion: autoscaling/v2
