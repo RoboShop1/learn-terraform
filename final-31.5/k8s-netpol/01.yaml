@@ -67,44 +67,45 @@ spec:
       port: 80
       targetPort: 80
 
-#apiVersion: "autoscaling.k8s.io/v1"
-#kind: VerticalPodAutoscaler
-#metadata:
-#  name: stress-vpa
-#spec:
-#  targetRef:
-#    apiVersion: "apps/v1"
-#    kind: Deployment
-#    name: vpa-nginx
-#  updatePolicy:
-#    updateMode: Auto
-#  resourcePolicy:
-#    containerPolicies:
-#      - containerName: 'vpa-nginx'
-#        minAllowed:
-#          cpu: 100m
-#          memory: 150Mi
-#        maxAllowed:
-#          cpu: 250m
-#          memory: 400Mi
-#        controlledResources: ["cpu","memory"]
-
 ---
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
+apiVersion: "autoscaling.k8s.io/v1"
+kind: VerticalPodAutoscaler
 metadata:
-  name: demo
+  name: stress-vpa
 spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
+  targetRef:
+    apiVersion: "apps/v1"
     kind: Deployment
     name: vpa-nginx
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 80
+  updatePolicy:
+    updateMode: Auto
+  resourcePolicy:
+    containerPolicies:
+      - containerName: 'vpa-nginx'
+        minAllowed:
+          cpu: 100m
+          memory: 150Mi
+        maxAllowed:
+          cpu: 250m
+          memory: 200Mi
+        controlledResources: ["cpu","memory"]
+
+#---
+#apiVersion: autoscaling/v2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: demo
+#spec:
+#  scaleTargetRef:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#    name: vpa-nginx
+#  minReplicas: 2
+#  maxReplicas: 4
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 80
