@@ -38,8 +38,8 @@ resource "aws_eks_node_group" "dev-eks-public-nodegroup" {
   instance_types  = ["t3.small"]
 
   scaling_config {
-    desired_size = 1
-    max_size     = 2
+    desired_size = 2
+    max_size     = 3
     min_size     = 1
   }
 
@@ -126,19 +126,19 @@ resource "aws_eks_addon" "vpc-cni" {
 */
 
 
-
-
-resource "aws_eks_addon" "vpc-cni" {
-  cluster_name                = aws_eks_cluster.dev-eks.name
-  addon_name                  = "vpc-cni"
-  addon_version               = "v1.18.3-eksbuild.3"
-  resolve_conflicts_on_create = "OVERWRITE"
-  resolve_conflicts_on_update = "OVERWRITE"
-
-  configuration_values = jsonencode(
-    { "enableNetworkPolicy": "true" }
-  )
-}
+#
+#
+# resource "aws_eks_addon" "vpc-cni" {
+#   cluster_name                = aws_eks_cluster.dev-eks.name
+#   addon_name                  = "vpc-cni"
+#   addon_version               = "v1.18.3-eksbuild.3"
+#   resolve_conflicts_on_create = "OVERWRITE"
+#   resolve_conflicts_on_update = "OVERWRITE"
+#
+#   configuration_values = jsonencode(
+#     { "enableNetworkPolicy": "true" }
+#   )
+# }
 
 
 
