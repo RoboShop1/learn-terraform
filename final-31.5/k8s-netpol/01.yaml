@@ -80,7 +80,7 @@ spec:
     updateMode: Auto
   resourcePolicy:
     containerPolicies:
-      - containerName: '*'
+      - containerName: 'vpa-nginx'
         minAllowed:
           cpu: 100m
           memory: 150Mi
