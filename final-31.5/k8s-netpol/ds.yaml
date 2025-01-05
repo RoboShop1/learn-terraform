@@ -12,5 +12,5 @@ spec:
         name: fluentd
     spec:
       containers:
-        - name: nginx
+        - name: nginx:1.24
           image: nginx
