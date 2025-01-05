@@ -1,15 +1,15 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx1
-  labels:
-    app: nginx1
-spec:
-  containers:
-    - name: nginx
-      image: nginx
-      ports:
-        - containerPort: 80
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: nginx1
+#  labels:
+#    app: nginx1
+#spec:
+#  containers:
+#    - name: nginx
+#      image: nginx
+#      ports:
+#        - containerPort: 80
 
 #---
 #apiVersion: v1
@@ -28,4 +28,31 @@ spec:
 
 
 
-#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vpa-nginx
+  labels:
+    app: vpa-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vpa-nginx
+  template:
+    metadata:
+      labels:
+        app: vpa-nginx
+    spec:
+      containers:
+        - name: vpa-nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "250Mi"
+            limits:
+              cpu: "500m"
+              memory: "500Mi"
