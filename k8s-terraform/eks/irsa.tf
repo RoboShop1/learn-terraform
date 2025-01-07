@@ -1,3 +1,14 @@
+resource "aws_eks_identity_provider_config" "example" {
+  cluster_name = aws_eks_cluster.dev-eks.name
+
+  oidc {
+    client_id                     = "2C33B2DB839B43409342129B8552393"
+    identity_provider_config_name = "example"
+    issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
+  }
+}
+
+
 resource "aws_iam_openid_connect_provider" "oidc_provider" {
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = ["9e99a48a9960b14926bb7f3b02e22da2b0ab7280"]
