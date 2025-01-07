@@ -2,7 +2,7 @@ resource "aws_eks_identity_provider_config" "example" {
   cluster_name = aws_eks_cluster.dev-eks.name
 
   oidc {
-    client_id                     = "2C33B2DB839B43409342129B8552393"
+    client_id                     = "72C33B2DB839B43409342129B8552393"
     identity_provider_config_name = "example"
     issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
   }
