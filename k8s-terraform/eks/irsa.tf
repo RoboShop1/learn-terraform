@@ -1,9 +1,11 @@
-resource "aws_eks_identity_provider_config" "example" {
+resource "aws_eks_identity_provider_config" "oidc-auth" {
+  #count = var.with_hault ? 1 : 0
+
   cluster_name = aws_eks_cluster.dev-eks.name
 
   oidc {
-    client_id                     = "72C33B2DB839B43409342129B8552393"
-    identity_provider_config_name = "example"
+    client_id                     = element(tolist(split("/", tostring("${aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer}"))), 4)
+    identity_provider_config_name = "oidc-auth"
     issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
   }
 }
