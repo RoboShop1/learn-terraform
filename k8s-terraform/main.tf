@@ -30,3 +30,7 @@ output "id" {
 output "replace" {
   value = replace(module.eks.id,"https://","")
 }
+
+output "split" {
+  value = split("/",module.eks.id)
+}
