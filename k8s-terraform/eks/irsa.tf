@@ -115,6 +115,7 @@ resource "aws_eks_addon" "eks-pod-identity-agent" {
   addon_version               = "v1.36.0-eksbuild.1"
   resolve_conflicts_on_update = "OVERWRITE"
   resolve_conflicts_on_create = "OVERWRITE"
+  service_account_role_arn    = "arn:aws:iam::339712959230:role/eks-cluster-ebs"
 }
 
 
