@@ -1,12 +1,6 @@
 autoDiscovery:
   clusterName: "dev-eks"
 
-serviceAccount:
-  create: true
-  name: "scale-sa"
-  annotations:
-
-
 rbac:
   serviceAccount:
     create: true
