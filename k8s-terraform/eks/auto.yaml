@@ -2,6 +2,7 @@ autoDiscovery:
   clusterName: "dev-eks"
 
 serviceAccount:
+  create: true
   name: "scale-sa"
   annotations: "arn:aws:iam::339712959230:role/eks-cluster-autoscale"
 
