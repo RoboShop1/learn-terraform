@@ -268,5 +268,36 @@ resource "helm_release" "nginx_ingress" {
 
 
 
+resource "aws_iam_role" "eks-cluster-autoscale" {
+  name = "sa"
+
+  assume_role_policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : "sts:AssumeRoleWithWebIdentity",
+        "Principal" : {
+          "Federated" : local.oidc_provider_name_arn
+        },
+        "Condition" : {
+          "StringEquals" : {
+            "${local.oidc_provider_name_extract_arn}:aud" : "sts.amazonaws.com",
+            "${local.oidc_provider_name_extract_arn}:sub" : "system:serviceaccount:default:dev-sa"
+          }
+        }
+      }
+    ]
+  })
+
+  tags = {
+    Name = "eks-cluster-autoscal1e"
+  }
+}
+
+resource "aws_iam_role_policy_attachment" "irsa1_iam_role_policy_attach" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+  role       = aws_iam_role.eks-cluster-autoscale.name
+}
 
 
