@@ -34,10 +34,10 @@
 #   }
 # }
 #
-# locals {
-#   oidc_provider_name_arn = aws_iam_openid_connect_provider.oidc_provider.arn
-#   oidc_provider_name_extract_arn = element(split("oidc-provider/", "${aws_iam_openid_connect_provider.oidc_provider.arn}"), 1)
-# }
+locals {
+  oidc_provider_name_arn = aws_iam_openid_connect_provider.oidc_provider.arn
+  oidc_provider_name_extract_arn = element(split("oidc-provider/", "${aws_iam_openid_connect_provider.oidc_provider.arn}"), 1)
+}
 #
 # resource "aws_iam_role" "eks-cluster-autoscale" {
 #   name = "eks-cluster-autoscale"
@@ -190,16 +190,78 @@ resource "aws_iam_openid_connect_provider" "oidc_provider" {
 }
 
 
+resource "aws_iam_role" "eks-cluster-autoscale" {
+  name = "eks-cluster-autoscale"
 
-resource "helm_release" "nginx_ingress" {
-  name       = "cluster-auto-scalar"
+  assume_role_policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : "sts:AssumeRoleWithWebIdentity",
+        "Principal" : {
+          "Federated" : local.oidc_provider_name_arn
+        },
+        "Condition" : {
+          "StringEquals" : {
+            "${local.oidc_provider_name_extract_arn}:aud" : "sts.amazonaws.com",
+            "${local.oidc_provider_name_extract_arn}:sub" : "system:serviceaccount:kube-system:scale-sa"
+          }
+        }
+      }
+    ]
+  })
 
-  repository = "autoscaler https://kubernetes.github.io/autoscaler"
-  chart      = "cluster-autoscaler"
-  namespace = "kube-system"
-  values = []
+  inline_policy {
+    name = "eks-auto-scale"
+    policy = jsonencode({
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "autoscaling:DescribeAutoScalingGroups",
+            "autoscaling:DescribeAutoScalingInstances",
+            "autoscaling:DescribeLaunchConfigurations",
+            "autoscaling:DescribeScalingActivities",
+            "ec2:DescribeImages",
+            "ec2:DescribeInstanceTypes",
+            "ec2:DescribeLaunchTemplateVersions",
+            "ec2:GetInstanceTypesFromInstanceRequirements",
+            "eks:DescribeNodegroup"
+          ],
+          "Resource": ["*"]
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "autoscaling:SetDesiredCapacity",
+            "autoscaling:TerminateInstanceInAutoScalingGroup"
+          ],
+          "Resource": ["*"]
+        }
+      ]
+    })
+  }
 
+  tags = {
+    Name = "eks-cluster-autoscale"
+  }
 }
+
+
+
+
+
+# resource "helm_release" "nginx_ingress" {
+#   name       = "cluster-auto-scalar"
+#
+#   repository = "autoscaler https://kubernetes.github.io/autoscaler"
+#   chart      = "cluster-autoscaler"
+#   namespace = "kube-system"
+#   values = []
+#
+# }
 
 
 
