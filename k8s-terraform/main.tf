@@ -23,3 +23,6 @@ module "eks" {
 # }
 
 
+output "id" {
+  value = module.eks
+}

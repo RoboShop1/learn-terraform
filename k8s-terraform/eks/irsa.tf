@@ -162,6 +162,19 @@
 
 
 
+############################
+## Cluster Auto scalar ####
+##                     ####
+###########################
+# resource "aws_eks_identity_provider_config" "oidc" {
+#   cluster_name = aws_eks_cluster.dev-eks.name
+#
+#   oidc {
+#     client_id                     = "${aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer}/.well-known/openid-configuration"
+#     identity_provider_config_name = "dev-eks"
+#     issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
+#   }
+#}
 
 
 
