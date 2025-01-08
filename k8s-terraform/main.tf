@@ -32,5 +32,5 @@ output "replace" {
 }
 
 output "split" {
-  value = split("/",module.eks.id)
+  value = split("/",module.eks.id)[4]
 }
