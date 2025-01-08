@@ -205,7 +205,7 @@ resource "aws_iam_role" "eks-cluster-autoscale" {
         "Condition" : {
           "StringEquals" : {
             "${local.oidc_provider_name_extract_arn}:aud" : "sts.amazonaws.com",
-            "${local.oidc_provider_name_extract_arn}:sub" : "system:serviceaccount:default:scale-sa"
+            "${local.oidc_provider_name_extract_arn}:sub" : "system:serviceaccount:kube-system:scale-sa"
           }
         }
       }
