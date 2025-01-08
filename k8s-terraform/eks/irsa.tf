@@ -18,7 +18,7 @@ resource "aws_eks_identity_provider_config" "example" {
   oidc {
     client_id                     = "DB98342508D9536ED0CFC23EEF27206D"
     identity_provider_config_name = "iam-oidc"
-    issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
+    issuer_url                    = "https://oidc.eks.us-east-1.amazonaws.com/id/DB98342508D9536ED0CFC23EEF27206D"
   }
 }
 
