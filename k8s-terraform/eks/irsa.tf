@@ -254,15 +254,15 @@ resource "aws_iam_role" "eks-cluster-autoscale" {
 #
 #
 # resource "helm_release" "nginx_ingress" {
-#   name       = "cluster-auto-scalar"
-#
-#   repository = "https://kubernetes.github.io/autoscaler"
-#   chart      = "cluster-autoscaler"
-#   namespace  = "kube-system"
-#   values     = [file("${path.module}/auto.yaml")]
-#   wait       = true
-#
-# }
+  name       = "cluster-auto-scalar"
+
+  repository = "https://kubernetes.github.io/autoscaler"
+  chart      = "cluster-autoscaler"
+  namespace  = "kube-system"
+  values     = [file("${path.module}/auto.yaml")]
+  wait       = true
+
+}
 
 
 
