@@ -259,7 +259,7 @@ resource "helm_release" "nginx_ingress" {
   repository = "autoscaler https://kubernetes.github.io/autoscaler"
   chart      = "cluster-autoscaler"
   namespace  = "kube-system"
-  values     = ["${file("./auto.yaml")}"]
+  values     = [file("${path.module}/auto.yaml")]
   wait       = true
 
 }
