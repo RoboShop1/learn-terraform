@@ -1,0 +1,8 @@
+autoDiscovery:
+  clusterName: "dev-eks"
+
+serviceAccount:
+  name: "scale-sa"
+  annotations: ""
+
+

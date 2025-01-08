@@ -191,6 +191,16 @@ resource "aws_iam_openid_connect_provider" "oidc_provider" {
 
 
 
+resource "helm_release" "nginx_ingress" {
+  name       = "cluster-auto-scalar"
+
+  repository = "autoscaler https://kubernetes.github.io/autoscaler"
+  chart      = "cluster-autoscaler"
+  namespace = "kube-system"
+  values = []
+
+}
+
 
 
 
