@@ -174,7 +174,7 @@
 #     identity_provider_config_name = "dev-eks"
 #     issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
 #   }
-#}
+# }
 
 
 

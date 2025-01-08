@@ -26,3 +26,7 @@ module "eks" {
 output "id" {
   value = module.eks
 }
+
+output "replace" {
+  value = replace(module.eks.id,"https://","")
+}
