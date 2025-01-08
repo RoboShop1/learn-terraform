@@ -1,15 +1,26 @@
-resource "aws_eks_identity_provider_config" "oidc-auth" {
-  #count = var.with_hault ? 1 : 0
+# resource "aws_eks_identity_provider_config" "oidc-auth" {
+#
+#
+#   cluster_name = aws_eks_cluster.dev-eks.name
+#
+#   oidc {
+#     client_id                     = element(tolist(split("/", tostring("${aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer}"))), 4)
+#     identity_provider_config_name = "oidc-auth"
+#     issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
+#   }
+# }
 
+
+
+resource "aws_eks_identity_provider_config" "example" {
   cluster_name = aws_eks_cluster.dev-eks.name
 
   oidc {
-    client_id                     = element(tolist(split("/", tostring("${aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer}"))), 4)
-    identity_provider_config_name = "oidc-auth"
+    client_id                     = "DB98342508D9536ED0CFC23EEF27206D"
+    identity_provider_config_name = "iam-oidc"
     issuer_url                    = aws_eks_cluster.dev-eks.identity[0].oidc[0].issuer
   }
 }
-
 
 resource "aws_iam_openid_connect_provider" "oidc_provider" {
   client_id_list  = ["sts.amazonaws.com"]
