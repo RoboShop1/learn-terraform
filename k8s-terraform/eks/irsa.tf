@@ -151,7 +151,7 @@ resource "aws_iam_role" "ebs" {
 }
 
 
-resource "aws_iam_role_policy_attachment" "irsa_iam_role_policy_attach2" {
+resource "aws_iam_role_policy_attachment" "irsa_iam_ebs" {
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
   role       = aws_iam_role.ebs.name
 }
