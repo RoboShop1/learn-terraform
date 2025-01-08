@@ -104,6 +104,9 @@ resource "aws_iam_role_policy_attachment" "irsa_iam_role_policy_attach2" {
   role       = aws_iam_role.eks-cluster-route53.name
 }
 
+
+
+
 resource "aws_eks_addon" "eks-pod-identity-agent" {
   depends_on = [aws_eks_node_group.dev-eks-public-nodegroup]
 
@@ -120,9 +123,38 @@ resource "aws_eks_addon" "eks-pod-identity-agent" {
 
 
 
+resource "aws_iam_role" "ebs" {
+  name = "eks-cluster-ebs"
+
+  assume_role_policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : "sts:AssumeRoleWithWebIdentity",
+        "Principal" : {
+          "Federated" : local.oidc_provider_name_arn
+        },
+        "Condition" : {
+          "StringEquals" : {
+            "${local.oidc_provider_name_extract_arn}:aud" : "sts.amazonaws.com",
+            "${local.oidc_provider_name_extract_arn}:sub" : "system:serviceaccount:kube-system:ebs-csi-controller-sa"
+          }
+        }
+      }
+    ]
+  })
+
+  tags = {
+    Name = "eks-cluster-ebs"
+  }
+}
 
 
-
+resource "aws_iam_role_policy_attachment" "irsa_iam_role_policy_attach2" {
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+  role       = aws_iam_role.ebs.name
+}
 
 
 
