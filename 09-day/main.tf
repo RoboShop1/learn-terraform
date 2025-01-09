@@ -12,6 +12,10 @@ resource "aws_instance" "sample" {
   ami = var.ami
   instance_type = "t2.micro"
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   tags = {
     Name = "dev-${count.index+1}"
   }
