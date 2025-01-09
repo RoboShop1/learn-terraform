@@ -11,6 +11,7 @@ resource "aws_instance" "sample" {
   count = 2
   ami = var.ami
   instance_type = "t2.micro"
+  availability_zone = "us-east-1a"
 
   lifecycle {
     create_before_destroy = true
