@@ -9,6 +9,25 @@ resource "aws_subnet" "main" {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # resource "aws_subnet" "web_subnets" {
 #   count      = length(var.web_cidr_blocks)
 #

@@ -17,6 +17,10 @@ module "subnets" {
   vpc_id               = aws_vpc.main.id
 }
 
+output "vpc_subnets" {
+  value = module.subnets
+}
+
 
 # resource "aws_internet_gateway" "igw" {
 #   vpc_id             = aws_vpc.main.id
@@ -25,7 +29,7 @@ module "subnets" {
 #     Name = "${var.env}-igw"
 #   }
 # }
-#
+
 # resource "aws_eip" "eip" {
 #   count              = length(module.subnets.public_subnets)
 #   domain             = "vpc"

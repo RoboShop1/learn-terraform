@@ -23,3 +23,8 @@ variable "subnets" {
     }
   }
 }
+
+
+output "final" {
+  value = module.vpc
+}
