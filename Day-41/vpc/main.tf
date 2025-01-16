@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
 
 
 module "subnets" {
-  depends_on         = [aws_vpc.main.id]
+  depends_on         = [aws_vpc.main]
 
   source             = "./subnets"
 
