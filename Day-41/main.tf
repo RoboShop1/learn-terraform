@@ -11,6 +11,7 @@ variable "subnets" {
   default = {
     public-subnets = {
       cidr_blocks = ["10.0.1.0/24","10.0.2.0/24"]
+      nat_route   = false
 
     }
     web-subnets = {
