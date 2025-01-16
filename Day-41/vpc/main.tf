@@ -34,18 +34,18 @@ resource "aws_eip" "eip" {
 }
 
 
-# resource "aws_nat_gateway" "nat-gw" {
-#   count         = length(module.subnets.public_subnets)
-#   allocation_id = element(aws_eip.eip.*.id,count.index)
-#
-#   subnet_id     = local.public_subnets_ids
-#
-#   tags = {
-#     Name = "gw NAT"
-#   }
-#
-#   depends_on = [aws_internet_gateway.igw]
-# }
+resource "aws_nat_gateway" "nat-gw" {
+  count         = length(module.subnets.public_subnets)
+  allocation_id = element(aws_eip.eip.*.id,count.index)
+
+  subnet_id     = local.public_subnets_ids[count.index]
+
+  tags = {
+    Name = "gw NAT"
+  }
+
+  depends_on = [aws_internet_gateway.igw]
+}
 
 locals {
   public_subnets_ids = flatten([for i,k in module.subnets: k.*.id if i == "public_subnets"])
