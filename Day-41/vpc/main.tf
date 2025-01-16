@@ -17,10 +17,14 @@ module "subnets" {
   vpc_id               = aws_vpc.main.id
 }
 
-output "vpc_subnets" {
-  value = module.subnets
-}
+# output "vpc_subnets" {
+#   value = module.subnets
+# }
 
+
+output "public-debug" {
+  value = [for i,k in module.subnets: i]
+}
 
 # resource "aws_internet_gateway" "igw" {
 #   vpc_id             = aws_vpc.main.id
