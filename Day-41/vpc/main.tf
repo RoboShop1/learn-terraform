@@ -23,9 +23,8 @@ module "subnets" {
   subnet_name          = each.key
   subnets_cidr_blocks  = each.value["cidr_blocks"]
   vpc_id               = aws_vpc.main.id
+  nat_route            = lookup(each.value,"nat_route",null)
 
-  # nat_route            = lookup(each.value,"nat_route",null)
-  # nat_gateway_ids      = local.nat_gateway_ids
 }
 
 
