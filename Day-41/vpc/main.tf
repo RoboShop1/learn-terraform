@@ -40,6 +40,10 @@ output "web" {
   value = local.web-subnets_ids
 }
 
+output "sample" {
+  value = [for i,k in module.subnets: k if i == "web-subnets" ]
+}
+
 
 # resource "aws_internet_gateway" "igw" {
 #   vpc_id             = aws_vpc.main.id
