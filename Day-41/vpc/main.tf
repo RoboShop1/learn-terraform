@@ -6,7 +6,6 @@ resource "aws_vpc" "main" {
   }
 }
 
-
 module "subnets" {
   depends_on         = [aws_vpc.main]
 
@@ -20,4 +19,12 @@ module "subnets" {
   vpc_id             = aws_vpc.main.id
 }
 
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env}-igw"
+  }
+}
 
