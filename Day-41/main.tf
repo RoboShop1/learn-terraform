@@ -10,3 +10,6 @@ module "vpc" {
 
 }
 
+output "final" {
+  value = module.vpc
+}

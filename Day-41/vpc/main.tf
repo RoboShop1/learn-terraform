@@ -28,3 +28,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+
+output "vpc_subnets" {
+  value = module.subnets
+}
