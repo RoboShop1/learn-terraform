@@ -35,10 +35,10 @@ resource "aws_eip" "eip" {
 
 
 resource "aws_nat_gateway" "nat-gw" {
-  count         = length(module.subnets.public_subnets)
-  allocation_id = element(aws_eip.eip.*.id,count.index)
+  count           = length(module.subnets.public_subnets)
+  allocation_id   = element(aws_eip.eip.*.id,count.index)
 
-  subnet_id     = local.public_subnets_ids[count.index]
+  subnet_id       = local.public_subnets_ids[count.index]
 
   tags = {
     Name = "gw NAT"
