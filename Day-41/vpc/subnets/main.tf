@@ -26,14 +26,14 @@ resource "aws_route_table_association" "rta" {
 }
 
 
-resource "aws_route" "nat-route" {
-
-  count                     = var.nat_route ? length(aws_route_table.main): 0
-  route_table_id            = element(aws_route_table.main.*.id,count.index)
-
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = var.nat_gateway_ids[count.index]
-}
+# resource "aws_route" "nat-route" {
+#
+#   count                     = var.nat_route ? length(aws_route_table.main): 0
+#   route_table_id            = element(aws_route_table.main.*.id,count.index)
+#
+#   destination_cidr_block    = "0.0.0.0/0"
+#   nat_gateway_id            = var.nat_gateway_ids[count.index]
+# }
 
 
 
