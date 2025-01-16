@@ -13,5 +13,5 @@ data "aws_nat_gateways" "ngws" {
 # }
 
 output "sample" {
-  value = data.aws_nat_gateways.ngws
+  value = data.aws_nat_gateways.ngws.ids
 }
