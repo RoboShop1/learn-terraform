@@ -62,7 +62,7 @@ output "web" {
 }
 
 output "vpc_namt" {
-  value = module.subnets.nat
+  value = module.subnets
 }
 
 # output "sample" {
