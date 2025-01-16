@@ -22,9 +22,24 @@ module "subnets" {
 # }
 
 
-output "public-debug" {
-  value = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "app-subnets" ])
+# output "public-debug" {
+#   value = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "app-subnets" ])
+# }
+
+locals {
+  public_subnets_ids = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "public-subnets" ])
+  web-subnets_ids    = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "web-subnets" ])
 }
+
+
+output "public" {
+  value = local.public_subnets_ids
+}
+
+output "web" {
+  value = local.web-subnets_ids
+}
+
 
 # resource "aws_internet_gateway" "igw" {
 #   vpc_id             = aws_vpc.main.id
