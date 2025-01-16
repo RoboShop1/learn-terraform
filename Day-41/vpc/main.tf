@@ -34,6 +34,29 @@ resource "aws_eip" "eip" {
 }
 
 
+# resource "aws_nat_gateway" "nat-gw" {
+#   count         = length(module.subnets.public_subnets)
+#   allocation_id = element(aws_eip.eip.*.id,count.index)
+#
+#   subnet_id     = local.public_subnets_ids
+#
+#   tags = {
+#     Name = "gw NAT"
+#   }
+#
+#   depends_on = [aws_internet_gateway.igw]
+# }
+
+locals {
+  public_subnets_ids = [for i,k in module.subnets: k.*.id if i == "public_subnets"]
+}
+
+
+
+output "local" {
+  value = local.public_subnets_ids
+}
+
 output "public_subnets_ids" {
   value = [for i,k in module.subnets: k.*.id if i == "public_subnets"]
 }
