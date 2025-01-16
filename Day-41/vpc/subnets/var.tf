@@ -2,5 +2,5 @@ variable "env" {}
 variable "subnets_cidr_blocks" {}
 variable "subnet_name" {}
 variable "vpc_id" {}
-
-#variable "nat_gateways_ids" {}
+variable "nat_route" {}
+variable "nat_gateway_ids" {}
