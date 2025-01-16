@@ -33,6 +33,10 @@ resource "aws_internet_gateway" "igw" {
 #   value = module.subnets
 # }
 
-output "debug" {
-  value = [for i,k in module.subnets: k.*.id if i == "app_subnets"]
+output "public_subnets_ids" {
+  value = [for i,k in module.subnets: k.*.id if i == "public_subnets"]
+}
+
+output "truee" {
+  value = [for i,k in module.subnets: k.*.id if strcontains(i, "app")  ]
 }
