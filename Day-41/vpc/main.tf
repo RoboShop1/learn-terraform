@@ -29,6 +29,10 @@ resource "aws_internet_gateway" "igw" {
 }
 
 
-output "vpc_subnets" {
-  value = module.subnets
+# output "vpc_subnets" {
+#   value = module.subnets
+# }
+
+output "debug" {
+  value = [for i in module.subnets: i]
 }
