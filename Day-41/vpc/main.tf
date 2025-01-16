@@ -61,7 +61,9 @@ output "web" {
   value = local.web-subnets_ids
 }
 
-
+output "vpc_namt" {
+  value = module.subnets.nat
+}
 
 # output "sample" {
 #   value = [for i,k in module.subnets: lookup(k,"subnets",null) if i == "web-subnets" ]
