@@ -1,5 +1,5 @@
 resource "aws_vpc" "main" {
-  cidr_block    = var.vpc_cidr_block
+  cidr_block         = var.vpc_cidr_block
 
   tags = {
     Name = "${var.env}-vpc"
@@ -21,7 +21,7 @@ module "subnets" {
 
 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id             = aws_vpc.main.id
 
   tags = {
     Name = "${var.env}-igw"
@@ -29,16 +29,16 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_eip" "eip" {
-  count    = length(module.subnets.public_subnets)
-  domain   = "vpc"
+  count              = length(module.subnets.public_subnets)
+  domain             = "vpc"
 }
 
 
 resource "aws_nat_gateway" "nat-gw" {
-  count           = length(module.subnets.public_subnets)
-  allocation_id   = element(aws_eip.eip.*.id,count.index)
+  count              = length(module.subnets.public_subnets)
+  allocation_id      = element(aws_eip.eip.*.id,count.index)
 
-  subnet_id       = local.public_subnets_ids[count.index]
+  subnet_id          = local.public_subnets_ids[count.index]
 
   tags = {
     Name = "gw NAT"
@@ -48,7 +48,7 @@ resource "aws_nat_gateway" "nat-gw" {
 }
 
 locals {
-  public_subnets_ids = flatten([for i,k in module.subnets: k.*.id if i == "public_subnets"])
+  public_subnets_ids  = flatten([for i,k in module.subnets: k.*.id if i == "public_subnets"])
 }
 
 
