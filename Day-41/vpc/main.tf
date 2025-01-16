@@ -23,7 +23,7 @@ module "subnets" {
 
 
 output "public-debug" {
-  value = [for i,k in module.subnets: k["subnets"] if i == "app-subnets" ]
+  value = [for i,k in module.subnets: k["subnets"][*]["id"] if i == "app-subnets" ]
 }
 
 # resource "aws_internet_gateway" "igw" {
