@@ -28,10 +28,11 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+resource "aws_eip" "eip" {
+  count    = length(module.subnets.public_subnets)
+  domain   = "vpc"
+}
 
-# output "vpc_subnets" {
-#   value = module.subnets
-# }
 
 output "public_subnets_ids" {
   value = [for i,k in module.subnets: k.*.id if i == "public_subnets"]
@@ -40,3 +41,9 @@ output "public_subnets_ids" {
 output "truee" {
   value = [for i,k in module.subnets: k.*.id if strcontains(i, "app")  ]
 }
+
+
+
+# output "vpc_subnets" {
+#   value = module.subnets
+# }
