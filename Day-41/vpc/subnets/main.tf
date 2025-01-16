@@ -26,6 +26,28 @@ resource "aws_route_table_association" "rta" {
 }
 
 
+resource "aws_eip" "eip" {
+  count              = var.subnet_name == "public-subnets" ? length(var.subnets_cidr_blocks): 0
+  domain             = "vpc"
+}
+
+
+resource "aws_nat_gateway" "nat-gw" {
+
+  count              = var.subnet_name == "public-subnets" ? length(var.subnets_cidr_blocks): 0
+  allocation_id      = element(aws_eip.eip.*.id,count.index)
+
+  subnet_id          = aws_subnet.main.*.id[count.index]
+
+  tags = {
+    Name = "gw NAT"
+  }
+
+}
+
+
+
+
 # resource "aws_route" "nat-route" {
 #
 #   count                     = var.nat_route ? length(aws_route_table.main): 0

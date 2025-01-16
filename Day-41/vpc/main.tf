@@ -6,8 +6,16 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_internet_gateway" "igw" {
+  vpc_id             = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env}-igw"
+  }
+}
+
 module "subnets" {
-  depends_on           = [aws_vpc.main]
+  depends_on           = [aws_vpc.main,aws_internet_gateway.igw]
   for_each             = var.subnets
   source               = "./subnets"
 
@@ -15,6 +23,7 @@ module "subnets" {
   subnet_name          = each.key
   subnets_cidr_blocks  = each.value["cidr_blocks"]
   vpc_id               = aws_vpc.main.id
+
   # nat_route            = lookup(each.value,"nat_route",null)
   # nat_gateway_ids      = local.nat_gateway_ids
 }
@@ -24,36 +33,12 @@ module "subnets" {
 locals {
   public_subnets_ids = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "public-subnets" ])
   web-subnets_ids    = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "web-subnets" ])
-  nat_gateway_ids    =  aws_nat_gateway.nat-gw.*.id
-}
-
-resource "aws_internet_gateway" "igw" {
-  vpc_id             = aws_vpc.main.id
-
-  tags = {
-    Name = "${var.env}-igw"
-  }
-}
-
-resource "aws_eip" "eip" {
-  count              = length(local.public_subnets_ids)
-  domain             = "vpc"
+  # nat_gateway_ids    =  aws_nat_gateway.nat-gw.*.id
 }
 
 
-resource "aws_nat_gateway" "nat-gw" {
-  count              = length(local.public_subnets_ids)
-  allocation_id      = element(aws_eip.eip.*.id,count.index)
 
-  subnet_id          = local.public_subnets_ids[count.index]
 
-  tags = {
-    Name = "gw NAT"
-  }
-
-  depends_on = [aws_internet_gateway.igw]
-
-}
 
 
 
