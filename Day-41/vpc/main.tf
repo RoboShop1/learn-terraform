@@ -17,6 +17,44 @@ module "subnets" {
   vpc_id               = aws_vpc.main.id
 }
 
+
+
+locals {
+  public_subnets_ids = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "public-subnets" ])
+  web-subnets_ids    = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "web-subnets" ])
+}
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id             = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env}-igw"
+  }
+}
+
+resource "aws_eip" "eip" {
+  count              = length(local.public_subnets_ids)
+  domain             = "vpc"
+}
+
+
+resource "aws_nat_gateway" "nat-gw" {
+  count              = length(local.public_subnets_ids)
+  allocation_id      = element(aws_eip.eip.*.id,count.index)
+
+  subnet_id          = local.public_subnets_ids[count.index]
+
+  tags = {
+    Name = "gw NAT"
+  }
+
+  depends_on = [aws_internet_gateway.igw]
+
+}
+
+
+
+
 # output "vpc_subnets" {
 #   value = module.subnets
 # }
@@ -26,10 +64,6 @@ module "subnets" {
 #   value = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "app-subnets" ])
 # }
 
-locals {
-  public_subnets_ids = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "public-subnets" ])
-  web-subnets_ids    = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "web-subnets" ])
-}
 
 
 output "public" {
@@ -40,9 +74,11 @@ output "web" {
   value = local.web-subnets_ids
 }
 
-output "sample" {
-  value = [for i,k in module.subnets: lookup(k,"subnets",null) if i == "web-subnets" ]
-}
+
+
+# output "sample" {
+#   value = [for i,k in module.subnets: lookup(k,"subnets",null) if i == "web-subnets" ]
+# }
 
 
 # resource "aws_internet_gateway" "igw" {
