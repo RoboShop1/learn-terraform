@@ -16,7 +16,7 @@ module "subnets" {
   subnets_cidr_blocks  = each.value["cidr_blocks"]
   vpc_id               = aws_vpc.main.id
   nat_route            = lookup(each.value,"nat_route",null)
-  nat_gateway_ids      = aws_nat_gateway.nat-gw.*.id
+  nat_gateway_ids      = local.nat_gateway_ids
 }
 
 
@@ -24,6 +24,7 @@ module "subnets" {
 locals {
   public_subnets_ids = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "public-subnets" ])
   web-subnets_ids    = flatten([for i,k in module.subnets: k["subnets"][*]["id"] if i == "web-subnets" ])
+  nat_gateway_ids    =  aws_nat_gateway.nat-gw.*.id
 }
 
 resource "aws_internet_gateway" "igw" {
