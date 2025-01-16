@@ -48,7 +48,7 @@ resource "aws_eip" "eip" {
 # }
 
 locals {
-  public_subnets_ids = [for i,k in module.subnets: k.*.id if i == "public_subnets"]
+  public_subnets_ids = flatten([for i,k in module.subnets: k.*.id if i == "public_subnets"])
 }
 
 
