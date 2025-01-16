@@ -41,7 +41,7 @@ output "web" {
 }
 
 output "sample" {
-  value = [for i,k in module.subnets: k if i == "web-subnets" ]
+  value = [for i,k in module.subnets: lookup(k,"subnets",null) if i == "web-subnets" ]
 }
 
 
