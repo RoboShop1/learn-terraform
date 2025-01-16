@@ -34,5 +34,5 @@ resource "aws_internet_gateway" "igw" {
 # }
 
 output "debug" {
-  value = [for i in module.subnets: i]
+  value = [for i,k in module.subnets: i]
 }
