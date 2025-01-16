@@ -10,6 +10,22 @@ resource "aws_subnet" "main" {
 }
 
 
+resource "aws_route_table" "main" {
+
+  vpc_id    =  var.vpc_id
+  count     = length(aws_subnet.main)
+
+  tags = {
+    Name = "${var.env}-${var.subnet_name}-rt-${count.index}"
+  }
+}
+
+resource "aws_route_table_association" "rta" {
+  count          = length(aws_subnet.main)
+  subnet_id      = element(aws_subnet.main,count.index)["id"]
+  route_table_id = aws_route_table.main.*.id[count.index]
+}
+
 
 
 
