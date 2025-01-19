@@ -6,5 +6,15 @@ resource "aws_vpc" "main" {
   }
 }
 
+
+module "subnets" {
+  for_each = var.subnets
+  source = "./subnets"
+  vpc_id = aws_vpc.main.id
+  subnets = each.value
+}
+
+
 variable "vpc_cidr" {}
 variable "env" {}
+variable "subnets" {}
