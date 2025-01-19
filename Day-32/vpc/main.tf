@@ -58,7 +58,7 @@ output "nats" {
 
 
 output "done" {
-  value = lookup(aws_nat_gateway,"public1",null)["id"]
+  value = lookup(aws_nat_gateway.main,"public1",null)["id"]
 }
 
 # output "subnets" {
