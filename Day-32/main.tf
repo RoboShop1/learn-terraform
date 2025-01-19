@@ -10,5 +10,5 @@ module "vpc" {
 variable "vpc" {}
 
 output "merge" {
-  value =  keys({ for i,k in var.vpc["dev"]["subnets"]: i=>k })
+  value =  values({ for i,k in var.vpc["dev"]["subnets"]: i=>k })
 }
