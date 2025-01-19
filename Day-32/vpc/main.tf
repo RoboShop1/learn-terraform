@@ -31,12 +31,12 @@ output "out_sub" {
 
 
 output "sample1" {
-  value = { for i,k in  module.subnets: i=> k.subnets }
+  value = { for i,k in  module.subnets: i=> k.subnets_ids if i == "public"}
 }
 
-output "sample" {
-  value = flatten([ for i,k in  module.subnets:  values(k.subnets)  ])
-}
+# output "sample" {
+#   value = flatten([ for i,k in  module.subnets:  values(k.subnets_ids)  ])
+# }
 
 
 # output "out_sub" {
