@@ -22,5 +22,9 @@ variable "subnets" {}
 
 
 output "out_sub" {
-  value ={for i,k in module.subnets:  i => values(k.subnets).*.id  }
+  value = module.subnets
 }
+
+# output "out_sub" {
+#   value ={for i,k in module.subnets:  i => values(k.subnets).*.id  }
+# }
