@@ -60,6 +60,11 @@ output "app" {
   value = { for i,k in lookup(lookup(module.subnets,"app",null),"subnet_ids",null): i => k.id }
 }
 
+locals {
+  app_subnets = { for i,k in lookup(lookup(module.subnets,"app",null),"subnet_ids",null): i => k.id }
+  web_subnets = { for i,k in lookup(lookup(module.subnets,"web",null),"subnet_ids",null): i => k.id }
+  db_subnets  = { for i,k in lookup(lookup(module.subnets,"db",null),"subnet_ids",null): i => k.id }
+}
 # output "eip" {
 #   value = aws_eip.eip
 # }
