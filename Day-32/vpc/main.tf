@@ -57,7 +57,7 @@ resource "aws_nat_gateway" "main" {
 # }
 
 output "app" {
-  value = lookup(module.subnets,"app",null)
+  value = lookup(lookup(module.subnets,"app",null),"subnet_ids",null)
 }
 
 # output "eip" {
