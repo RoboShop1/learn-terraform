@@ -1,12 +1,11 @@
 packer {
   required_plugins {
-    happycloud = {
-      version = ">= 2.7.0"
-      source = "github.com/hashicorp/happycloud"
+    azure = {
+      version = ">= 1.8.0" # Use the latest version for new features
+      source  = "github.com/hashicorp/azure"
     }
   }
 }
-
 
 source "azure-arm" "community_image" {
 
