@@ -9,8 +9,6 @@ packer {
 
 source "azure-arm" "community_image" {
 
-  tenant_id                      = "45d57a10-6a53-49fd-8f5a-bc35cf01d08b"
-  subscription_id                = "12f9be95-f674-4dc3-8c29-d915cc4e1f8e"
 
   managed_image_resource_group_name = "iteration-1"
   managed_image_name                = "customImageFromCommunity"
