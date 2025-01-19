@@ -1,3 +1,4 @@
+
 resource "aws_vpc" "main" {
   cidr_block       = var.vpc_cidr
 
@@ -39,14 +40,19 @@ resource "aws_eip" "eip" {
 #   }
 #   depends_on = [aws_internet_gateway.gw]
 # }
+#
+# output "eip" {
+#   value = aws_eip.eip
+# }
 
-output "eip" {
-  value = aws_eip.eip
+
+
+resource "null_resource" "one" {
+  for_each = aws_eip.eip
+  provisioner "local-exec" {
+    command = "echo eip - ${each.value["id"]}"
+  }
 }
-
-
-
-
 
 
 
