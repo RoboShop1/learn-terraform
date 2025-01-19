@@ -11,7 +11,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "${var.env}-vpc"
+    Name = "${var.env}-gw"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_nat_gateway" "main" {
   subnet_id     = lookup(lookup(lookup(lookup(module.subnets,"public",null),"subnet_ids",null),each.key,"null"),"id",null)
 
   tags = {
-    Name = ""
+    Name = "${var.env}-vpc-${each.key}-nat"
   }
   depends_on = [aws_internet_gateway.gw]
 }
