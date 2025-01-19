@@ -10,5 +10,5 @@ module "vpc" {
 variable "vpc" {}
 
 output "merge" {
-  value =  flatten(values({ for i,k in var.vpc["dev"]["subnets"]: i=>values(k) }))
+  value =  { for key,value in flatten(values({ for i,k in var.vpc["dev"]["subnets"]: i=>values(k) })): key=>value }
 }
