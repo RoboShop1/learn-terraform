@@ -32,8 +32,8 @@ variable "subnets" {}
 # }
 
 
-output "public" {
-  value = module.subnets["public"]["subnet_ids"]
+output "public_sids" {
+  value = lookup(module.subnets,"public",null)
 }
 # output "sample1" {
 #   value = { for i,k in  module.subnets: i=> k.subnets_ids if i == "public"}
