@@ -1,4 +1,3 @@
 output "subnets" {
-
-  value = aws_subnet.main.*.id
+  value = { for i,k in aws_subnet.main: i => k.id }
 }
