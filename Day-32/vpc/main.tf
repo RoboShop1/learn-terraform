@@ -64,12 +64,20 @@ locals {
   app_subnets = { for i,k in lookup(lookup(module.subnets,"app",null),"subnet_ids",null): i => k.id }
   web_subnets = { for i,k in lookup(lookup(module.subnets,"web",null),"subnet_ids",null): i => k.id }
   db_subnets  = { for i,k in lookup(lookup(module.subnets,"db",null),"subnet_ids",null): i => k.id }
+
+  app_rt_ids = { for i,k in lookup(lookup(module.subnets,"app",null),"route_table_ids",null): i => k.id }
+  web_rt_ids = { for i,k in lookup(lookup(module.subnets,"web",null),"route_table_ids",null): i => k.id }
+  db_rt_ids  = { for i,k in lookup(lookup(module.subnets,"db",null),"route_table_ids",null): i => k.id }
 }
 
 
 output "all" {
   value = merge(local.app_subnets,local.web_subnets,local.db_subnets)
 }
+output "one" {
+  value = merge(local.app_rt_ids,local.db_rt_ids,,local.web_rt_ids)
+}
+
 # output "eip" {
 #   value = aws_eip.eip
 # }
