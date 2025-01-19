@@ -19,3 +19,8 @@ module "subnets" {
 variable "vpc_cidr" {}
 variable "env" {}
 variable "subnets" {}
+
+
+output "out_sub" {
+  value = module.subnets
+}

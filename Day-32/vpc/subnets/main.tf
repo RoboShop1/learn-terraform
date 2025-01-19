@@ -12,3 +12,8 @@ resource "aws_subnet" "main" {
 variable "env" {}
 variable "vpc_id" {}
 variable "subnets" {}
+
+
+output "in_sub" {
+  value = aws_subnet.main
+}
