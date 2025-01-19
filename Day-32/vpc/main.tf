@@ -53,7 +53,7 @@ resource "aws_nat_gateway" "main" {
 
 
 output "subnets" {
-  value = { for i,k in module.subnets:  i => k.subnet_ids if i != "public" }
+  value = {for m,n in { for i,k in module.subnets:  i => k.subnet_ids if i != "public" }: m => keys(n) }
 }
 
 
