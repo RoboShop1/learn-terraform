@@ -31,7 +31,7 @@ output "out_sub" {
 
 
 output "sample1" {
-  value = { for i,k in  module.subnets: i=> values(k.subnets) }
+  value = { for i,k in  module.subnets: i=> k.subnets }
 }
 
 output "sample" {
