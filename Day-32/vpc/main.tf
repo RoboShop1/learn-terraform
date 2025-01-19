@@ -44,6 +44,8 @@ resource "aws_nat_gateway" "main" {
 }
 
 
+
+
 # output "eip" {
 #   value = aws_eip.eip
 # }
