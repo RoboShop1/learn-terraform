@@ -16,5 +16,5 @@ output "main" {
 }
 
 output "merge" {
-  value = merge(var.vpc["subnets"]["web"],var.vpc["subnets"]["app"],var.vpc["subnets"]["db"])
+  value = merge(var.vpc["dev"]["subnets"]["web"],var.vpc["dev"]["subnets"]["app"],var.vpc["dev"]["subnets"]["db"])
 }
