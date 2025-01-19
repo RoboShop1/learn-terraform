@@ -16,6 +16,10 @@ module "subnets" {
 }
 
 
+
+
+
+
 variable "vpc_cidr" {}
 variable "env" {}
 variable "subnets" {}
@@ -23,6 +27,11 @@ variable "subnets" {}
 
 output "out_sub" {
   value = module.subnets
+}
+
+
+output "sample1" {
+  value = { for i,k in  module.subnets: i=> values(k.subnets) }
 }
 
 output "sample" {
