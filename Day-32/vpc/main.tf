@@ -31,28 +31,31 @@ resource "aws_eip" "eip" {
 }
 
 
-# resource "aws_nat_gateway" "main" {
-#   allocation_id = lookup(aws_eip.eip, )
-#   subnet_id     = aws_subnet.example.id
-#
-#   tags = {
-#     Name = ""
-#   }
-#   depends_on = [aws_internet_gateway.gw]
-# }
-#
+resource "aws_nat_gateway" "main" {
+  for_each      = lookup(var.subnets,"public",null)
+
+  allocation_id = lookup(lookup(aws_eip.eip,each.key,null),"id",null)
+  subnet_id     = lookup(lookup(lookup(lookup(module.subnets,"public",null),"subnet_ids",null),each.key,"null"),"id",null)
+
+  tags = {
+    Name = ""
+  }
+  depends_on = [aws_internet_gateway.gw]
+}
+
+
 # output "eip" {
 #   value = aws_eip.eip
 # }
 
 
 
-resource "null_resource" "one" {
-  for_each = aws_eip.eip
-  provisioner "local-exec" {
-    command = "echo eip - ${each.value["id"]}"
-  }
-}
+# resource "null_resource" "one" {
+#   for_each = aws_eip.eip
+#   provisioner "local-exec" {
+#     command = "echo eip - ${each.value["id"]}"
+#   }
+# }
 
 
 
@@ -66,9 +69,9 @@ variable "subnets" {}
 # }
 
 
-output "public_subnets_ids" {
-  value = { for i,k in lookup(lookup(module.subnets,"public",null),"subnet_ids",null): i=>k.id}
-}
+# output "public_subnets_ids" {
+#   value = { for i,k in lookup(lookup(module.subnets,"public",null),"subnet_ids",null): i=>k.id}
+# }
 # output "sample1" {
 #   value = { for i,k in  module.subnets: i=> k.subnets_ids if i == "public"}
 # }
