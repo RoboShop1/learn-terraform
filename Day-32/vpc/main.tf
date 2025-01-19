@@ -25,7 +25,7 @@ module "subnets" {
 
 resource "aws_eip" "eip" {
   depends_on = [aws_internet_gateway.gw]
-  for_each   = lookup(lookup(module.subnets,"public",null),"subnet_ids",null)
+  for_each   = lookup(var.subnets,"public",null)
   domain     = "vpc"
 }
 
