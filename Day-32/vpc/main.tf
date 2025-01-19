@@ -33,7 +33,7 @@ variable "subnets" {}
 
 
 output "public_sids" {
-  value = { for i,k lookup(lookup(module.subnets,"public",null),"subnet_ids",null): i=>k.id}
+  value = { for i,k in lookup(lookup(module.subnets,"public",null),"subnet_ids",null): i=>k.id}
 }
 # output "sample1" {
 #   value = { for i,k in  module.subnets: i=> k.subnets_ids if i == "public"}
