@@ -76,7 +76,7 @@ output "all" {
 }
 
 output "all1" {
-  value = local.db_rt_ids
+  value = merge(local.db_rt_ids,local.app_rt_ids)
 }
 # output "one" {
 #   value = merge(local.app_rt_ids,local.db_rt_ids,,local.web_rt_ids)
