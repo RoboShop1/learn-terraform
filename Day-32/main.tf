@@ -10,5 +10,5 @@ module "vpc" {
 variable "vpc" {}
 
 output "merge" {
-  value =  [for i,k in lookup(var.vpc,"["dev"]["subnets"]",null): i]
+  value =  [for i,k in lookup(var.vpc,["dev"]["subnets"],null): i]
 }
