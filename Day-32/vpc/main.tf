@@ -43,11 +43,17 @@ resource "aws_nat_gateway" "main" {
   depends_on = [aws_internet_gateway.gw]
 }
 
+
+output "nats" {
+  value = aws_nat_gateway.main
+}
+
 # resource "aws_route" "main" {
-#   for_each                  = ""
-#   route_table_id            = aws_route_table.testing.id
-#   destination_cidr_block    = "10.0.1.0/22"
-#   vpc_peering_connection_id = "pcx-45ff3dc1"
+#
+#   for_each                  = toset(keys(merge(var.subnets["web"],var.subnets["app"],var.subnets["db"])))
+#   route_table_id            = local(local.rt_ids,each.key,null)
+#   destination_cidr_block    = "0.0.0.0/0"
+#   nat_gateway_id            =
 # }
 
 
@@ -65,17 +71,21 @@ locals {
   web_subnets = { for i,k in lookup(lookup(module.subnets,"web",null),"subnet_ids",null): i => k.id }
   db_subnets  = { for i,k in lookup(lookup(module.subnets,"db",null),"subnet_ids",null): i => k.id }
 
+  s_ids        =  merge(local.app_subnets,local.web_subnets,local.db_subnets)
+
   app_rt_ids = { for i,k in lookup(lookup(module.subnets,"app",null),"route_table_ids",null): i => k.id }
   web_rt_ids = { for i,k in lookup(lookup(module.subnets,"web",null),"route_table_ids",null): i => k.id }
   db_rt_ids  = { for i,k in lookup(lookup(module.subnets,"db",null),"route_table_ids",null): i => k.id }
+  rt_ids     =  merge(local.db_rt_ids,local.app_rt_ids,local.web_rt_ids)
+
 }
 
 
-output "all" {
+output "ids" {
   value = merge(local.app_subnets,local.web_subnets,local.db_subnets)
 }
 
-output "all1" {
+output "rts" {
   value = merge(local.db_rt_ids,local.app_rt_ids,local.web_rt_ids)
 }
 # output "one" {
