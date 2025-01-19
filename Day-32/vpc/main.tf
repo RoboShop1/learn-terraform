@@ -12,6 +12,7 @@ module "subnets" {
   source = "./subnets"
   vpc_id = aws_vpc.main.id
   subnets = each.value
+  env     = var.env
 }
 
 
