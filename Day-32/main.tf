@@ -16,6 +16,6 @@ output "main" {
 }
 #
 output "merge" {
-  value = merge(var.vpc["dev"]["subnets"]["web"],var.vpc["dev"]["subnets"]["app"],var.vpc["dev"]["subnets"]["db"])
+  value = keys(merge(var.vpc["dev"]["subnets"]["web"],var.vpc["dev"]["subnets"]["app"],var.vpc["dev"]["subnets"]["db"]))
 }
 
