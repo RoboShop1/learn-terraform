@@ -51,7 +51,7 @@ output "nats" {
  resource "aws_route" "main" {
 
   for_each                  = toset(keys(merge(var.subnets["web"],var.subnets["app"],var.subnets["db"])))
-  route_table_id            = local(local.rt_ids,each.key,null)
+  route_table_id            = lookup(local.rt_ids,each.key,null)
   destination_cidr_block    = "0.0.0.0/0"
   nat_gateway_id            = strcontains(each.key, "1") ? lookup(aws_nat_gateway.main,"public1",null)["id"] : lookup(aws_nat_gateway.main,"public2",null)["id"]
 }
