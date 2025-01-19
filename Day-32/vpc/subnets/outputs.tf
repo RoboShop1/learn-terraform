@@ -1,3 +1,4 @@
 output "subnets" {
-  value = aws_subnet.main.id
+
+  value = aws_subnet.main.*.id
 }
