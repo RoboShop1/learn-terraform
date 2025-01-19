@@ -22,5 +22,5 @@ variable "subnets" {}
 
 
 output "out_sub" {
-  value ={for i,k in module.subnets:  i => values(keys(k.subnets))  }
+  value ={for i,k in module.subnets:  i => values(k.subnets)  }
 }
