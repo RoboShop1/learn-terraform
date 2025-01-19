@@ -74,9 +74,13 @@ locals {
 output "all" {
   value = merge(local.app_subnets,local.web_subnets,local.db_subnets)
 }
-output "one" {
-  value = merge(local.app_rt_ids,local.db_rt_ids,,local.web_rt_ids)
+
+output "all1" {
+  value = local.db_rt_ids
 }
+# output "one" {
+#   value = merge(local.app_rt_ids,local.db_rt_ids,,local.web_rt_ids)
+# }
 
 # output "eip" {
 #   value = aws_eip.eip
