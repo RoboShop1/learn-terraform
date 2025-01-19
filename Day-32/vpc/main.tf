@@ -25,6 +25,9 @@ output "out_sub" {
   value = module.subnets
 }
 
+output "sample" {
+  value = { for i,k in  module.subnets: i=>k }
+}
 # output "out_sub" {
 #   value ={for i,k in module.subnets:  i => values(k.subnets).*.id  }
 # }
