@@ -20,16 +20,21 @@ module "subnets" {
 
 
 
+
+
 variable "vpc_cidr" {}
 variable "env" {}
 variable "subnets" {}
 
+#
+# output "out_sub" {
+#   value = module.subnets
+# }
 
-output "out_sub" {
-  value = module.subnets
+
+output "public" {
+  value = module.subnets["public"]["subnet_ids"]
 }
-
-
 # output "sample1" {
 #   value = { for i,k in  module.subnets: i=> k.subnets_ids if i == "public"}
 # }
