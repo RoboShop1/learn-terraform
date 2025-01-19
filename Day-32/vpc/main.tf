@@ -48,15 +48,18 @@ output "nats" {
   value = aws_nat_gateway.main
 }
 
- resource "aws_route" "main" {
+#  resource "aws_route" "main" {
+#
+#   for_each                  = toset(keys(merge(var.subnets["web"],var.subnets["app"],var.subnets["db"])))
+#   route_table_id            = local(local.rt_ids,each.key,null)
+#   destination_cidr_block    = "0.0.0.0/0"
+#   nat_gateway_id            = strcontains(each.key, "1") ? lookup(aws_nat_gateway,"public1",null)["id"] : lookup(aws_nat_gateway,"public2",null)["id"]
+# }
 
-  for_each                  = toset(keys(merge(var.subnets["web"],var.subnets["app"],var.subnets["db"])))
-  route_table_id            = local(local.rt_ids,each.key,null)
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = strcontains(each.key, "1") ? lookup(aws_nat_gateway,"public1",null)["id"] : lookup(aws_nat_gateway,"public2",null)["id"]
+
+output "done" {
+  value = lookup(aws_nat_gateway,"public1",null)["id"]
 }
-
-
 
 # output "subnets" {
 #   value = {for m,n in { for i,k in module.subnets:  i => k.subnet_ids if i != "public" }: m => n  }
