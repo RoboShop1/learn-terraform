@@ -65,6 +65,11 @@ locals {
   web_subnets = { for i,k in lookup(lookup(module.subnets,"web",null),"subnet_ids",null): i => k.id }
   db_subnets  = { for i,k in lookup(lookup(module.subnets,"db",null),"subnet_ids",null): i => k.id }
 }
+
+
+output "all" {
+  value = merge(local.app_subnets,local.web_subnets,local.db_subnets)
+}
 # output "eip" {
 #   value = aws_eip.eip
 # }
