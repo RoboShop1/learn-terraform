@@ -14,7 +14,8 @@ variable "vpc" {}
 output "main" {
   value = module.vpc
 }
+#
+# output "merge" {
+#   value = merge(var.vpc["dev"]["subnets"]["web"],var.vpc["dev"]["subnets"]["app"],var.vpc["dev"]["subnets"]["db"])
+# }
 
-output "merge" {
-  value = merge(var.vpc["dev"]["subnets"]["web"],var.vpc["dev"]["subnets"]["app"],var.vpc["dev"]["subnets"]["db"])
-}

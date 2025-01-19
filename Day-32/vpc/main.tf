@@ -43,7 +43,18 @@ resource "aws_nat_gateway" "main" {
   depends_on = [aws_internet_gateway.gw]
 }
 
+# resource "aws_route" "main" {
+#   for_each                  = ""
+#   route_table_id            = aws_route_table.testing.id
+#   destination_cidr_block    = "10.0.1.0/22"
+#   vpc_peering_connection_id = "pcx-45ff3dc1"
+# }
 
+
+
+output "subnets" {
+  value = module.subnets
+}
 
 
 # output "eip" {
