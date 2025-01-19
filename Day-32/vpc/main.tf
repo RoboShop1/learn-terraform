@@ -6,6 +6,13 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env}-vpc"
+  }
+}
 
 module "subnets" {
   for_each = var.subnets
@@ -14,6 +21,24 @@ module "subnets" {
   subnets = each.value
   env     = var.env
 }
+
+
+resource "aws_eip" "eip" {
+  depends_on = [aws_internet_gateway.gw]
+  for_each   = lookup(lookup(module.subnets,"public",null),"subnet_ids",null)
+  domain     = "vpc"
+}
+
+
+# resource "aws_nat_gateway" "main" {
+#   allocation_id = lookup(aws_eip.eip, )
+#   subnet_id     = aws_subnet.example.id
+#
+#   tags = {
+#     Name = ""
+#   }
+#   depends_on = [aws_internet_gateway.gw]
+# }
 
 
 
@@ -32,7 +57,7 @@ variable "subnets" {}
 # }
 
 
-output "public_sids" {
+output "public_subnets_ids" {
   value = { for i,k in lookup(lookup(module.subnets,"public",null),"subnet_ids",null): i=>k.id}
 }
 # output "sample1" {
