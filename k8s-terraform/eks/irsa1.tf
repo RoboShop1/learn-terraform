@@ -45,7 +45,7 @@ resource "aws_iam_role_policy_attachment" "s3-attach" {
 }
 
 
-resource "aws_iam_role_policy_attachment" "s3-attach" {
+resource "aws_iam_role_policy_attachment" "s31-attach" {
   role       = aws_iam_role.s33_role.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
