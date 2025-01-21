@@ -44,4 +44,12 @@ resource "aws_iam_role_policy_attachment" "s3-attach" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
+
+resource "aws_iam_role_policy_attachment" "s3-attach" {
+  role       = aws_iam_role.s33_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
+
+
 # kubergrunt  eks oidc-thumbprint  --issuer-url aws_eks_cluster.cluster.identity.0.oidc.0.issuer
