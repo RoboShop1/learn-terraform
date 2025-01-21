@@ -26,7 +26,7 @@ resource "aws_iam_role" "s33_role" {
         "Condition": {
           "StringEquals": {
             "oidc.eks.us-east-1.amazonaws.com/id/62E9F3B44BB1C4FC1B0769CD30BEC388:aud": "sts.amazonaws.com",
-            "oidc.eks.us-east-1.amazonaws.com/id/62E9F3B44BB1C4FC1B0769CD30BEC388:aud": "system:serviceaccount:default:dev-sa"
+            "oidc.eks.us-east-1.amazonaws.com/id/62E9F3B44BB1C4FC1B0769CD30BEC388:sub": "system:serviceaccount:default:dev-sa"
           }
         }
       }
