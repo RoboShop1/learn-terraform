@@ -3,9 +3,11 @@ resource "aws_iam_openid_connect_provider" "default" {
 
   client_id_list  = ["sts.amazonaws.com"]
 
-  thumbprint_list = ["62E9F3B44BB1C4FC1B0769CD30BEC388"]
+  thumbprint_list = ["9e99a48a9960b14926bb7f3b02e22da2b0ab7280"]
 
   tags = {
     Name = "eks-oidc"
   }
 }
+
+# kubergrunt  eks oidc-thumbprint  --issuer-url aws_eks_cluster.cluster.identity.0.oidc.0.issuer
