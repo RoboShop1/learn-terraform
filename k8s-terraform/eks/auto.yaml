@@ -4,9 +4,9 @@ autoDiscovery:
 rbac:
   serviceAccount:
     create: true
-    name: "scale-sa"
+    name: "dev-sa"
     annotations:
-      "eks.amazonaws.com/role-arn": "arn:aws:iam::339712959230:role/eks-cluster-autoscale"
+      "eks.amazonaws.com/role-arn": "arn:aws:iam::339712959230:role/s33_role"
 
 
 
