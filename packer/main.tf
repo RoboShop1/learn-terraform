@@ -13,7 +13,7 @@
 resource "aws_instance" "main" {
   count        = 3
   instance_type = "t3.small"
-  ami = "ami-0df8c184d5f6ae949"
+  ami = "ami-043a5a82b6cf98947"
   key_name = "nvirginia"
 
   lifecycle {
