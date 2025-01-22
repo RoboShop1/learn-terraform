@@ -24,6 +24,8 @@ source "amazon-ebs" "nginx" {
 
   subnet_id = "subnet-0071e36c53f811c0b"
 
+
+
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 5
@@ -32,6 +34,7 @@ source "amazon-ebs" "nginx" {
   }
 
   force_deregister = true
+  force_delete_snapshot = true
 
   run_tags = {
     Name = "PackerBuildInstance"
