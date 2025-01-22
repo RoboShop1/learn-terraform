@@ -1,8 +1,8 @@
-data "aws_ami" "example" {
-  most_recent      = true
-  name_regex       = "learn-terraform-packer-v1"
-  owners           = ["self"]
-}
+# data "aws_ami" "example" {
+#   most_recent      = true
+#   name_regex       = "learn-terraform-packer-v1"
+#   owners           = ["self"]
+# }
 
 
 output "name" {
