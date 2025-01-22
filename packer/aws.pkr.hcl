@@ -16,7 +16,7 @@ variable "region" {
 }
 
 source "amazon-ebs" "nginx" {
-  ami_name      = "learn-terraform-packer-${local.timestamp}"
+  ami_name      = "learn-terraform-packer-v1"
   instance_type = "t3.small"
   region        = var.region
   source_ami    = "ami-0df8c184d5f6ae949"
