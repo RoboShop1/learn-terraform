@@ -1,12 +1,11 @@
 packer {
   required_plugins {
-    happycloud = {
-      version = ">= 2.7.0"
-      source = "github.com/hashicorp/aws"
+    amazon = {
+      version = ">= 1.2.8"
+      source  = "github.com/hashicorp/amazon"
     }
   }
 }
-
 
 
 
