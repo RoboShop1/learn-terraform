@@ -11,11 +11,12 @@ output "name" {
 
 
 resource "aws_instance" "main" {
+  count        = 3
   instance_type = "t3.small"
   ami = data.aws_ami.example.image_id
   key_name = "nvirginia"
 
   tags  = {
-    Name = "sample-tag"
+    Name = "sample-tag-${count.index}"
   }
 }
