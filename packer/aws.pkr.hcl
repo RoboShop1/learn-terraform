@@ -31,6 +31,8 @@ source "amazon-ebs" "nginx" {
     delete_on_termination = true
   }
 
+  force_deregister = true
+
   run_tags = {
     Name = "PackerBuildInstance"
   }
