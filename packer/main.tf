@@ -5,9 +5,9 @@
 # }
 
 
-output "name" {
-  value = data.aws_ami.example
-}
+# output "name" {
+#   value = data.aws_ami.example
+# }
 
 
 resource "aws_instance" "main" {
