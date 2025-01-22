@@ -11,7 +11,7 @@ output "name" {
 
 
 resource "aws_instance" "main" {
-  instance_type = "t2.micro"
+  instance_type = "t3.small"
   ami = data.aws_ami.example.image_id
   key_name = "nvirginia"
 
