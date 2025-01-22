@@ -22,7 +22,7 @@ source "amazon-ebs" "nginx" {
   source_ami    = "ami-0df8c184d5f6ae949"
   ssh_username = "ec2-user"
 
-  subnet_id = "subnet-066877464a2626291"
+  subnet_id = "subnet-0071e36c53f811c0b"
 
   run_tags = {
     Name = "PackerBuildInstance"
