@@ -13,7 +13,7 @@ resource "aws_eks_cluster" "dev-eks" {
   }
 
   access_config {
-    authentication_mode = "CONFIG_MAP"
+    authentication_mode = "API_AND_CONFIG_MAP"
     bootstrap_cluster_creator_admin_permissions = true
   }
 
@@ -38,7 +38,7 @@ resource "aws_eks_node_group" "dev-eks-public-nodegroup" {
   instance_types  = ["t3.small"]
 
   scaling_config {
-    desired_size = 2
+    desired_size = 1
     max_size     = 4
     min_size     = 1
   }
