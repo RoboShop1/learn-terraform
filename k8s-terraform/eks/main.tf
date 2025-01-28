@@ -70,7 +70,7 @@ resource "aws_eks_node_group" "dev-eks-public-nodegroup" {
 
 
 # private-node
-/*
+
 resource "aws_eks_node_group" "dev-eks-private-nodegroup" {
   depends_on = [
     aws_iam_role_policy_attachment.node-AmazonEKSWorkerNodePolicy,
@@ -80,9 +80,9 @@ resource "aws_eks_node_group" "dev-eks-private-nodegroup" {
   cluster_name    = aws_eks_cluster.dev-eks.name
   node_group_name = "dev-eks-publick po -nodegroup"
   node_role_arn   = aws_iam_role.node_role.arn
-  subnet_ids      = var.private_subnets
+  subnet_ids      = var.public_subnets
   capacity_type   = "SPOT"
-  instance_types  = ["t3.small"]
+  instance_types  = ["t3.medium"]
 
 
   scaling_config {
@@ -104,7 +104,7 @@ resource "aws_eks_node_group" "dev-eks-private-nodegroup" {
   }
 
 }
-*/
+
 
 #
 
