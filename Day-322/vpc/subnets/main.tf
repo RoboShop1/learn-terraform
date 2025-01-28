@@ -15,5 +15,5 @@ variable "env" {}
 variable "subnets" {}
 
 output "subnets" {
-  value = { for i,j in aws_subnet.main: i => j.id }
+  value = aws_subnet.main
 }
