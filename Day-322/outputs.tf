@@ -3,5 +3,5 @@ output "vpc" {
 }
 
 output "app_subnets" {
-  value = module.vpc["dev"]["subnets_main"]
+  value = lookup(lookup(module.vpc,"dev",null),"subnets_main",null)
 }
