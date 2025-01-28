@@ -26,3 +26,5 @@ resource "aws_instance" "main" {
   subnet_id     = each.value
 
 }
+
+#
