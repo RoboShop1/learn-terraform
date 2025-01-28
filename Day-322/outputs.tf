@@ -16,7 +16,7 @@ locals {
 }
 
 output "rr" {
-  value = local.name
+  value = local.name[0]
 }
 
 # resource "aws_instance" "main" {
