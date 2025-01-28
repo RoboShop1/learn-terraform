@@ -3,5 +3,5 @@ output "vpc" {
 }
 
 output "app_subnets" {
-  value = lookup(lookup(module.vpc,"dev",null),"subnets_main",null)
+  value = { for i,k in lookup(lookup(module.vpc,"dev",null),"subnets_main",null): i => k if i == "app" }
 }
