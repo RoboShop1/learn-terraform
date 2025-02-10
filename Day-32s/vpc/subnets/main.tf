@@ -22,11 +22,11 @@ resource "aws_route_table" "rt" {
 }
 
 
-# resource "aws_route_table_association" "rta" {
-#   for_each        =  aws_subnet.main
-#   subnet_id       =  lookup(aws_subnet.main,each.value["id"],null)
-#   route_table_id  = lookup(aws_route_table.rt,each.value["id"],null)
-# }
+resource "aws_route_table_association" "rta" {
+  for_each        =  aws_subnet.main
+  subnet_id       =  lookup(aws_subnet.main,each.value["id"],null)
+  route_table_id  = lookup(aws_route_table.rt,each.value["id"],null)
+}
 
 
 
