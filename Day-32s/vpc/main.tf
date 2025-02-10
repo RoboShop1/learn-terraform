@@ -11,6 +11,7 @@ variable "vpc_cidr_block" {}
 variable "subnets" {}
 
 module "subnets" {
+
   depends_on = [aws_vpc.main]
 
   for_each   = var.subnets
