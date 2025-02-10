@@ -1,11 +1,4 @@
-terraform {
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.2"
-    }
-  }
-}
+
 resource "aws_vpc" "main" {
   cidr_block       = var.vpc_cidr_block
 
@@ -13,6 +6,14 @@ resource "aws_vpc" "main" {
     Name = "${var.env}-vpc"
   }
 }
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "${var.env}-igw"
+  }
+}
+
 
 variable "env" {}
 variable "vpc_cidr_block" {}
@@ -29,27 +30,33 @@ module "subnets" {
   env        =  var.env
 }
 
-
-
-
-
 locals {
+
+  #Subnets
+
   public_subnets = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "public" },"public",null)
   web_subnets    = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "web" },"web",null)
   app_subnets    = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "app" },"app",null)
   db_subnets     = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "db" },"db",null)
+
+  #RT
+  public_rt = lookup({for i,j in module.subnets: i => {for m,n in j.rt: m => n.id } if i == "public" },"public",null)
+  web_rt    = lookup({for i,j in module.subnets: i => {for m,n in j.rt: m => n.id } if i == "web" },"web",null)
+  app_rt    = lookup({for i,j in module.subnets: i => {for m,n in j.rt: m => n.id } if i == "app" },"app",null)
+  db_rt     = lookup({for i,j in module.subnets: i => {for m,n in j.rt: m => n.id } if i == "db" },"db",null)
+
 }
 
 
-#
-output "p" {
+
+output "public" {
   value = local.public_subnets
 }
 
-resource "null_resource" "main1" {
-  for_each = local.public_subnets
-
+output "public-rt" {
+  value = local.public_rt
 }
+
 
 
 # output "subnets" {

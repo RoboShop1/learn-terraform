@@ -42,6 +42,6 @@ output "subnets" {
   value = aws_subnet.main
 }
 
-output "rt-tables" {
+output "rt" {
   value = aws_route_table.rt
 }
