@@ -35,9 +35,9 @@ module "subnets" {
 
 locals {
   public_subnets = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "public" },"public",null)
-  web_subnets    = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "web" }
-  app_subnets    = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "app" }
-  db_subnets     = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "db" }
+  web_subnets    = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "web" },"web",null)
+  app_subnets    = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "app" },"app",null)
+  db_subnets     = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "db" },"db",null)
 }
 
 
@@ -46,7 +46,7 @@ output "p" {
   value = local.public_subnets
 }
 
-resource "null_resource" "main" {
+resource "null_resource" "main1" {
   for_each = local.public_subnets
 
 }
