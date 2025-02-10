@@ -27,6 +27,6 @@ output "subnets" {
   value = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } }
 }
 
-output "rt" {
-  value = {for i,j in module.subnets: i => j}
-}
+# output "rt" {
+#   value = {for i,j in module.subnets: i => j}
+# }
