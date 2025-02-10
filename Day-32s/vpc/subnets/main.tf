@@ -5,7 +5,7 @@ resource "aws_subnet" "main" {
   cidr_block         = each.value["cidr_block"]
   availability_zone  = each.value["az"]
   tags = {
-    Name = "${var.env}-vpc-${each.key}-subnet"
+    Name = "${var.env}-vpc-subnet-${each.key}"
   }
 }
 
