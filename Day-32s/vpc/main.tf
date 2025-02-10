@@ -47,7 +47,7 @@ output "p" {
 }
 
 resource "null_resource" "main" {
-  for_each = local.public_subnets
+  for_each = values(local.public_subnets)
 
 }
 
