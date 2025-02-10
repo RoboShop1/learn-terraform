@@ -23,14 +23,30 @@ module "subnets" {
 
 
 
-output "subnets" {
-  value = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } }
+
+
+locals {
+  public_subnets = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "public" }
+  web_subnets    = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "web" }
+  app_subnets    = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "app" }
+  db_subnets     = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "db" }
 }
 
-# output "rt" {
-#   value = {for i,j in module.subnets: i => j}
+
+
+output "p" {
+  value = local.public_subnets
+}
+
+
+# output "subnets" {
+#   value = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } }
 # }
-
-output "sample" {
-  value = module.subnets
-}
+#
+# # output "rt" {
+# #   value = {for i,j in module.subnets: i => j}
+# # }
+#
+# output "sample" {
+#   value = module.subnets
+# }
