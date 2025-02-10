@@ -40,6 +40,6 @@ output "subnets" {
   value = aws_subnet.main
 }
 
-# output "rt-tables" {
-#   value = aws_route_table.rt
-# }
+output "rt-tables" {
+  value = aws_route_table.rt
+}

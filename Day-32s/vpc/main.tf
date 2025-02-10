@@ -30,3 +30,7 @@ output "subnets" {
 # output "rt" {
 #   value = {for i,j in module.subnets: i => j}
 # }
+
+output "sample" {
+  value = module.subnets.rt-tables
+}
