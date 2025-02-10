@@ -68,7 +68,7 @@ resource "aws_route" "igw" {
 #
 #   route_table_id            = each.value
 #   destination_cidr_block    = "0.0.0.0/0"
-#   nat_gateway_id            = aws_nat_gateway.nat
+#   nat_gateway_id            =
 # }
 
 
@@ -107,7 +107,7 @@ locals {
 
 
 output "nat" {
-  value = aws_nat_gateway.nat
+  value = { for i,j in aws_nat_gateway.nat: i => j.id }
 }
 
 output "public" {
