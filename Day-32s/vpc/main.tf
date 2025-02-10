@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.2"
+    }
+  }
+}
 resource "aws_vpc" "main" {
   cidr_block       = var.vpc_cidr_block
 
@@ -36,6 +44,11 @@ locals {
 
 output "p" {
   value = local.public_subnets
+}
+
+resource "null_resource" "main" {
+  for_each = local.public_subnets
+
 }
 
 
