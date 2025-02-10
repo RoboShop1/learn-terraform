@@ -28,5 +28,5 @@ output "subnets" {
 }
 
 output "rt" {
-  value = module.subnets.rt-tables
+  value = {for i,j in module.subnets: i => j}
 }
