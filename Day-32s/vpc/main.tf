@@ -22,5 +22,5 @@ module "subnets" {
 }
 
 output "module_subnet" {
-  value = module.subnets
+  value = {for i,j in module.subnets: i => k }
 }
