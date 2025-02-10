@@ -34,7 +34,7 @@ module "subnets" {
 
 
 locals {
-  public_subnets = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "public" }
+  public_subnets = lookup({for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "public" },"public",null)
   web_subnets    = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "web" }
   app_subnets    = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "app" }
   db_subnets     = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } if i == "db" }
