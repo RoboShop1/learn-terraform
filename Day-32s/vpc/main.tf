@@ -32,5 +32,5 @@ output "subnets" {
 # }
 
 output "sample" {
-  value = module.subnets.rt-tables
+  value = module.subnets
 }
