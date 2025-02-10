@@ -21,6 +21,6 @@ module "subnets" {
   env        =  var.env
 }
 
-output "module_subnet" {
+output "subnets" {
   value = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } }
 }
