@@ -34,3 +34,7 @@ variable "vpc" {
     }
   }
 }
+
+output "main" {
+  value = module.vpc
+}

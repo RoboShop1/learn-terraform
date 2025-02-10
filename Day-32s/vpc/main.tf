@@ -21,3 +21,6 @@ module "subnets" {
   env        =  var.env
 }
 
+output "module_subnet" {
+  value = module.subnets.subnets
+}
