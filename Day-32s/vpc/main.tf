@@ -26,3 +26,7 @@ module "subnets" {
 output "subnets" {
   value = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } }
 }
+
+output "rt" {
+  value = module.subnets.rt-tables
+}
