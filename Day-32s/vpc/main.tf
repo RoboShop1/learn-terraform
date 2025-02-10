@@ -53,6 +53,28 @@ resource "aws_nat_gateway" "nat" {
 }
 
 
+resource "aws_route" "igw" {
+  for_each                  = local.public_rt
+
+  route_table_id            = each.value
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id                = aws_internet_gateway.gw.id
+}
+
+
+
+# resource "aws_route" "ngw" {
+#   for_each                  = local.web_subnets
+#
+#   route_table_id            = each.value
+#   destination_cidr_block    = "0.0.0.0/0"
+#   nat_gateway_id            = aws_nat_gateway.nat
+# }
+
+
+
+
+
 locals {
 
   #Subnets
@@ -84,7 +106,9 @@ locals {
 
 
 
-
+output "nat" {
+  value = aws_nat_gateway.nat
+}
 
 output "public" {
   value = local.public_subnets
