@@ -13,6 +13,8 @@ variable "subnets" {}
 variable "vpc_id" {}
 variable "env" {}
 
+
+
 output "subnets" {
   value = aws_subnet.main
 }
