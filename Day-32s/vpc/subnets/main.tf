@@ -9,6 +9,26 @@ resource "aws_subnet" "main" {
   }
 }
 
+
+
+
+resource "aws_route_table" "rt" {
+  for_each   = aws_subnet.main
+  vpc_id     = var.vpc_id
+
+  tags = {
+    Name = "${var.env}-vpc-rt-${each.key}"
+  }
+}
+
+resource "aws_route_table_association" "rta" {
+  for_each       = aws_subnet.main
+  subnet_id      = lookup(lookup(aws_subnet.main,each.value,null),"id",null)
+  route_table_id = lookup(lookup(aws_route_table.rt,each.value,null),"id",null)
+}
+
+
+
 variable "subnets" {}
 variable "vpc_id" {}
 variable "env" {}
@@ -17,4 +37,8 @@ variable "env" {}
 
 output "subnets" {
   value = aws_subnet.main
+}
+
+output "rt-tables" {
+  value = aws_route_table.rt
 }
