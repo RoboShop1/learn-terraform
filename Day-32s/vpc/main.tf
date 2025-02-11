@@ -63,17 +63,20 @@ resource "aws_route" "igw" {
 
 
 
-resource "aws_route" "ngw" {
-  for_each                  = local.web_subnets
-  route_table_id            = each.value
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = can(regex(1,each.key)) ? aws_nat_gateway.nat["public1"].id:  aws_nat_gateway.nat["public2"].id
+# resource "aws_route" "ngw" {
+#   for_each                  = local.web_subnets
+#   route_table_id            = each.value
+#   destination_cidr_block    = "0.0.0.0/0"
+#   nat_gateway_id            = can(regex(1,each.key)) ? aws_nat_gateway.nat["public1"].id:  aws_nat_gateway.nat["public2"].id
+# }
+
+
+
+
+
+output "one" {
+  value = aws_nat_gateway.nat["public1"].id
 }
-
-
-
-
-
 
 
 locals {
