@@ -118,6 +118,10 @@ output "public" {
   value = local.public_subnets
 }
 
+output "public1" {
+  value = local.web_subnets
+}
+
 output "public-rt" {
   value = local.public_rt
 }
