@@ -75,5 +75,5 @@ output "main" {
 }
 
 output "another" {
-  value = lookup(module.vpc, "dev",null)
+  value = lookup(lookup(module.vpc, "dev",null),"app_subnets",null)
 }
