@@ -112,4 +112,7 @@ output "public-rt" {
   value = local.public_rt
 }
 
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
 
