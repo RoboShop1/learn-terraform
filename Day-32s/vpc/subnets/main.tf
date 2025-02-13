@@ -4,6 +4,7 @@ resource "aws_subnet" "main" {
   vpc_id             = var.vpc_id
   cidr_block         = each.value["cidr_block"]
   availability_zone  = each.value["az"]
+  map_public_ip_on_launch = can(regex(public,each.key)) ? true : false
   tags = {
     Name = "${var.env}-vpc-subnet-${each.key}"
   }
