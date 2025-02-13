@@ -15,12 +15,12 @@ resource "aws_ec2_transit_gateway" "example" {
   }
 }
 
-resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
-  for_each           = module.vpc
-  subnet_ids         = values(each.value["app_subnets"])
-  transit_gateway_id = aws_ec2_transit_gateway.example.id
-  vpc_id             = each.value["vpc_id"]
-}
+# resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
+#   for_each           = module.vpc
+#   subnet_ids         = values(each.value["app_subnets"])
+#   transit_gateway_id = aws_ec2_transit_gateway.example.id
+#   vpc_id             = each.value["vpc_id"]
+# }
 
 
 variable "vpc" {
@@ -72,4 +72,8 @@ variable "vpc" {
 
 output "main" {
   value = module.vpc
+}
+
+output "another" {
+  value = lookup(module.vpc, "dev",null)
 }
