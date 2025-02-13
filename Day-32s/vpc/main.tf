@@ -7,12 +7,23 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.main.id
+
+  ingress {
+    protocol  = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 22
+    to_port   = 22
+  }
+}
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "${var.env}-igw"
   }
 }
+
 
 
 variable "env" {}
