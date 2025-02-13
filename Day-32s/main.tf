@@ -16,12 +16,11 @@ resource "aws_ec2_transit_gateway" "example" {
 }
 
 
-# resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
-#   for_each           = module.vpc
-#   subnet_ids         = [aws_subnet.example.id]
-#   transit_gateway_id = aws_ec2_transit_gateway.example.id
-#   vpc_id             = aws_vpc.example.id
-# }
+resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
+  for_each           = module.vpc
+  subnet_ids         =
+  transit_gateway_id = aws_ec2_transit_gateway.example.id
+  vpc_id             = each.value["vpc_id"]
 
 variable "vpc" {
   default = {

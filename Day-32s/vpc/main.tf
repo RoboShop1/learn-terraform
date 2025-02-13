@@ -63,7 +63,7 @@ resource "aws_route" "igw" {
 
 
 
-resource "aws_route" "ngw" {
+resource "aws_route" "web-ngw" {
   for_each                  = local.web_rt
   route_table_id            = each.value
   destination_cidr_block    = "0.0.0.0/0"
@@ -71,12 +71,20 @@ resource "aws_route" "ngw" {
 }
 
 
-
-
-
-output "one" {
-  value = aws_nat_gateway.nat["public1"].id
+resource "aws_route" "app-ngw" {
+  for_each                  = local.app_rt
+  route_table_id            = each.value
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id            = can(regex(1,each.key)) ? aws_nat_gateway.nat["public1"].id:  aws_nat_gateway.nat["public2"].id
 }
+
+resource "aws_route" "db-ngw" {
+  for_each                  = local.db_rt
+  route_table_id            = each.value
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id            = can(regex(1,each.key)) ? aws_nat_gateway.nat["public1"].id:  aws_nat_gateway.nat["public2"].id
+}
+
 
 
 locals {
@@ -96,23 +104,25 @@ locals {
 
 }
 
-output "nat" {
-  value = { for i,j in aws_nat_gateway.nat: i => j.id }
-}
-
-output "public" {
-  value = local.public_subnets
-}
-
-output "public1" {
-  value = local.web_subnets
-}
-
-output "public-rt" {
-  value = local.public_rt
-}
-
 output "vpc_id" {
   value = aws_vpc.main.id
 }
+
+
+output "public_subnets" {
+  value = local.public_subnets
+}
+
+output "app_subnets" {
+  value = local.app_subnets
+}
+
+output "web_subnets" {
+  value = local.web_subnets
+}
+
+output "db_subnets" {
+  value = local.db_subnets
+}
+
 
