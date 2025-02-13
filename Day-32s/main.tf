@@ -27,6 +27,12 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
 }
 
 
+module "ec2" {
+  for_each = var.vpc
+  source = "./ec2"
+  subnet_id = values(lookup(lookup(module.vpc, each.key,null),"public_subnets",null))[0]
+}
+
 variable "vpc" {
   default = {
     dev = {
