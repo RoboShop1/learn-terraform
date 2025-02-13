@@ -6,7 +6,14 @@ module "vpc" {
   vpc_cidr_block    = each.value["vpc_cidr_block"]
 }
 
+resource "aws_ec2_transit_gateway" "example" {
+  depends_on = [module.vpc]
+  description = "dev-prod-tg"
 
+  tags = {
+    Name = "dev-prod-tg"
+  }
+}
 
 
 variable "vpc" {

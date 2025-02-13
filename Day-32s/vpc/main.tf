@@ -96,20 +96,6 @@ locals {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 output "nat" {
   value = { for i,j in aws_nat_gateway.nat: i => j.id }
 }
@@ -127,15 +113,3 @@ output "public-rt" {
 }
 
 
-
-# output "subnets" {
-#   value = {for i,j in module.subnets: i => {for m,n in j.subnets: m => n.id } }
-# }
-#
-# # output "rt" {
-# #   value = {for i,j in module.subnets: i => j}
-# # }
-#
-# output "sample" {
-#   value = module.subnets
-# }
