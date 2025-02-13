@@ -20,6 +20,10 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
   subnet_ids         = values(each.value["app_subnets"])
   transit_gateway_id = aws_ec2_transit_gateway.example.id
   vpc_id             = each.value["vpc_id"]
+
+  tags = {
+    Name = "${each.key}-tg-attachment"
+  }
 }
 
 
