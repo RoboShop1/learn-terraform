@@ -146,3 +146,19 @@ output "db_subnets" {
 }
 
 
+
+output "public_rt" {
+  value = local.public_rt
+}
+
+output "app_rt" {
+  value = local.app_rt
+}
+
+output "web_rt" {
+  value = local.web_rt
+}
+
+output "db_rt" {
+  value = local.db_rt
+}
