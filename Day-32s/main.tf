@@ -102,5 +102,5 @@ locals {
  }
 
 output "main1" {
-  value = [ for i in local.rts: i ]
+  value = concat([ for i in local.rts: i ])
 }
