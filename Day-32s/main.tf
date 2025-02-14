@@ -94,5 +94,5 @@ output "dev_all_rts" {
 }
 
 output "prod_all_rts" {
-  value = values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) })
+  value = concat(values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) }))
 }
