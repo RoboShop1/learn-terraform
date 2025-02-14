@@ -90,11 +90,11 @@ output "main" {
 # }
 
 output "dev_all_rts" {
-  value = (values({ for i,j in lookup(module.vpc,"dev",null): i => values(j) if can(regex("rt",i)) }))
+  value = flatten((values({ for i,j in lookup(module.vpc,"dev",null): i => values(j) if can(regex("rt",i)) })))
 }
 
 output "prod_all_rts" {
-  value = values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) })
+  value = flatten(values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) }))
 }
 
 # locals {
