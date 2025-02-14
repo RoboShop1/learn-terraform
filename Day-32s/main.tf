@@ -90,5 +90,5 @@ output "main" {
 # }
 
 output "dev_all_rts" {
-  value = { for i,j in module.vpc: i => j if j == regex("rt",j) }
+  value = { for i,j in module.vpc: i => j if can(regex("rt",j)) ? true: false  }
 }
