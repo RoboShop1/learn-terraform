@@ -6,26 +6,29 @@ module "vpc" {
   vpc_cidr_block    = each.value["vpc_cidr_block"]
 }
 
-# resource "aws_ec2_transit_gateway" "example" {
-#   depends_on = [module.vpc]
-#   description = "dev-prod-tg"
-#
-#   tags = {
-#     Name = "dev-prod-tg"
-#   }
-# }
-#
-# resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
-#   for_each           = module.vpc
-#   subnet_ids         = values(each.value["app_subnets"])
-#   transit_gateway_id = aws_ec2_transit_gateway.example.id
-#   vpc_id             = each.value["vpc_id"]
-#
-#   tags = {
-#     Name = "${each.key}-tg-attachment"
-#   }
-# }
+resource "aws_ec2_transit_gateway" "example" {
+  depends_on = [module.vpc]
+  description = "dev-prod-tg"
 
+  tags = {
+    Name = "dev-prod-tg"
+  }
+}
+
+resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
+  for_each           = module.vpc
+  subnet_ids         = values(each.value["app_subnets"])
+  transit_gateway_id = aws_ec2_transit_gateway.example.id
+  vpc_id             = each.value["vpc_id"]
+
+  tags = {
+    Name = "${each.key}-tg-attachment"
+  }
+}
+
+# module "tr" {
+#   source = ""
+# }
 
 
 module "ec2" {
