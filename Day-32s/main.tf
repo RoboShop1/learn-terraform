@@ -90,5 +90,5 @@ output "main" {
 # }
 
 output "dev_all_rts" {
-  value = { for i,j in lookup(module.vpc,"dev",null): i =>  j   }
+  value = { for i,j in lookup(module.vpc,"dev",null): i =>  j if can(regex("rt",i)) }
 }
