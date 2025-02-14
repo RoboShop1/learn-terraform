@@ -89,18 +89,18 @@ output "main" {
 #   value = values(lookup(lookup(module.vpc, "dev",null),"app_subnets",null))
 # }
 
-# output "dev_all_rts" {
-#   value = concat(values({ for i,j in lookup(module.vpc,"dev",null): i => values(j) if can(regex("rt",i)) }))
-# }
-
-# output "prod_all_rts" {
-#   value = values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) })
-# }
-
-locals {
-  rts = values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) })
- }
-
-output "main1" {
-  value = concat([ for i in local.rts: i ])
+output "dev_all_rts" {
+  value = (values({ for i,j in lookup(module.vpc,"dev",null): i => values(j) if can(regex("rt",i)) }))
 }
+
+output "prod_all_rts" {
+  value = values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) })
+}
+
+# locals {
+#   rts = values({ for i,j in lookup(module.vpc,"prod",null): i => values(j) if can(regex("rt",i)) })
+#  }
+#
+# output "main1" {
+#   value = concat([ for i in local.rts: i ])
+# }
