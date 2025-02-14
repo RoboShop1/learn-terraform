@@ -90,9 +90,9 @@ output "main" {
 # }
 
 output "dev_all_rts" {
-  value = { for i,j in lookup(module.vpc,"dev",null): i =>  j if can(regex("rt",i)) }
+  value = { for i,j in lookup(module.vpc,"dev",null): i =>  merge(j) if can(regex("rt",i)) }
 }
 
 output "prod_all_rts" {
-  value = { for i,j in lookup(module.vpc,"prod",null): i =>  j if can(regex("rt",i)) }
+  value = { for i,j in lookup(module.vpc,"prod",null): i =>  merge(j) if can(regex("rt",i)) }
 }
