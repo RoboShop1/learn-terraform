@@ -26,9 +26,14 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "example" {
   }
 }
 
-# module "tr" {
-#   source = ""
-# }
+module "tranist" {
+  source = "./tranist"
+  for_each = var.vpc
+
+  rts-ids = flatten((values({ for i,j in lookup(module.vpc,each.key,null): i => values(j) if can(regex("rt",i)) })))
+  destation-cidr = each.value["vpc_cidr_block"]
+  transit-gate-id = aws_ec2_transit_gateway.example.id
+}
 
 
 module "ec2" {
@@ -91,6 +96,8 @@ output "main" {
 # output "another" {
 #   value = values(lookup(lookup(module.vpc, "dev",null),"app_subnets",null))
 # }
+
+
 
 output "dev_all_rts" {
   value = flatten((values({ for i,j in lookup(module.vpc,"dev",null): i => values(j) if can(regex("rt",i)) })))
