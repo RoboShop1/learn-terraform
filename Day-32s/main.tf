@@ -31,7 +31,7 @@ module "tranist" {
   for_each = var.vpc
 
   rts-ids = flatten((values({ for i,j in lookup(module.vpc,each.key,null): i => values(j) if can(regex("rt",i)) })))
-  destation-cidr = each.value["vpc_cidr_block"]
+  destation-cidr = each.value["dest-cidr"]
   transit-gate-id = aws_ec2_transit_gateway.example.id
 }
 
@@ -46,6 +46,7 @@ variable "vpc" {
   default = {
     dev = {
       vpc_cidr_block = "10.0.0.0/16"
+      dest-cidr      = "10.2.0.0/16"
       subnets        = {
         public = {
           public1 = {cidr_block = "10.0.1.0/24" , az = "us-east-1a"}
@@ -67,6 +68,7 @@ variable "vpc" {
     }
     prod = {
       vpc_cidr_block = "10.2.0.0/16"
+      dest-cidr      = "10.0.0.0/16"
       subnets        = {
         public = {
           public1 = {cidr_block = "10.2.1.0/24" , az = "us-east-1a"}
