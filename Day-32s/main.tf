@@ -88,3 +88,7 @@ output "main" {
 # output "another" {
 #   value = values(lookup(lookup(module.vpc, "dev",null),"app_subnets",null))
 # }
+
+output "dev_all_rts" {
+  value = { for i,j in module.vpc: i => j if i == "dev" }
+}
