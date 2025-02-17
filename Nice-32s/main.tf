@@ -7,6 +7,9 @@ resource "aws_launch_template" "main" {
     availability_zone = "us-east-1b"
   }
 
+  tags = {
+    Name = "sample"
+  }
   tag_specifications {
     resource_type = "instance"
 
