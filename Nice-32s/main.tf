@@ -25,13 +25,33 @@ resource "aws_launch_template" "main" {
 
     }
   }
-  # tag_specifications {
-  #   resource_type = "instance"
-  #
-  #   tags = {
-  #     Name = "sample"
-  #   }
-  # }
+
+  block_device_mappings {
+    device_name = "/dev/sdf"  # First extra volume
+
+    ebs {
+      volume_size = 5
+      volume_type = "gp3"
+    }
+  }
+
+  block_device_mappings {
+    device_name = "/dev/sdg"  # Second extra volume
+
+    ebs {
+      volume_size = 5
+      volume_type = "gp3"
+    }
+  }
+
+  block_device_mappings {
+    device_name = "/dev/sdh"  # Third extra volume
+
+    ebs {
+      volume_size = 5
+      volume_type = "gp2"
+    }
+  }
 }
 
 variable "tag_specifications" {
