@@ -12,11 +12,32 @@ resource "aws_launch_template" "main" {
     Name = "sample"
   }
 
-  tag_specifications {
-    resource_type = "instance"
 
-    tags = {
-      Name = "sample"
+  dynamic "tag_specifications" {
+    for_each = var.tag_specifications
+    iterator = tag
+    content {
+      resource_type = tag.key
+
+      tags = {
+        Name = tag.value
+      }
+
     }
+  }
+  # tag_specifications {
+  #   resource_type = "instance"
+  #
+  #   tags = {
+  #     Name = "sample"
+  #   }
+  # }
+}
+
+variable "tag_specifications" {
+  default = {
+    instance = "sample-instance"
+    volume   = "sample-volume"
+    network-interface = "sample-network"
   }
 }
