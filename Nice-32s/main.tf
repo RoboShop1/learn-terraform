@@ -39,6 +39,7 @@ variable "tag_specifications" {
 
 
 resource "aws_instance" "main" {
+  count = 2
   launch_template {
     id = aws_launch_template.main.id
     version = "$Latest"
