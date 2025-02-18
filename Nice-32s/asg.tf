@@ -20,20 +20,24 @@ resource "aws_autoscaling_group" "bar" {
 */
 
 
-#
-# resource "aws_instance" "main" {
-#   ami = "ami-0b4f379183e5706b9"
-#
-#   instance_type = "t3.small"
-#
-#   root_block_device {
-#     volume_size = 20
-#     encrypted = true
-#     kms_key_id = ""
-#
-#   }
-#
-# }
+
+resource "aws_instance" "main" {
+  ami = "ami-0b4f379183e5706b9"
+
+  instance_type = "t3.small"
+
+  root_block_device {
+    volume_size = 20
+    encrypted = true
+    kms_key_id = data.aws_kms_key.main.id
+
+  }
+
+  tags = {
+    Name = "demo-encrypt"
+  }
+
+}
 
 data "aws_kms_key" "main" {
   key_id = "alias/my-secret-key"
