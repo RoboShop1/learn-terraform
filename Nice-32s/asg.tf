@@ -1,11 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.54.1"
-    }
-  }
-}
+
 /*
 resource "aws_autoscaling_group" "bar" {
   availability_zones = ["us-east-1a","us-east-1b"]
