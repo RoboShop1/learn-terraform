@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.54.1"
+    }
+  }
+}
+/*
 resource "aws_autoscaling_group" "bar" {
   availability_zones = ["us-east-1a","us-east-1b"]
   desired_capacity   = 2
@@ -14,4 +23,29 @@ resource "aws_autoscaling_group" "bar" {
     propagate_at_launch = true
     value               = "Sample-ASG"
   }
+}
+*/
+
+
+#
+# resource "aws_instance" "main" {
+#   ami = "ami-0b4f379183e5706b9"
+#
+#   instance_type = "t3.small"
+#
+#   root_block_device {
+#     volume_size = 20
+#     encrypted = true
+#     kms_key_id = ""
+#
+#   }
+#
+# }
+
+data "aws_kms_key" "main" {
+  key_id = "alias/my-secret-key"
+}
+
+output "all" {
+  value = data.aws_kms_key
 }
