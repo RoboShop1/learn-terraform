@@ -7,12 +7,9 @@ resource "aws_launch_template" "main" {
   placement {
     availability_zone = "us-east-1b"
   }
-
   tags = {
     Name = "sample"
   }
-
-
   dynamic "tag_specifications" {
     for_each = var.tag_specifications
     iterator = tag
@@ -26,32 +23,6 @@ resource "aws_launch_template" "main" {
     }
   }
 
-  block_device_mappings {
-    device_name = "/dev/sdf"  # First extra volume
-
-    ebs {
-      volume_size = 5
-      volume_type = "gp3"
-    }
-  }
-
-  block_device_mappings {
-    device_name = "/dev/sdg"  # Second extra volume
-
-    ebs {
-      volume_size = 5
-      volume_type = "gp3"
-    }
-  }
-
-  block_device_mappings {
-    device_name = "/dev/sdh"  # Third extra volume
-
-    ebs {
-      volume_size = 5
-      volume_type = "gp2"
-    }
-  }
 }
 
 variable "tag_specifications" {
