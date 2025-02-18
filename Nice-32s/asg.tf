@@ -19,8 +19,6 @@ resource "aws_autoscaling_group" "bar" {
 }
 */
 
-
-
 # resource "aws_instance" "main" {
 #   ami = "ami-0b4f379183e5706b9"
 #
