@@ -10,8 +10,8 @@ resource "aws_autoscaling_group" "bar" {
   }
 
   tag {
-    key                 = Name
-    propagate_at_launch = false
+    key                 = "Name"
+    propagate_at_launch = true
     value               = "Sample-ASG"
   }
 }
