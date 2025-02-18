@@ -1,6 +1,6 @@
 resource "aws_autoscaling_group" "bar" {
   availability_zones = ["us-east-1a","us-east-1b"]
-  desired_capacity   = 3
+  desired_capacity   = 2
   max_size           = 3
   min_size           = 1
 
