@@ -40,5 +40,5 @@ data "aws_kms_key" "main" {
 }
 
 output "all" {
-  value = data.aws_kms_key
+  value = data.aws_kms_key.main
 }
