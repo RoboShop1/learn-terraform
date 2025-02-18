@@ -11,6 +11,7 @@ resource "aws_launch_template" "main" {
   tags = {
     Name = "sample"
   }
+
   dynamic "tag_specifications" {
     for_each = var.tag_specifications
     iterator = tag
@@ -23,8 +24,7 @@ resource "aws_launch_template" "main" {
 
     }
   }
-user_data = filebase64("example.sh
-  ")
+user_data = filebase64("example.sh")
 
 }
 
@@ -41,5 +41,6 @@ variable "tag_specifications" {
 resource "aws_instance" "main" {
   launch_template {
     id = aws_launch_template.main.id
+    version = "$Latest"
   }
 }
