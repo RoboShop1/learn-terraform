@@ -33,3 +33,70 @@ resource "aws_eks_pod_identity_association" "eks-alb-pod-assocation" {
   service_account = "elb-sa"
   role_arn        = aws_iam_role.alb.arn
 }
+
+# ///////////////////////////////
+# //// Helm-Installation //////
+# ////////////////////////////
+
+variable "helm_values" {
+  default = {
+    serviceAccount.create = true
+    serviceAccount.name   = "elb-sa"
+    clusterName           = "dev-eks"
+  }
+}
+
+
+resource "helm_release" "helm-alb" {
+  name       = "aws-load-balancer-controller"
+  repository = "https://aws.github.io/eks-charts"
+  chart      = "aws-load-balancer-controller"
+  namespace = "default"
+
+  dynamic "set" {
+    for_each = var.helm_values
+    iterator = alb
+    content {
+      name = alb.key
+      value = alb.value
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
