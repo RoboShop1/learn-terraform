@@ -35,7 +35,7 @@ resource "aws_eks_node_group" "dev-eks-public-nodegroup" {
   node_role_arn   = aws_iam_role.node_role.arn
   subnet_ids      = var.public_subnets
   capacity_type   = "SPOT"
-  instance_types  = ["t3.small"]
+  instance_types  = ["t3.medium"]
 
   scaling_config {
     desired_size = 2
@@ -71,39 +71,39 @@ resource "aws_eks_node_group" "dev-eks-public-nodegroup" {
 
 # private-node
 
-resource "aws_eks_node_group" "dev-eks-private-nodegroup" {
-  depends_on = [
-    aws_iam_role_policy_attachment.node-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.node-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.node-AmazonEC2ContainerRegistryReadOnly,
-  ]
-  cluster_name    = aws_eks_cluster.dev-eks.name
-  node_group_name = "dev-eks-publickpo-nodegroup"
-  node_role_arn   = aws_iam_role.node_role.arn
-  subnet_ids      = var.public_subnets
-  capacity_type   = "SPOT"
-  instance_types  = ["t3.medium"]
-
-
-  scaling_config {
-    desired_size = 1
-    max_size     = 2
-    min_size     = 1
-  }
-
-  update_config {
-    max_unavailable = 1
-  }
-
-  remote_access {
-    ec2_ssh_key = "nvirginia"
-  }
-
-  tags = {
-    Name = "dev-eks-private-nodegroup"
-  }
-
-}
+# resource "aws_eks_node_group" "dev-eks-private-nodegroup" {
+#   depends_on = [
+#     aws_iam_role_policy_attachment.node-AmazonEKSWorkerNodePolicy,
+#     aws_iam_role_policy_attachment.node-AmazonEKS_CNI_Policy,
+#     aws_iam_role_policy_attachment.node-AmazonEC2ContainerRegistryReadOnly,
+#   ]
+#   cluster_name    = aws_eks_cluster.dev-eks.name
+#   node_group_name = "dev-eks-publickpo-nodegroup"
+#   node_role_arn   = aws_iam_role.node_role.arn
+#   subnet_ids      = var.public_subnets
+#   capacity_type   = "SPOT"
+#   instance_types  = ["t3.medium"]
+#
+#
+#   scaling_config {
+#     desired_size = 1
+#     max_size     = 2
+#     min_size     = 1
+#   }
+#
+#   update_config {
+#     max_unavailable = 1
+#   }
+#
+#   remote_access {
+#     ec2_ssh_key = "nvirginia"
+#   }
+#
+#   tags = {
+#     Name = "dev-eks-private-nodegroup"
+#   }
+#
+# }
 
 
 #
