@@ -48,23 +48,23 @@ variable "helm_values" {
   }
 }
 
-
-resource "helm_release" "helm-alb" {
-  depends_on = [null_resource.get-config]
-  name       = "aws-load-balancer-controller"
-  repository = "https://aws.github.io/eks-charts"
-  chart      = "aws-load-balancer-controller"
-  namespace = "default"
-
-  dynamic "set" {
-    for_each = var.helm_values
-    iterator = alb
-    content {
-      name = alb.key
-      value = alb.value
-    }
-  }
-}
+#
+# resource "helm_release" "helm-alb" {
+#   depends_on = [null_resource.get-config]
+#   name       = "aws-load-balancer-controller"
+#   repository = "https://aws.github.io/eks-charts"
+#   chart      = "aws-load-balancer-controller"
+#   namespace = "default"
+#
+#   dynamic "set" {
+#     for_each = var.helm_values
+#     iterator = alb
+#     content {
+#       name = alb.key
+#       value = alb.value
+#     }
+#   }
+# }
 
 
 
