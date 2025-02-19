@@ -56,6 +56,7 @@ resource "aws_eks_node_group" "dev-eks-public-nodegroup" {
   }
 }
 
+
 resource "aws_eks_addon" "eks-pod-identity-agent" {
   depends_on = [aws_eks_node_group.dev-eks-public-nodegroup]
 
