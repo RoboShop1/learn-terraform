@@ -42,7 +42,9 @@ variable "helm_values" {
   default = {
     "serviceAccount.create" = true
     "serviceAccount.name"   = "elb-sa"
-    clusterName           = "dev-eks"
+    clusterName             = "dev-eks"
+    vpcId                   = "vpc-045a03a1f2afda07f"
+    region                  = "us-east-1"
   }
 }
 
