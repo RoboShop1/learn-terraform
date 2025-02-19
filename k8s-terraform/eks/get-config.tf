@@ -36,6 +36,7 @@ resource "null_resource" "istio-delete" {
 
   provisioner "local-exec" {
     when = destroy
+    on_failure = continue
     command =<<EOT
 
 helm del istio-base  -n istio-system
