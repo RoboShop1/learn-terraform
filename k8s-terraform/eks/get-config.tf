@@ -13,7 +13,7 @@ variable "istio-install" {
   default = false
 }
 resource "null_resource" "istio-create" {
-  count = var.istio-instal ? 1 : 0
+  count = var.istio-install ? 1 : 0
   depends_on = [aws_eks_node_group.dev-eks-public-nodegroup,aws_eks_addon.eks-pod-identity-agent]
   provisioner "local-exec" {
     command =<<EOT
@@ -31,7 +31,7 @@ EOT
 }
 
 resource "null_resource" "istio-delete" {
-  count = var.istio-instal ? 1 : 0
+  count = var.istio-install ? 1 : 0
   depends_on = [aws_eks_node_group.dev-eks-public-nodegroup,aws_eks_addon.eks-pod-identity-agent]
 
   provisioner "local-exec" {
