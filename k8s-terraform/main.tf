@@ -7,6 +7,8 @@ module "dev-vpc" {
   db_cidr_blocks       = ["10.0.5.0/24","10.0.6.0/24"]
 }
 
+variable "istio-install" {}
+
 module "eks" {
   depends_on = [module.dev-vpc]
 
@@ -14,6 +16,7 @@ module "eks" {
   vpc_id = module.dev-vpc.vpc_id
   public_subnets = module.dev-vpc.public_subnets
   private_subnets = module.dev-vpc.private_subnets
+  istio-install = var.istio-install
 }
 
 #
