@@ -13,3 +13,4 @@ spec:
         protocol: HTTP
       hosts:
         - "nginx.chaithanya.cloud"
+        - "nginx-service.default.svc.cluster.local"
