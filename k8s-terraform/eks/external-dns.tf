@@ -15,7 +15,7 @@ data "aws_iam_policy_document" "external_role" {
 }
 
 resource "aws_iam_role" "external-dns" {
-  name               = "eks-pod-identity-alb"
+  name               = "eks-pod-identity-external-dns"
   assume_role_policy = data.aws_iam_policy_document.external_role.json
 }
 
