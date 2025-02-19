@@ -40,8 +40,8 @@ resource "aws_eks_pod_identity_association" "eks-alb-pod-assocation" {
 
 variable "helm_values" {
   default = {
-    serviceAccount.create = true
-    serviceAccount.name   = "elb-sa"
+    "serviceAccount.create" = true
+    "serviceAccount.name"   = "elb-sa"
     clusterName           = "dev-eks"
   }
 }
