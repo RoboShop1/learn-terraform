@@ -9,7 +9,7 @@ EOT
   }
 }
 
-variable "istio-instal" {
+variable "istio-install" {
   default = false
 }
 resource "null_resource" "istio-create" {
