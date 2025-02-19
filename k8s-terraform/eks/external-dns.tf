@@ -20,7 +20,7 @@ resource "aws_iam_role" "external-dns" {
 }
 
 
-resource "aws_iam_role_policy" "test_policy" {
+resource "aws_iam_role_policy" "external_dns_policy" {
   name = "external-dns"
   role = aws_iam_role.external-dns.id
 
