@@ -22,7 +22,7 @@ resource "aws_iam_role" "external-dns" {
 
 resource "aws_iam_role_policy" "test_policy" {
   name = "external-dns"
-  role = aws_iam_role.alb.id
+  role = aws_iam_role.external-dns.id
 
   policy = file("${path.module}/external-dns.json")
 }
@@ -31,7 +31,7 @@ resource "aws_eks_pod_identity_association" "external--pod-assocation" {
   cluster_name    = aws_eks_cluster.dev-eks.name
   namespace       = "default"
   service_account = "dns-sa"
-  role_arn        = aws_iam_role.alb.arn
+  role_arn        = aws_iam_role.external-dns.arn
 }
 
  resource "helm_release" "external-dns" {
