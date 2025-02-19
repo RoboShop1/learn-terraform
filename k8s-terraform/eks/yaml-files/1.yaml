@@ -9,6 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/subnets: subnet-011a52fc15e6c80c1, subnet-0a269173665a331dc
 spec:
   ingressClassName: alb
+
   rules:
     - http:
         paths:
