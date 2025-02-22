@@ -7,7 +7,7 @@ def lambda_handler(event,context):
     print("This is chaithanya")
     print("This is sample example1")
     print("=======================")
-    print(f"name is = os.getenv("foo")")
+    print(f"name is = os.getenv('foo')")
     print("===========")
     return {
         'statusCode': 200
