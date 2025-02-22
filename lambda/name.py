@@ -12,7 +12,7 @@ def lambda_handler(event,context):
     print(event)
     print("=============")
     return {
-        'statusCode': 200
+        'statusCode': 200,
         'body': json.dumps('Hello from Lambda')
     }
 
