@@ -9,6 +9,8 @@ def lambda_handler(event,context):
     print("=======================")
     print(f"name is = os.getenv('foo')")
     print("===========")
+    print(event)
+    print("=============")
     return {
         'statusCode': 200
         'body': json.dumps('Hello from Lambda')
