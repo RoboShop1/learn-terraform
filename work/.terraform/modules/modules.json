@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"document","Source":"./modules/documentdb","Dir":"modules/documentdb"},{"Key":"ec2","Source":"./modules/ec2","Dir":"modules/ec2"},{"Key":"mysql","Source":"./modules/mysql","Dir":"modules/mysql"}]}
