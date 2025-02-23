@@ -6,9 +6,11 @@ resource "aws_ssm_parameter" "secret" {
   value       = each.value
 
   tags = {
-    environment = "dev"
-    access      = "chaitu"
+    environment = var.env
+    access      = var.access
   }
 }
 
+variable "env" {}
+variable "access" {}
 variable "inputs" {}
