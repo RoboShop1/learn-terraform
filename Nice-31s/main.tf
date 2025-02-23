@@ -2,7 +2,7 @@ module "dev" {
   source = "./modules/ssm"
   inputs = var.dev-values
   env    = "dev"
-  access = "chaitu"
+  access = "chaitu-dev"
 }
 
 
@@ -11,7 +11,7 @@ module "dev-iam" {
   name   = "chaitu"
   tags   = {
     Name   = "chaitu"
-    access = "dev"
+    access = "chaitu-dev"
   }
 }
 
@@ -22,7 +22,7 @@ module "prod" {
   source = "./modules/ssm"
   inputs = var.prod-values
   env    = "prod"
-  access = "renuka"
+  access = "renuka-prod"
 }
 
 module "prod-iam" {
@@ -30,7 +30,7 @@ module "prod-iam" {
   name   = "renuka"
   tags   = {
     Name   = "renuka"
-    access = "prod"
+    access = "renuka-prod"
   }
 }
 
