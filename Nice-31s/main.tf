@@ -15,6 +15,9 @@ module "dev-iam" {
   }
 }
 
+
+
+
 module "prod" {
   source = "./modules/ssm"
   inputs = var.prod-values
@@ -22,7 +25,7 @@ module "prod" {
   access = "renuka"
 }
 
-module "dev-iam" {
+module "prod-iam" {
   source = "./modules/iam"
   name   = "renuka"
   tags   = {
