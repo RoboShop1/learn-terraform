@@ -53,7 +53,14 @@ variable "r-policy" {
                 "ssm:GetParameters",
                 "ssm:GetParameter"
             ],
-            "Resource": "*"
+
+            "Resource": "*",
+             "Condition": {
+                "StringEqualsIfExists": {
+                    "aws:PrincipalTag/access": "renuka-prod",
+                    "ssm:resourceTag/access": "renuka-prod"
+                }
+            }
         }
     ]
 }
