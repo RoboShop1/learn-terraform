@@ -28,11 +28,39 @@ module "prod" {
 module "prod-iam" {
   source = "./modules/iam"
   name   = "renuka"
+  policy = var.r-policy
   tags   = {
     Name   = "renuka"
     access = "renuka-prod"
   }
 }
+
+
+variable "r-policy" {
+  default = <<EOT
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameterHistory",
+                "ssm:GetParametersByPath",
+                "ssm:GetParameters",
+                "ssm:GetParameter"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+EOT
+}
+
+
+
+
 
 
 
