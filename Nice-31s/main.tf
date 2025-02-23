@@ -6,12 +6,32 @@ module "dev" {
 }
 
 
+module "dev-iam" {
+  source = "./modules/iam"
+  name   = "chaitu"
+  tags   = {
+    Name   = "chaitu"
+    access = "dev"
+  }
+}
+
 module "prod" {
   source = "./modules/ssm"
   inputs = var.prod-values
   env    = "prod"
   access = "renuka"
 }
+
+module "dev-iam" {
+  source = "./modules/iam"
+  name   = "renuka"
+  tags   = {
+    Name   = "renuka"
+    access = "prod"
+  }
+}
+
+
 
 variable "dev-values" {
   default = {
