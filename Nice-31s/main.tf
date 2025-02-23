@@ -9,9 +9,11 @@ module "dev" {
 module "dev-iam" {
   source = "./modules/iam"
   name   = "chaitu"
+  policy = var.r-policy
   tags   = {
     Name   = "chaitu"
     access = "chaitu-dev"
+
   }
 }
 
