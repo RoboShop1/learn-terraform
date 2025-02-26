@@ -20,7 +20,7 @@ resource "aws_iam_role" "alb" {
 }
 
 
-resource "aws_iam_role_policy" "test_policy" {
+resource "aws_iam_role_policy" "alb_policy" {
   name = "test_policy"
   role = aws_iam_role.alb.id
 
@@ -50,7 +50,7 @@ variable "helm_values" {
 
 #
 # resource "helm_release" "helm-alb" {
-#   depends_on = [null_resource.get-config]
+#   depends_on = [null_resource.get-config,aws_iam_role_policy.alb_policy]
 #   name       = "aws-load-balancer-controller"
 #   repository = "https://aws.github.io/eks-charts"
 #   chart      = "aws-load-balancer-controller"

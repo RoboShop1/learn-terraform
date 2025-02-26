@@ -35,7 +35,7 @@ resource "aws_eks_pod_identity_association" "external--pod-assocation" {
 }
 
  resource "helm_release" "external-dns" {
-   depends_on = [null_resource.get-config,aws_eks_pod_identity_association.external--pod-assocation]
+   depends_on = [null_resource.get-config,aws_iam_role_policy.external_dns_policy]
    name       = "external-dns"
    repository = "https://kubernetes-sigs.github.io/external-dns/"
    chart      = "external-dns"
