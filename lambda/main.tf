@@ -29,6 +29,19 @@ resource "aws_iam_policy" "lambda_ec2_policy" {
         Action   = "ec2:DescribeInstances"
         Effect   = "Allow"
         Resource = "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": "logs:CreateLogGroup",
+        "Resource": "arn:aws:logs:us-east-1:339712959230:*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "*"
       }
     ]
   })
