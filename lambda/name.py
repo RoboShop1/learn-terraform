@@ -5,6 +5,7 @@ import os
 
 def lambda_handler(event,context):
     ec2 = boto3.ec2
+    print("helllo")
 
     return {
         'statusCode': 200,
