@@ -15,7 +15,7 @@ def lambda_handler(event,context):
     for reservation in reponse["Reservations"]:
         for instance in reservation["Instances"]:
             print('====================')
-            print(f" {instance["InstanceId"]} == {instance["State"]["Name"]})
+            print(f" {instance["InstanceId"]} == {instance["State"]["Name"]}")
             print('======================')
 
     return {
