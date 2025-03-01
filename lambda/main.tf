@@ -36,6 +36,8 @@ resource "aws_lambda_function" "test_lambda" {
 
   runtime = "python3.11"
 
+  timeout = 120
+
   environment {
     variables = {
       foo = "bar"
