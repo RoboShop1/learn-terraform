@@ -1,6 +1,6 @@
 
 resource "aws_iam_role" "lambda_role" {
-  name = "tf_lambda_role"
+  name = "tf_lambda_role1"
   assume_role_policy =<<EOT
 {
     "Version": "2012-10-17",
