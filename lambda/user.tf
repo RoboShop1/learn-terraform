@@ -17,5 +17,6 @@ output "access_key_id" {
 
 # Output Secret Key (Sensitive - Hidden in Console)
 output "secret_access_key" {
-  value = aws_iam_access_key.my_user_key.encrypted_secret
+  value = aws_iam_access_key.my_user_key.secret
+  sensitive = true
 }
