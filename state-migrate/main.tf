@@ -9,6 +9,7 @@ terraform {
   backend "s3" {
     bucket = "chaituample"
     key = "migrate"
+    region = "us-east-1"
   }
 }
 
