@@ -13,11 +13,11 @@ spec:
         - destination:
             host: nginx-svc
             subset: v1
-          weight: 90
+          weight: 10
         - destination:
             host: nginx-svc
             subset: v2
-          weight: 10
+          weight: 90
 
 
 ---
