@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: sample-gt
+spec:
+  selector:
+    app: istio-ingress
+    istio: ingress
+  servers:
+    - port:
+        number: 80
+        name: https
+        protocol: HTTP
+      hosts:
+        - "nginx.chaithanya.cloud"
+
+
