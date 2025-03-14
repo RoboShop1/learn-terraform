@@ -1,5 +1,5 @@
 resource "null_resource" "get-config" {
-  depends_on = [aws_eks_node_group.dev-eks-public-nodegroup,aws_eks_addon]
+  depends_on = [aws_eks_node_group.dev-eks-public-nodegroup]
 
   provisioner "local-exec" {
     command = <<EOT
