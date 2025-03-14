@@ -5,4 +5,4 @@ metadata:
   namespace: "sample"
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE
