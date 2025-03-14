@@ -16,7 +16,6 @@ module "eks" {
   vpc_id = module.dev-vpc.vpc_id
   public_subnets = module.dev-vpc.public_subnets
   private_subnets = module.dev-vpc.private_subnets
-  istio-install = var.istio-install
 }
 
 #
