@@ -3,7 +3,7 @@ kind: Gateway
 metadata:
   name: sample-gt1
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: "nginx1.chaithanya.cloud"
+    external-dns.alpha.kubernetes.io/hostname: "nginx2.chaithanya.cloud"
 spec:
   selector:
     app: istio-ingress
