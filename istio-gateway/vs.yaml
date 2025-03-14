@@ -7,7 +7,7 @@ spec:
   hosts:
     - "nginx.chaithanya.cloud"
   gateways:
-    - sample-gt
+    - default/sample-gt
   http:
     - route:
         - destination:
