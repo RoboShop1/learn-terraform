@@ -6,6 +6,8 @@ metadata:
 spec:
   hosts:
     - "nginx.chaithanya.cloud"
+  gateways:
+    - sample-gt
   http:
     - route:
         - destination:
