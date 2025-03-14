@@ -7,7 +7,7 @@ module "dev-vpc" {
   db_cidr_blocks       = ["10.0.5.0/24","10.0.6.0/24"]
 }
 
-variable "istio-install" {}
+
 
 module "eks" {
   depends_on = [module.dev-vpc]
