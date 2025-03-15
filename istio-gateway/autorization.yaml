@@ -2,7 +2,7 @@ apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
   name: require-jwt
-  namespace: foo
+  namespace: sample
 spec:
   selector:
     matchLabels:
