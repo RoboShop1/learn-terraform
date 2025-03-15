@@ -4,7 +4,7 @@ metadata:
   name: nginx
   namespace: sample
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -30,7 +30,7 @@ metadata:
   name: nginx1
   namespace: sample
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -53,15 +53,34 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-svc
+  name: nginx
   namespace: sample
 spec:
   selector:
     app: nginx
     testing: ab
+    version: v1
+
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
       name: http-web
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx1
+  namespace: sample
+
+spec:
+  selector:
+    app: nginx
+    testing: ab
+    version: v1
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http-web
