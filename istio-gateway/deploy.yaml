@@ -78,7 +78,7 @@ spec:
   selector:
     app: nginx
     testing: ab
-    version: v1
+    version: v2
   ports:
     - port: 80
       targetPort: 80
