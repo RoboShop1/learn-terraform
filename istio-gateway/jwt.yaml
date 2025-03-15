@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1
+kind: RequestAuthentication
+metadata:
+  name: "jwt-example"
+  namespace: sample
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      testing: ab
+      version: v2
+  jwtRules:
+    - issuer: "testing@secure.istio.io"
+      jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.25/security/tools/jwt/samples/jwks.json"
