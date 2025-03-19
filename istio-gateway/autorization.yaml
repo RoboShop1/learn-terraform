@@ -14,3 +14,9 @@ spec:
     - from:
         - source:
             requestPrincipals: ["testing@secure.istio.io/testing@secure.istio.io"]
+
+
+
+curl -s -H "Content-Type: application/json" \
+  --data '{"grant_type":"client_credentials","client_id":"GQ8M8gG4wtOKlWIgxpUohnY7tjqvTsCQ","client_secret":"xIgkcf4fnlUpKkI4ZbPCKF5HptdyTj6mY_JFMqhlGeBJVv6DSQapjdu_M5qONa4j","audience":"https://dev-0ximfmtawjyrzkgu.us.auth0.com/api/v2/"}' \
+  https://dev-0ximfmtawjyrzkgu.us.auth0.com/oauth/token
