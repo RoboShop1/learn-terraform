@@ -10,5 +10,5 @@ spec:
       testing: ab
       version: v2
   jwtRules:
-    - issuer: "testing@secure.istio.io"
-      jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.25/security/tools/jwt/samples/jwks.json"
+    - issuer: "https://dev-0ximfmtawjyrzkgu.us.auth0.com/"
+      jwksUri: "https://dev-0ximfmtawjyrzkgu.us.auth0.com/.well-known/jwks.json"
