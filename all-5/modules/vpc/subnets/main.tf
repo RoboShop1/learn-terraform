@@ -32,10 +32,10 @@ variable "subnets" {}
 variable "vpc_id" {}
 variable "env" {}
 
-output "subnets" {
-  value = aws_subnet.main
+output "subnets_ids" {
+  value = {for i,j in aws_subnet.main: i => j.id}
 }
 
-output "rt" {
-  value = aws_route_table.rt
+output "rt_ids" {
+  value = {for i,j in aws_route_table.rt: i => j.id}
 }
