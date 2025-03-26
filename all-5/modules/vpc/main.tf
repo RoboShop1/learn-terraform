@@ -41,8 +41,37 @@ resource "aws_nat_gateway" "nat" {
   tags = {
     Name = "${var.env}-vpc-${each.value}-nat"
   }
-
 }
+
+// *** public-igw-routes-public-subnets *** //
+resource "aws_route" "public-route" {
+  for_each                  = lookup(lookup(module.subnets,"public",null),"rt_ids",null)
+  route_table_id            = each.value
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id                = aws_internet_gateway.gw.id
+}
+
+// *** nat-gateway-routes-app-subnets *** //
+resource "aws_route" "app-route" {
+  for_each                  = lookup(lookup(module.subnets,"app",null),"rt_ids",null)
+  route_table_id            = each.value
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id                = aws_nat_gateway.nat.id
+}
+
+
+// *** nat-gateway-routes-db-subnets *** //
+resource "aws_route" "db-route" {
+  for_each                  = lookup(lookup(module.subnets,"db",null),"rt_ids",null)
+  route_table_id            = each.value
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id                = aws_nat_gateway.nat.id
+}
+
+
+
+
+
 
 variable "vpc_cidr_block" {}
 variable "env" {}
