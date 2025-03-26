@@ -39,7 +39,7 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = each.value
 
   tags = {
-    Name = "${var.env}-vpc-${each.value}-nat"
+    Name = "${var.env}-vpc-${each.key}-nat"
   }
 }
 
