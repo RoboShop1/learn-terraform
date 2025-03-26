@@ -29,5 +29,5 @@ variable "subnets" {}
 
 
 output "f-subnet" {
-  value = module.subnets.subnets
+  value = module.subnets
 }
