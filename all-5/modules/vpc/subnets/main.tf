@@ -32,6 +32,8 @@ variable "subnets" {}
 variable "vpc_id" {}
 variable "env" {}
 
+
+
 output "subnets_ids" {
   value = {for i,j in aws_subnet.main: i => j.id}
 }
