@@ -6,3 +6,7 @@ module "vpc" {
   subnets          = each.value["subnets"]
 }
 
+
+output "main-vpc" {
+  value = module.vpc
+}
