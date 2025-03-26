@@ -32,17 +32,17 @@ resource "aws_eip" "eip" {
   }
 }
 
-# resource "aws_nat_gateway" "nat" {
-#   for_each      = lookup(lookup(module.subnets,"public",null),"subnets_ids",null)
-#
-#   allocation_id = ""
-#   subnet_id     = each.value
-#
-#   tags = {
-#     Name = "${var.env}-vpc-${each.value}-nat"
-#   }
-#
-# }
+resource "aws_nat_gateway" "nat" {
+  for_each      = lookup(lookup(module.subnets,"public",null),"subnets_ids",null)
+
+  allocation_id = aws_eip.eip[each.key]["id"]
+  subnet_id     = each.value
+
+  tags = {
+    Name = "${var.env}-vpc-${each.value}-nat"
+  }
+
+}
 
 variable "vpc_cidr_block" {}
 variable "env" {}
