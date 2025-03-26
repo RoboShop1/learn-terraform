@@ -56,7 +56,7 @@ resource "aws_route" "app-route" {
   for_each                  = lookup(lookup(module.subnets,"app",null),"rt_ids",null)
   route_table_id            = each.value
   destination_cidr_block    = "0.0.0.0/0"
-  gateway_id                = aws_nat_gateway.nat.id
+  gateway_id                = can(regex(each.key,1)) ? aws_nat_gateway.nat["public1"].id : aws_nat_gateway.nat["public2"].id
 }
 
 
@@ -65,7 +65,7 @@ resource "aws_route" "db-route" {
   for_each                  = lookup(lookup(module.subnets,"db",null),"rt_ids",null)
   route_table_id            = each.value
   destination_cidr_block    = "0.0.0.0/0"
-  gateway_id                = aws_nat_gateway.nat.id
+  gateway_id                =  can(regex(each.key,1)) ? aws_nat_gateway.nat["public1"].id : aws_nat_gateway.nat["public2"].id
 }
 
 
