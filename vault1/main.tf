@@ -86,5 +86,5 @@ output "k1" {
 }
 
 output "alll" {
-  value = file("1.yaml")
+  value = yamldecode(file("1.yaml"))
 }
