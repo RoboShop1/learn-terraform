@@ -26,7 +26,7 @@ resource "null_resource" "main" {
 provisioner "local-exec" {
   command = <<EOT
 
-echo ${data.vault_kv_secret.secret_data.data} > 1.txt
+echo ${data.vault_kv_secret.secret_data.data["name1"]} > 1.txt
 EOT
 }
 }
