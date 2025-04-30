@@ -37,7 +37,7 @@ resource "null_resource" "main5" {
 
 
 
-resource "null_resource" "main6" {
+resource "null_resource" "main7" {
   provisioner "remote-exec" {
     connection {
       type = "ssh"
