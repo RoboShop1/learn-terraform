@@ -31,3 +31,8 @@ EOT
 }
 }
 
+output "name1" {
+  value = data.vault_kv_secret.secret_data.data["data"]["name1"]
+  sensitive = true
+}
+
