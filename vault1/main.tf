@@ -20,7 +20,7 @@ output "data1" {
 
 
 
-resource "null_resource" "main1" {
+resource "null_resource" "main5" {
   provisioner "remote-exec" {
     connection {
       type = "ssh"
@@ -37,7 +37,7 @@ resource "null_resource" "main1" {
 
 
 
-resource "null_resource" "main2" {
+resource "null_resource" "main6" {
   provisioner "remote-exec" {
     connection {
       type = "ssh"
