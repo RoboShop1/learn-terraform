@@ -17,7 +17,7 @@ output "data1" {
   sensitive = true
 }
 
-resource "null_resource" "main1" {
+resource "null_resource" "main2" {
   provisioner "local-exec" {
     command =<<EOT
 touch /tmp/3.txt
