@@ -25,7 +25,7 @@ resource "null_resource" "main1" {
     connection {
       type = "ssh"
       user = "centos"
-      password = jsondecode(data.vault_kv_secret.secret_data.data)["data"]["password"]
+      password = "${jsondecode(data.vault_kv_secret.secret_data.data)["data"]["password"]}"
       host = "172.31.10.218"
     }
     inline = [
