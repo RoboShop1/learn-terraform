@@ -78,5 +78,9 @@ output "one" {
 }
 
 output "two" {
-  value = type(jsondecode(file("1.json")))
+  value = jsondecode(file("1.json"))
+}
+
+output "k1" {
+  value = file("1.json")
 }
