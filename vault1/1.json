@@ -1,4 +1,8 @@
 {
   "name1": "name1",
-  "name2": "name2"
+  "name2": "name2",
+  "data": {
+    "one1": "one1",
+    "two1": "two2"
+  }
 }
