@@ -27,7 +27,7 @@ provisioner "local-exec" {
   command = <<EOT
 
 echo ${jsonencode(data.vault_kv_secret.secret_data.data)} > 1.txt
-echo ${jsondecode(data.vault_kv_secret.secret_data.data_json)} > 2.txt
+echo ${tostring(jsondecode(data.vault_kv_secret.secret_data.data_json))} > 2.txt
 EOT
 }
 }
