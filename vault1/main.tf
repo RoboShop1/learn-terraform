@@ -13,18 +13,8 @@ data "vault_kv_secret" "secret_data" {
 
 
 output "data1" {
-  value = data.vault_kv_secret.secret_data
+  value = data.vault_kv_secret.secret_data.data["name1"]
   sensitive = true
 }
 
-resource "null_resource" "main2" {
-  triggers = {
-    name = timestamp()
-  }
-  provisioner "local-exec" {
-    command =<<EOT
-touch /tmp/3.txt
-echo ${data.vault_kv_secret.secret_data.data_json} | jq .
-EOT
-  }
-}
+
