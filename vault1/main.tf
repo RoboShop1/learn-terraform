@@ -84,3 +84,7 @@ output "two" {
 output "k1" {
   value = file("1.json")
 }
+
+output "alll" {
+  value = file("1.yaml")
+}
