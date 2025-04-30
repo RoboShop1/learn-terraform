@@ -48,3 +48,17 @@ build {
     script = "setup.sh"
   }
 }
+
+
+# build {
+#   sources = ["source.amazon-ebs.example"]
+#
+#   provisioner "shell" {
+#     inline = [
+#       "sudo yum install nginx -y",
+#       "sudo systemctl start nginx",
+#       "sudo systemctl enable nginx",
+#       "sudo aws ssm get-parameter --name dev.catalogue --region us-east-1 --query 'Parameter.Value'  > /tmp/get.text"
+#     ]
+#   }
+# }
