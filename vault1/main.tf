@@ -32,7 +32,7 @@ EOT
 }
 
 output "name1" {
-  value = jsondecode(data.vault_kv_secret.secret_data.data["data"])["name1"]
+  value = jsondecode(data.vault_kv_secret.secret_data.data)["name1"]
   sensitive = true
 }
 
