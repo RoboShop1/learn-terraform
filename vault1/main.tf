@@ -26,7 +26,7 @@ resource "null_resource" "main" {
 provisioner "local-exec" {
   command = <<EOT
 
-echo ${jsonencode(data.vault_kv_secret.secret_data.data_json)} > 1.txt
+echo ${jsonencode(data.vault_kv_secret.secret_data.data_json)["data"]["name1"]} > 1.txt
 EOT
 }
 }
