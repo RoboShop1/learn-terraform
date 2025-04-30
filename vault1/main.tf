@@ -1,11 +1,4 @@
-terraform {
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.2"
-    }
-  }
-}
+
 provider "vault" {
   address = "http://44.197.238.225:8200/"
   skip_tls_verify = true
