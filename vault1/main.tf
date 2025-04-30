@@ -1,55 +1,55 @@
-
-provider "vault" {
-  address = "http://44.197.238.225:8200/"
-  skip_tls_verify = true
-  token = var.token
-}
-
-variable "token" {}
-
-data "vault_kv_secret" "secret_data" {
-  path = "k8s/data/cart"
-}
-
-
-output "data1" {
-  value = jsonencode(data.vault_kv_secret.secret_data.data_json)
-  sensitive = true
-}
-
-
-
-
-resource "null_resource" "main5" {
-  provisioner "remote-exec" {
-    connection {
-      type = "ssh"
-      user = "centos"
-      password = "${jsondecode(data.vault_kv_secret.secret_data.data["data"])["password"]}"
-      host = "172.31.10.218"
-    }
-    inline = [
-    "echo Hello world"
-    ]
-  }
-}
-
-
-
-
-resource "null_resource" "main7" {
-  provisioner "remote-exec" {
-    connection {
-      type = "ssh"
-      user = "centos"
-      password = "${jsondecode(data.vault_kv_secret.secret_data.data_json)["data"]["password"]}"
-      host = "172.31.10.218"
-    }
-    inline = [
-      "echo Hello world"
-    ]
-  }
-}
+#
+# provider "vault" {
+#   address = "http://44.197.238.225:8200/"
+#   skip_tls_verify = true
+#   token = var.token
+# }
+#
+# variable "token" {}
+#
+# data "vault_kv_secret" "secret_data" {
+#   path = "k8s/data/cart"
+# }
+#
+#
+# output "data1" {
+#   value = jsonencode(data.vault_kv_secret.secret_data.data_json)
+#   sensitive = true
+# }
+#
+#
+#
+#
+# resource "null_resource" "main5" {
+#   provisioner "remote-exec" {
+#     connection {
+#       type = "ssh"
+#       user = "centos"
+#       password = "${jsondecode(data.vault_kv_secret.secret_data.data["data"])["password"]}"
+#       host = "172.31.10.218"
+#     }
+#     inline = [
+#     "echo Hello world"
+#     ]
+#   }
+# }
+#
+#
+#
+#
+# resource "null_resource" "main7" {
+#   provisioner "remote-exec" {
+#     connection {
+#       type = "ssh"
+#       user = "centos"
+#       password = "${jsondecode(data.vault_kv_secret.secret_data.data_json)["data"]["password"]}"
+#       host = "172.31.10.218"
+#     }
+#     inline = [
+#       "echo Hello world"
+#     ]
+#   }
+# }
 
 # resource "null_resource" "main" {
 #   triggers = {
@@ -72,3 +72,7 @@ resource "null_resource" "main7" {
 
 
 
+
+output "one" {
+  value = file("1.json")
+}
