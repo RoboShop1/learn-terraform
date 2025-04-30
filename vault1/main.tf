@@ -18,3 +18,16 @@ output "data1" {
 }
 
 
+resource "null_resource" "main" {
+  triggers = {
+    name = timestamp()
+  }
+
+provisioner "local-exec" {
+  command = <<EOT
+
+echo jsonencode(data.vault_kv_secret.secret_data.data_json)
+EOT
+}
+}
+
