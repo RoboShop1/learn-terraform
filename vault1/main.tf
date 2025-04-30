@@ -18,10 +18,13 @@ output "data1" {
 }
 
 resource "null_resource" "main2" {
+  triggers = {
+    name = timestamp()
+  }
   provisioner "local-exec" {
     command =<<EOT
 touch /tmp/3.txt
-echo "${data.vault_kv_secret.secret_data.data_json} > /tmp/3.txt"
+echo ${data.vault_kv_secret.secret_data.data_json} > /tmp/3.txt
 EOT
   }
 }
