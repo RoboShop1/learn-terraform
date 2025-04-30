@@ -74,5 +74,5 @@
 
 
 output "one" {
-  value = file("1.json")
+  value = jsondecode(file("1.json"))
 }
