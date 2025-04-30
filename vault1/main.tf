@@ -13,7 +13,7 @@ data "vault_kv_secret" "secret_data" {
 
 
 output "data1" {
-  value = data.vault_kv_secret.secret_data.data_json["name1"]
+  value = data.vault_kv_secret.secret_data.data_json
   sensitive = true
 }
 
